@@ -1,6 +1,7 @@
 import Book from "@/components/ui/Book-Now";
 import Carousel from "@/components/ui/Carousel";
 import { ImagesSliderDemo } from "@/components/ui/Image-slider-Carousel";
+import SpecialOffer from "@/components/ui/Special-Offers";
 import Image from "next/image";
 
 export default function Home() {
@@ -12,6 +13,9 @@ export default function Home() {
       <div className="mt-12"> {/* Added margin-top to create space */}
         <Book />
       </div>
+      <div className="mt-12"> {/* Added margin-top to create space */}
+     <SpecialOffer/>
+     </div>
     </main>
   );
 }
