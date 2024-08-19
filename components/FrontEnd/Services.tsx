@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Services = () => {
+export default function Services() {
   return (
     <div>
      <div className="text-center text-black text-2xl font-bold font-['Inter']">
@@ -41,5 +41,3 @@ const Services = () => {
     </div>
   );
 }
-
-export default Services;

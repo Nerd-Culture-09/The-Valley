@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 
-const Book = () => {
+export default function Book() {
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
 
@@ -86,5 +86,3 @@ const Book = () => {
     </div>
   );
 };
-
-export default Book;
