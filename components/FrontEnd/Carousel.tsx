@@ -42,7 +42,11 @@ export default function Carousel() {
   }, [activeIndex]);
 
   return (
-    <div id="default-carousel" className="relative w-full" data-carousel="slide">
+    <div
+      id="default-carousel"
+      className="relative w-full mt-8" // Added margin-top here
+      data-carousel="slide"
+    >
       <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
         {slides.map((slide, index) => (
           <div
@@ -56,14 +60,11 @@ export default function Carousel() {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-          >
-            
-          </div>
+          ></div>
         ))}
 
         {/* Stationary Text Overlay */}
-        <div className="text-white absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center">
-        </div>
+        <div className="text-white absolute inset-0 bg-black bg-opacity-30 flex items-center justify-center"></div>
       </div>
     </div>
   );
