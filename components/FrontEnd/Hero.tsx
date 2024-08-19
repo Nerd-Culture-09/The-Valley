@@ -5,6 +5,7 @@ import { useState } from 'react'
 import Carousel from './Carousel'
 import Book from './Book-Now'
 import SpecialOffer from './Special-Offers'
+import Testimonial from './Testimonials'
 
 export default function Hero() {
 
@@ -45,7 +46,10 @@ export default function Hero() {
             </div>
           </div>
         </div>
+        <div className="mb-28">
         <Book />
+        </div>
+        <Testimonial />
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
