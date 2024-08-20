@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from "react";
-
+import DatePickerWithRange from "../ui/DatePicker";
 export default function Book() {
   const [adults, setAdults] = useState(2);
   const [children, setChildren] = useState(0);
@@ -21,10 +21,11 @@ export default function Book() {
         <div className="flex flex-col items-start gap-2 w-full sm:w-auto">
           <div className="text-black text-base font-bold font-['Inter']">Date</div>
           <div className="relative w-full sm:w-[265px] h-[60px] bg-white rounded-xl flex items-center px-4">
-            <input
+            {/*<input
               type="date"
               className="w-full h-full bg-transparent border-none focus:outline-none text-[#1e1e1e] text-base font-semibold font-['Inter']"
-            />
+            />*/}
+            <DatePickerWithRange/>
           </div>
         </div>
 
