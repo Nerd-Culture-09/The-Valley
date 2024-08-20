@@ -37,7 +37,7 @@ export default function Carousel() {
   useEffect(() => {
     const intervalId = setInterval(() => {
       handleNext();
-    }, 6000); // Change slide every 3 seconds
+    }, 3000); // Change slide every 3 seconds
 
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, [activeIndex]);
@@ -55,11 +55,7 @@ export default function Carousel() {
   });
 
   return (
-    <div
-      id="default-carousel"
-      className="relative w-full mt-8" // Added margin-top here
-      data-carousel="slide"
-    >
+    <div id="default-carousel" className="relative w-full" data-carousel="slide">
       <div className="relative h-56 overflow-hidden rounded-lg md:h-96">
         {slides.map((slide, index) => (
           <div
@@ -73,7 +69,6 @@ export default function Carousel() {
               backgroundSize: "cover",
               backgroundPosition: "center",
             }}
-          ></div>
           >
             {index === activeIndex && (
               <div className="flex items-start justify-center h-full pt-4">
