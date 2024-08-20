@@ -6,12 +6,15 @@ import Carousel from './Carousel'
 import Book from './Book-Now'
 import SpecialOffer from './Special-Offers'
 import Testimonial from './Testimonials'
-import Team from './Team'
+import Team from './Team';
+import { ImagesSliderDemo} from './Image-slider-Carousel'
+import Services from './Services'
+
 
 export default function Hero() {
 
   return (
-    <div className="bg-white">
+    <div className="bg-white" >
       <div className="relative isolate px-6 pt-14 lg:px-8">
         <div
           aria-hidden="true"
@@ -25,8 +28,10 @@ export default function Hero() {
             className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
-        <Carousel />
-        <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+        <ImagesSliderDemo/>
+        {/*<CarouselDefault/>*/}
+        {/*<Carousel />*/}
+       {/* <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" >
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Where Hospitality Meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4F46E5] to-[#2e0347]">Serenity</span>
@@ -46,9 +51,13 @@ export default function Hero() {
               </Link>
             </div>
           </div>
-        </div>
+        </div>*/}
+       
         <div className="mb-28">
         <Book />
+        </div>
+        <div className='mb-20'>
+          <Services/>
         </div>
         <Testimonial />
         <Team />
@@ -66,5 +75,6 @@ export default function Hero() {
         </div>
       </div>
     </div>
+
   )
 }
