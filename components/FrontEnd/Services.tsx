@@ -12,7 +12,7 @@ const Services = () => {
           {/* Container for Room Image */}
           <div className="w-[400px] h-[760px] rounded-[42px] overflow-hidden flex items-end relative">
             <img 
-              src="/dummy2.jpg" 
+              src="/north.jpg" 
               alt="North" 
               className="w-full h-full object-cover"
             />
@@ -24,7 +24,7 @@ const Services = () => {
           {/* Container for Breakfast Image */}
           <div className="w-[400px] h-[760px] rounded-[42px] overflow-hidden flex items-end relative">
             <img 
-              src="./dummy1.jpg" 
+              src="./south.jpg" 
               alt="South" 
               className="w-full h-full object-cover"
             />

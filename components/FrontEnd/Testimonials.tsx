@@ -3,21 +3,21 @@ export default function Testimonial() {
     const testimonials = [
         {
             avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
-            name: "Martin escobar",
-            title: "Founder of meta",
-            quote: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et est hendrerit, porta nunc vitae."
+            name: "Mswati",
+            title: "guest",
+            quote: "lijo tse monate hakaaalo."
         },
         {
             avatar: "https://randomuser.me/api/portraits/women/79.jpg",
-            name: "Angela stian",
-            title: "Product designer",
-            quote: "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."
+            name: "lejone ",
+            title: "guest",
+            quote: "tshebeletso tse monate haakaalo."
         },
         {
             avatar: "https://randomuser.me/api/portraits/men/86.jpg",
-            name: "Karim ahmed",
+            name: "guest",
             title: "DevOp engineer",
-            quote: "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain."
+            quote: "who seeks after it and wants to have it, simply because it is the valley ."
         },
     ]
 
@@ -29,7 +29,7 @@ export default function Testimonial() {
                         See what others are saying about us
                     </h3>
                     <p className="mt-3 text-gray-600">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc et est hendrerit, porta nunc vitae, gravida justo. Nunc fermentum magna lorem, euismod volutpat arcu volutpat et.
+                        The Valley guest house
                     </p>
                 </div>
                 <div className="mt-12">

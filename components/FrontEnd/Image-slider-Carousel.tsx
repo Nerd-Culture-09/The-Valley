@@ -6,9 +6,9 @@ import { ImagesSlider } from "../ui/Image-slider";
 
 export function ImagesSliderDemo() {
   const images = [
-    "/dummy1.jpg",
-    "/dummy2.jpg",
-    "/dummy3.jpg",
+    "/valley.png",
+    "/valley1.jpg",
+    "/valley2.jpg",
   ];
   return (
     <ImagesSlider className="h-[40rem] w-full" images={images}>

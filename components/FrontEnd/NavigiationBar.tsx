@@ -39,10 +39,10 @@ const NavigationBar = () => {
         <div className="flex items-center justify-between py-3 md:py-5 md:block">
           <a href="javascript:void(0)">
             <img
-              src="https://www.floatui.com/logo.svg"
+              src="/vlogo.png"
               width={120}
               height={50}
-              alt="Float UI logo"
+              alt="The Valley logo"
             />
           </a>
           <div className="md:hidden">
