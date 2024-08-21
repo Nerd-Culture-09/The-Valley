@@ -1,6 +1,4 @@
 import Footer from '@/components/FrontEnd/Footer'
-import Image1 from '@/components/FrontEnd/Image'
-import  Navbar from '@/components/FrontEnd/NavBar'
 import NavigationBar from '@/components/FrontEnd/NavigiationBar'
 
 import React, { ReactNode } from 'react'
