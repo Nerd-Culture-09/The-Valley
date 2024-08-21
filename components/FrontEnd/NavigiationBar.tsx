@@ -1,17 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
-import { HoveredLink, Menu, MenuItem, ProductItem } from "../ui/Nav-menu";
 
 const NavigationBar = () => {
   const [state, setState] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState<string | null>(null);
 
   const navigation = [
-    { title: "Customers", path: "javascript:void(0)" },
-    { title: "Careers", path: "javascript:void(0)" },
-    { title: "Guides", path: "javascript:void(0)" },
-    { title: "Partners", path: "javascript:void(0)" },
+    { title: "Home", path: "javascript:void(0)" },
+    { title: "Rooms", path: "javascript:void(0)" },
+    { title: "Pricing", path: "javascript:void(0)" },
+    { title: "About", path: "javascript:void(0)" },
+    { title: "Contact", path: "javascript:void(0)" },
   ];
 
   useEffect(() => {
@@ -30,12 +29,10 @@ const NavigationBar = () => {
     };
   }, []);
 
-   
-
   return (
     <nav
-      className={`w-full fixed z-50 transition-colors duration-300 ${
-        scrolled ? "bg-white shadow-lg" : "bg-transparent"
+      className={`w-full fixed top-0 z-50 transition-colors duration-300 ${
+        scrolled ? "bg-white shadow-lg" : "bg-white shadow-lg"
       }`}
     >
       <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
@@ -90,59 +87,12 @@ const NavigationBar = () => {
             state ? "block" : "hidden"
           }`}
         >
-          <ul className="justify-center items-center space-y-8 md:flex md:space-x-6  md:space-y-0">
-            {/*{navigation.map((item, idx) => (
+          <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
+            {navigation.map((item, idx) => (
               <li key={idx} className="text-gray-600 hover:text-indigo-600">
                 <a href={item.path}>{item.title}</a>
               </li>
-            ))}*/}
-            <Menu setActive={setActive}>
-        <MenuItem setActive={setActive} active={active} item="Services">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/web-dev">Web Development</HoveredLink>
-            <HoveredLink href="/interface-design">Interface Design</HoveredLink>
-            <HoveredLink href="/seo">Search Engine Optimization</HoveredLink>
-            <HoveredLink href="/branding">Branding</HoveredLink>
-          </div>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Products">
-          <div className="  text-sm grid grid-cols-2 gap-10 p-4">
-            <ProductItem
-              title="Algochurn"
-              href="https://algochurn.com"
-              src="https://assets.aceternity.com/demos/algochurn.webp"
-              description="Prepare for tech interviews like never before."
-            />
-            <ProductItem
-              title="Tailwind Master Kit"
-              href="https://tailwindmasterkit.com"
-              src="https://assets.aceternity.com/demos/tailwindmasterkit.webp"
-              description="Production ready Tailwind css components for your next project"
-            />
-            <ProductItem
-              title="Moonbeam"
-              href="https://gomoonbeam.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.51.31%E2%80%AFPM.png"
-              description="Never write from scratch again. Go from idea to blog in minutes."
-            />
-            <ProductItem
-              title="Rogue"
-              href="https://userogue.com"
-              src="https://assets.aceternity.com/demos/Screenshot+2024-02-21+at+11.47.07%E2%80%AFPM.png"
-              description="Respond to government RFPs, RFIs and RFQs 10x faster using AI"
-            />
-          </div>
-        </MenuItem>
-        <MenuItem setActive={setActive} active={active} item="Pricing">
-          <div className="flex flex-col space-y-4 text-sm">
-            <HoveredLink href="/hobby">Hobby</HoveredLink>
-            <HoveredLink href="/individual">Individual</HoveredLink>
-            <HoveredLink href="/team">Team</HoveredLink>
-            <HoveredLink href="/enterprise">Enterprise</HoveredLink>
-          </div>
-        </MenuItem>
-      </Menu>
-
+            ))}
           </ul>
         </div>
         <div className="hidden md:inline-block">
@@ -150,7 +100,7 @@ const NavigationBar = () => {
             href="javascript:void(0)"
             className="py-3 px-4 text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow"
           >
-            Book Now
+           Book Now
           </a>
         </div>
       </div>
