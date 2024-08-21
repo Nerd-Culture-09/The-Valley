@@ -5,37 +5,37 @@ export default function Team () {
 
     const team = [
         {
-            avatar: "https://images.unsplash.com/photo-1579017331263-ef82f0bbc748?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
-            name: "Martiana dialan",
-            title: "Product designer",
-            desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry. Lorem Ipsum has been the industry's standard dummy",
+            avatar: "/manager.jpg",
+            name: "Leepile",
+            title: "Maneger",
+            desc: "love this work",
             linkedin: "javascript:void(0)",
             twitter: "javascript:void(0)",
             facebook: "javascript:void(0)"
         },
         {
-            avatar: "https://images.unsplash.com/photo-1623605931891-d5b95ee98459?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=640&q=80",
-            name: "Micheal colorand",
-            title: "Software engineer",
-            desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry. Lorem Ipsum has been the industry's standard dummy",
+            avatar: "/accountant.jpg",
+            name: "Boyiselo monne",
+            title: "Accountant",
+            desc: "The valley has been the industry's standard ",
             linkedin: "javascript:void(0)",
             twitter: "javascript:void(0)",
             facebook: "javascript:void(0)"
         },
         {
-            avatar: "https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80",
-            name: "Daniel martin",
-            title: "Product designer",
-            desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry. Lorem Ipsum has been the industry's standard dummy",
+            avatar: "/chef.jpg",
+            name: "Molapo",
+            title: "chef",
+            desc: "The valley guest house has been the industry's standard ",
             linkedin: "javascript:void(0)",
             twitter: "javascript:void(0)",
             facebook: "javascript:void(0)"
         },
         {
-            avatar: "https://images.unsplash.com/photo-1540569014015-19a7be504e3a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+            avatar: "/cleaner.jpg",
             name: "Vicky tanson",
-            title: "Product manager",
-            desc: "Lorem Ipsum is simply dummy text of the printing and typesettin industry. Lorem Ipsum has been the industry's standard dummy",
+            title: "cleaner",
+            desc: "love this work",
             linkedin: "javascript:void(0)",
             twitter: "javascript:void(0)",
             facebook: "javascript:void(0)"
@@ -47,10 +47,10 @@ export default function Team () {
             <div className="max-w-screen-xl mx-auto px-4 md:px-8">
                 <div className="max-w-xl">
                     <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-                        Meet our talent team
+                        Meet our talent stuff
                     </h3>
                     <p className="text-gray-600 mt-3">
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum has been the industry's standard dummy.
+                        The valley has been the industry's standard guest house Lesotho.
                     </p>
                 </div>
                 <div className="mt-12">

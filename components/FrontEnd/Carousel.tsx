@@ -12,9 +12,9 @@ export default function Carousel() {
   const [activeIndex, setActiveIndex] = useState<number>(0);
 
   const slides: Slide[] = [
-    { id: 0, src: "/dummy1.jpg" },
-    { id: 1, src: "/dummy2.jpg" },
-    { id: 2, src: "/dummy3.jpg" },
+    { id: 0, src: "/valley.pnj" },
+    { id: 1, src: "/valley1.jpg" },
+    { id: 2, src: "/valley2.jpg" },
   ];
 
   const handlePrev = () => {
