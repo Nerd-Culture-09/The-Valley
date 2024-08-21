@@ -1,11 +1,37 @@
+"use client"
 import React from 'react';
 import NavigationBar from './NavigiationBar';
+import { motion } from 'framer-motion';
+import { ImagesSlider } from '../ui/Image-slider';
 
 const RoomDetails = ()=>
 {
+    const images = [
+        "/dummy1.jpg",
+        "/dummy2.jpg",
+        "/dummy3.jpg",
+      ];
     return(
         <>
         <NavigationBar/>
+        <ImagesSlider className="h-[40rem] w-full" images={images}>
+      <motion.div
+        initial={{
+          opacity: 0,
+          y: -80,
+        }}
+        animate={{
+          opacity: 1,
+          y: 0,
+        }}
+        transition={{
+          duration: 0.6,
+        }}
+        className="z-50 flex flex-col justify-center items-center"
+      >
+        
+      </motion.div>
+    </ImagesSlider>
     <div className="w-12 h-12 relative" />
         <div className="w-60 h-[86px] text-black text-3xl font-medium font-['Inter']">Maseru, Lesotho</div>
         <div className="text-black text-3xl font-bold font-['Inter']">Location Details</div>
