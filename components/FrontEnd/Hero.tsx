@@ -3,13 +3,11 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import Carousel from './Carousel'
-import Book from './Book-Now'
 import SpecialOffer from './Special-Offers'
 import Testimonial from './Testimonials'
 import Team from './Team';
 import { ImagesSliderDemo} from './Image-slider-Carousel'
-import Services from './Services'
-import AvailableRooms from './Available-rooms'
+
 
 
 export default function Hero() {
@@ -55,13 +53,12 @@ export default function Hero() {
         </div>*/}
        
         <div className="mb-28">
-        <Book />
+       
         </div>
         <div className='mb-20'>
-          <Services/>
+     
         </div>
-        <AvailableRooms/>
-        <Testimonial />
+            <Testimonial />
         <Team />
         <div
           aria-hidden="true"
