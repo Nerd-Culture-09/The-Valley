@@ -8,7 +8,8 @@ import Testimonial from './Testimonials'
 import Team from './Team';
 import { ImagesSliderDemo } from './Image-slider-Carousel'
 import Services from './Services'
-import AvailableRooms from './Available-rooms'
+import { CardDemo } from './AvailableRooms'
+
 
 export default function Hero() {
 
@@ -44,7 +45,7 @@ export default function Hero() {
           </div>
         </div>*/}
        
-       
+       <CardDemo/>
         
         <Testimonial />
         <Team />

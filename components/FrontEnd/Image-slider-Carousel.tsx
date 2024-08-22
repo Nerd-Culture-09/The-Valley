@@ -11,7 +11,7 @@ export function ImagesSliderDemo() {
     "/valley2.jpg",
   ];
   return (
-    <ImagesSlider className="h-[30rem] w-full" images={images}>
+    <ImagesSlider className="h-[25rem] w-full" images={images}>
       <motion.div
         initial={{
           opacity: 0,
