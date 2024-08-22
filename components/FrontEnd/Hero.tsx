@@ -2,37 +2,27 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import Carousel from './Carousel'
-import Book from './Book-Now'
+
 import SpecialOffer from './Special-Offers'
 import Testimonial from './Testimonials'
 import Team from './Team';
-import { ImagesSliderDemo} from './Image-slider-Carousel'
+import { ImagesSliderDemo } from './Image-slider-Carousel'
 import Services from './Services'
 import AvailableRooms from './Available-rooms'
-
 
 export default function Hero() {
 
   return (
-    <div className="bg-white" >
-      <div className="relative isolate px-6 pt-14 lg:px-8">
-        <div
-          aria-hidden="true"
-          className="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80"
-        >
-          <div
-            style={{
-              clipPath:
-                'polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)',
-            }}
-            className="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
-          />
+    <div className="bg-white"> 
+      <div className="relative isolate pt-14 lg:pt-8 w-full overflow-hidden"> 
+        <div className="inset-0 w-full h-full">
+          <ImagesSliderDemo />
         </div>
-        <ImagesSliderDemo/>
+
+        {/* You can uncomment these sections as needed */}
         {/*<CarouselDefault/>*/}
         {/*<Carousel />*/}
-       {/* <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" >
+        {/* <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56" >
           <div className="text-center">
             <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
             Where Hospitality Meets <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#4F46E5] to-[#2e0347]">Serenity</span>
@@ -54,13 +44,8 @@ export default function Hero() {
           </div>
         </div>*/}
        
-        <div className="mb-28">
-        <Book />
-        </div>
-        <div className='mb-20'>
-          <Services/>
-        </div>
-        <AvailableRooms/>
+       
+        
         <Testimonial />
         <Team />
         <div
@@ -77,6 +62,5 @@ export default function Hero() {
         </div>
       </div>
     </div>
-
   )
 }
