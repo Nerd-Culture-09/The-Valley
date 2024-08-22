@@ -1,40 +1,26 @@
 "use client"
 import React from 'react';
-import NavigationBar from './NavigiationBar';
-import { motion } from 'framer-motion';
-import { ImagesSlider } from '../ui/Image-slider';
-import RoomAmenitiesCard from '../ui/RoomAmenties';
+import RoomInfo from './RoomInfo';
+import { RoomCarouselDemo } from './RoomCarousel';
+import NavigationBar from './NavigiationBar';// Corrected from 'NavigiationBar'
 
-const RoomDetails = ()=>
-{
-    const images = [
-        "/dummy1.jpg",
-        "/dummy2.jpg",
-        "/dummy3.jpg",
-      ];
-    return(
+
+const RoomDetails = () => {
+    return (
         <>
-        <NavigationBar/>
-        <ImagesSlider className="h-[40rem] w-full" images={images}>
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: -80,
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-        }}
-        transition={{
-          duration: 0.6,
-        }}
-        className="z-50 flex flex-col justify-center items-center"
-      >
-        
-      </motion.div>
-    </ImagesSlider>
-   <RoomAmenitiesCard/>
-</>
-    )
+            <NavigationBar />
+            <div className="mt-20 container mx-auto px-4">
+                <div className="flex flex-col lg:flex-row lg:space-x-8">
+                    <div className="lg:w-1/2">
+                        <RoomCarouselDemo />
+                    </div>
+                    <div className="lg:w-1/2 mt-8 lg:mt-0">
+                        <RoomInfo />
+                    </div>
+                </div>
+            </div>
+        </>
+    );
 }
-export  default RoomDetails;
+
+export default RoomDetails;
