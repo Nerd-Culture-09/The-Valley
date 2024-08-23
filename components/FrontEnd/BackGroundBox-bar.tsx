@@ -8,7 +8,7 @@ import { InputWithButton } from "./numberOfPeople"; // Import the InputWithButto
 export function BackGroundBoxBar() {
   return (
     <div
-      className="relative w-full overflow-hidden bg-slate-900 flex flex-row justify-start items-center"
+      className="relative w-full overflow-hidden bg-slate-900 flex flex-row justify-center items-center"
       style={{ height: "2.5cm" }} // Adjusted height to 2.5cm
     >
       <div className="absolute inset-0 w-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />

@@ -27,46 +27,42 @@ const DummyContent = ({ category, title }: { category: string; title: string }) 
             <h4 className="text-neutral-700 dark:text-neutral-200 text-lg mb-4">{title}</h4>
             {/* Individual Amenities with Icons */}
             <div className="flex flex-wrap justify-between mt-10">
-  <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-    <FaTable className="text-[#ff7665] text-3xl mt-4" />
-    <div className="mt-2 text-xs">Table</div>
-  </div>
-  <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-    <FaBed className="text-[#ff7665] text-3xl mt-4" />
-    <div className="mt-2 text-xs">Double</div>
-  </div>
-  <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-    <FaShieldAlt className="text-[#ff7665] text-3xl mt-4" />
-    <div className="mt-2 text-xs">Security</div>
-  </div>
-  <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-    <FaCar className="text-[#ff7665] text-3xl mt-4" />
-    <div className="mt-2 text-xs">Parking </div>
-  </div>
-  <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-    <FaWifi className="text-[#ff7665] text-3xl mt-4" />
-    <div className="mt-2 text-xs">Free Wifi</div>
-  </div>
-  <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-    <FaBath className="text-[#ff7665] text-3xl mt-4" />
-    <div className="mt-2 text-xs">Bathroom</div>
-  </div>
-  <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-    <FaFire className="text-[#ff7665] text-3xl mt-4" />
-    <div className="mt-2 text-xs">Heater</div>
-  </div>
-  <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-    <FaFire className="text-[#ff7665] text-3xl mt-4" />
-    <div className="mt-2 text-xs">Blanket</div>
-  </div>
-  
-</div>
-
+              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
+                <FaTable className="text-[#ff7665] text-3xl mt-4" />
+                <div className="mt-2 text-xs">Table</div>
+              </div>
+              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
+                <FaBed className="text-[#ff7665] text-3xl mt-4" />
+                <div className="mt-2 text-xs">Double</div>
+              </div>
+              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
+                <FaShieldAlt className="text-[#ff7665] text-3xl mt-4" />
+                <div className="mt-2 text-xs">Security</div>
+              </div>
+              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
+                <FaCar className="text-[#ff7665] text-3xl mt-4" />
+                <div className="mt-2 text-xs">Parking </div>
+              </div>
+              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
+                <FaWifi className="text-[#ff7665] text-3xl mt-4" />
+                <div className="mt-2 text-xs">Free Wifi</div>
+              </div>
+              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
+                <FaBath className="text-[#ff7665] text-3xl mt-4" />
+                <div className="mt-2 text-xs">Bathroom</div>
+              </div>
+              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
+                <FaFire className="text-[#ff7665] text-3xl mt-4" />
+                <div className="mt-2 text-xs">Heater</div>
+              </div>
+              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
+                <FaFire className="text-[#ff7665] text-3xl mt-4" />
+                <div className="mt-2 text-xs">Blanket</div>
+              </div>
             </div>
-           
+            </div>
           </div>
         </div>
-    
     </>
   );
 };
@@ -140,8 +136,8 @@ export function CardDemo() {
       </div>
 
       {showPopup && (
-        <div className="absolute fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
-        <div className="bg-white p-8 w-full max-w-4xl relative border-2 border-black rounded-lg md:rounded-2xl">
+        <div className="absolute inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
+        <div className="bg-white p-8 w-full max-w-4xl relative border-2 border-gray-200 rounded-lg md:rounded-2xl">
         <button
         onClick={handleClose}
         className="absolute top-3.5 right-1 text-gray-500 hover:text-gray-700"
@@ -152,7 +148,6 @@ export function CardDemo() {
     </div>
   </div>
 )}
-
     </div>
   );
 }
