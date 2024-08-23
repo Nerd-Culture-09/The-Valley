@@ -1,115 +1,145 @@
 "use client";
 import { useState, ReactNode } from "react";
-import Image from "next/image";
+import { FaTable, FaBed, FaShieldAlt, FaCar, FaWifi, FaBath, FaFire, FaTimes } from 'react-icons/fa';
 import { DirectionAwareHover } from "../ui/direction-aware-hover";
-import { FaTable, FaBed, FaShieldAlt, FaCar, FaWifi, FaBath, FaFire, FaMicrophone } from 'react-icons/fa';
 import { RoomCarouselDemo } from "./RoomCarousel";
-import { Button } from "../ui/button";
+import { Button } from "@/components/ui/button"
+import { SelectDemo } from "./RoomPackeges";
 
 interface CardData {
   category: string;
   title: string;
   src: string;
-  content: ReactNode;
+  images: string[]; // Array of image URLs
   price: string;
 }
 
-const DummyContent = ({ category, title }: { category: string; title: string }) => {
+// Image arrays for each room
+const room1Imgs = [
+  "/valley_south_room1_bedroom.jpeg",
+  "/valley_south_room1_livingroom.jpeg",
+  "/valley_south_room1_bathroom.jpeg",
+  "/valley_south_room1_kitchen.jpeg",
+  "/valley_south_room1_balcony.jpeg"
+];
+
+const room2Imgs = [
+  "/valley_south_room2_bedroom.jpeg",
+  "/valley_south_room2_livingroom.jpeg",
+  "/valley_south_room2_bathroom.jpeg",
+  "/valley_south_room2_kitchen.jpeg",
+  "/valley_south_room2_balcony.jpeg"
+];
+
+const room3Imgs = [
+  "/bedroom_display1.jpeg",
+  "/livingroom_display1.jpeg",
+  "/bathroom_display1.jpeg",
+  "/kitchen_display1.jpeg",
+  "/balcony_display1.jpeg"
+];
+
+const room4Imgs = [
+  "/bedroom_display2.jpeg",
+  "/livingroom_display2.jpeg",
+  "/bathroom_display2.jpeg",
+  "/kitchen_display2.jpeg",
+  "/balcony_display2.jpeg"
+];
+
+// Array of amenities with icons
+const amenities = [
+  { label: "Table", icon: <FaTable className="text-[#ff7665] text-3xl mt-4" /> },
+  { label: "Double", icon: <FaBed className="text-[#ff7665] text-3xl mt-4" /> },
+  { label: "Security", icon: <FaShieldAlt className="text-[#ff7665] text-3xl mt-4" /> },
+  { label: "Parking", icon: <FaCar className="text-[#ff7665] text-3xl mt-4" /> },
+  { label: "Free Wifi", icon: <FaWifi className="text-[#ff7665] text-3xl mt-4" /> },
+  { label: "Bathroom", icon: <FaBath className="text-[#ff7665] text-3xl mt-4" /> },
+  { label: "Heater", icon: <FaFire className="text-[#ff7665] text-3xl mt-4" /> },
+  { label: "Blanket", icon: <FaFire className="text-[#ff7665] text-3xl mt-4" /> }
+];
+
+// DummyContent component to display the popup content
+const DummyContent = ({ category, title, images }: { category: string; title: string; images: string[] }) => {
   return (
     <>
       <div className="flex flex-col lg:flex-row lg:space-x-8">
         <div className="lg:w-1/2">
-          <RoomCarouselDemo />
+        <div className="ml-5">
+          <SelectDemo/>
+        </div>
+        <div  className="-mt-28">
+
+          <RoomCarouselDemo images={images} />
+          <div className="w-full flex justify-center p-5">
+            <Button>Book now</Button>
+          </div>
+        </div>
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
           <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl">
             <h3 className="text-neutral-700 dark:text-neutral-200 text-xl font-bold mb-2">{category}</h3>
-            <h4 className="text-neutral-700 dark:text-neutral-200 text-lg mb-4">{title}</h4>
+            <h4 className="text-neutral-700 dark:text-neutral-200 text-lg mb-4">{title}</h4>  
             {/* Individual Amenities with Icons */}
             <div className="flex flex-wrap justify-between mt-10">
-              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-                <FaTable className="text-[#ff7665] text-3xl mt-4" />
-                <div className="mt-2 text-xs">Table</div>
-              </div>
-              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-                <FaBed className="text-[#ff7665] text-3xl mt-4" />
-                <div className="mt-2 text-xs">Double</div>
-              </div>
-              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-                <FaShieldAlt className="text-[#ff7665] text-3xl mt-4" />
-                <div className="mt-2 text-xs">Security</div>
-              </div>
-              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-                <FaCar className="text-[#ff7665] text-3xl mt-4" />
-                <div className="mt-2 text-xs">Parking </div>
-              </div>
-              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-                <FaWifi className="text-[#ff7665] text-3xl mt-4" />
-                <div className="mt-2 text-xs">Free Wifi</div>
-              </div>
-              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-                <FaBath className="text-[#ff7665] text-3xl mt-4" />
-                <div className="mt-2 text-xs">Bathroom</div>
-              </div>
-              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-                <FaFire className="text-[#ff7665] text-3xl mt-4" />
-                <div className="mt-2 text-xs">Heater</div>
-              </div>
-              <div className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
-                <FaFire className="text-[#ff7665] text-3xl mt-4" />
-                <div className="mt-2 text-xs">Blanket</div>
-              </div>
-            </div>
+              {amenities.map((amenity, index) => (
+                <div key={index} className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4">
+                  {amenity.icon}
+                  <div className="mt-2 text-xs">{amenity.label}</div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
+      </div>
     </>
   );
 };
+
+// Card data array
+const cardsData: CardData[] = [
+  {
+    category: "The Valley South",
+    title: "Room 1",
+    src: "/valley_south_room1_bedroom.jpeg",
+    images: room1Imgs,
+    price: "R250/ Night"
+  },
+  {
+    category: "The Valley South",
+    title: "Room 2",
+    src: "/valley_south_room2_bedroom.jpeg",
+    images: room2Imgs,
+    price: "R250/ Night"
+  },
+  {
+    category: "The Valley North",
+    title: "Room 1",
+    src: "/bedroom_display1.jpeg",
+    images: room3Imgs,
+    price: "R250/ Night"
+  },
+  {
+    category: "The Valley North",
+    title: "Room 2",
+    src: "/bedroom_display2.jpeg",
+    images: room4Imgs,
+    price: "R250/ Night"
+  },
+];
 
 export function CardDemo() {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState<ReactNode | null>(null);
 
-  const handleClick = (category: string, title: string) => {
-    setPopupContent(<DummyContent category={category} title={title} />);
+  const handleClick = (category: string, title: string, images: string[]) => {
+    setPopupContent(<DummyContent category={category} title={title} images={images} />);
     setShowPopup(true);
   };
 
   const handleClose = () => {
     setShowPopup(false);
   };
-
-  const cardsData: CardData[] = [
-    {
-      category: "Artificial Intelligence",
-      title: "You can do more with AI.",
-      src: "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=3556&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      content: <DummyContent category="Artificial Intelligence" title="You can do more with AI." />,
-      price: ""
-    },
-    {
-      category: "Productivity",
-      title: "Enhance your productivity.",
-      src: "https://images.unsplash.com/photo-1531554694128-c4c6665f59c2?q=80&w=3387&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
-      content: <DummyContent category="Productivity" title="Enhance your productivity" />,
-      price: ""
-    },
-    {
-      category: "Product",
-      title: "Launching the new Apple Vision Pro.",
-      src: "/valley_south_room1_bedroom.jpeg",
-      content: <DummyContent category="Product" title="Launching the new Apple Vision Pro" />,
-      price: ""
-    },
-    {
-      category: "The Valley South",
-      title: "Room 1",
-      src: "/valley_south_room1_bedroom.jpeg",
-      content: <DummyContent category="The Valley South" title="Room 1" />,
-      price: "R250/ Night"
-    },
-  ];
 
   return (
     <div className="p-4">
@@ -124,7 +154,7 @@ export function CardDemo() {
         {cardsData.map((card, index) => (
           <div
             key={index}
-            onClick={() => handleClick(card.category, card.title)}
+            onClick={() => handleClick(card.category, card.title, card.images)}
             className="cursor-pointer"
           >
             <DirectionAwareHover imageUrl={card.src}>
@@ -136,18 +166,19 @@ export function CardDemo() {
       </div>
 
       {showPopup && (
-        <div className="absolute inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
-        <div className="bg-white p-8 w-full max-w-4xl relative border-2 border-gray-200 rounded-lg md:rounded-2xl">
-        <button
-        onClick={handleClose}
-        className="absolute top-3.5 right-1 text-gray-500 hover:text-gray-700"
-        >
-        Close
-        </button>
-        {popupContent}
-    </div>
-  </div>
-)}
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
+          <div className="bg-white p-8 w-full max-w-4xl relative border-2 border-gray-200 rounded-lg md:rounded-2xl">
+            <button
+              onClick={handleClose}
+              className="absolute top-3.5 right-1 text-gray-500 hover:text-gray-700"
+              aria-label="Close"
+            >
+              <FaTimes className="text-2xl" />
+            </button>
+            {popupContent}
+          </div>
+        </div>
+      )}
     </div>
   );
 }
