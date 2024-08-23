@@ -6,7 +6,7 @@ const NavigationBar = () => {
   const [scrolled, setScrolled] = useState(false);
 
   const navigation = [
-    { title: "Home", path: "javascript:void(0)" },
+  
     { title: "Rooms", path: "javascript:void(0)" },
     { title: "Pricing", path: "javascript:void(0)" },
     { title: "About", path: "javascript:void(0)" },
@@ -36,7 +36,7 @@ const NavigationBar = () => {
       }`}
     >
       <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
-        <div className="flex items-center justify-between py-3 md:py-5 md:block">
+        <div className="flex items-center leading justify-between py-3 md:py-5 md:block">
           <a href="javascript:void(0)">
             <img
               src="/vlogo.png"
@@ -95,14 +95,7 @@ const NavigationBar = () => {
             ))}
           </ul>
         </div>
-        <div className="hidden md:inline-block">
-          <a
-            href="javascript:void(0)"
-            className="py-3 px-4 text-white bg-indigo-600 hover:bg-indigo-700 rounded-md shadow"
-          >
-           Book Now
-          </a>
-        </div>
+        
       </div>
     </nav>
   );

@@ -11,7 +11,7 @@ export function ImagesSliderDemo() {
     "/valley2.jpg",
   ];
   return (
-    <ImagesSlider className="h-[40rem] w-full" images={images}>
+    <ImagesSlider className="h-[25rem] w-full" images={images}>
       <motion.div
         initial={{
           opacity: 0,
@@ -30,10 +30,7 @@ export function ImagesSliderDemo() {
         Discover Extraordinary 
          <br /> Comfort in The Valley
         </motion.p>
-        <button className="px-4 py-2 backdrop-blur-sm border bg-emerald-300/10 border-emerald-500/20 text-white mx-auto text-center rounded-full relative mt-4">
-          <span>Book Now →</span>
-          <div className="absolute inset-x-0  h-px -bottom-px bg-gradient-to-r w-3/4 mx-auto from-transparent via-emerald-500 to-transparent" />
-        </button>
+        
       </motion.div>
     </ImagesSlider>
   );
