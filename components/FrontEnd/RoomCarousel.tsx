@@ -1,24 +1,28 @@
-import * as React from "react"
+import * as React from "react";
 
-import { Card, CardContent } from "@/components/ui/card"
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@/components/ui/carousel"
+} from "@/components/ui/carousel";
 
-export function RoomCarouselDemo() {
+interface RoomCarouselDemoProps {
+  images: string[];
+}
+
+export function RoomCarouselDemo({ images }: RoomCarouselDemoProps) {
   return (
-    <Carousel className=" mt-40 justify-start flex flex-row ">
+    <Carousel className="mt-40 justify-start flex flex-row">
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
+        {images.map((src, index) => (
           <CarouselItem key={index}>
             <div className="p-1">
               <Card>
                 <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
+                  <img src={src} alt={`Image ${index + 1}`} className="object-cover w-full h-full" />
                 </CardContent>
               </Card>
             </div>
@@ -28,5 +32,5 @@ export function RoomCarouselDemo() {
       <CarouselPrevious />
       <CarouselNext />
     </Carousel>
-  )
+  );
 }
