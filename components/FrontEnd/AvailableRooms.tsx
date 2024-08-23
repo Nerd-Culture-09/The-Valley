@@ -65,17 +65,21 @@ const DummyContent = ({ category, title, images }: { category: string; title: st
     <>
       <div className="flex flex-col lg:flex-row lg:space-x-8">
         <div className="lg:w-1/2">
-        <div>
-        <SelectDemo/>
-        <Button>Button</Button>
+        <div className="ml-5">
+          <SelectDemo/>
         </div>
+        <div  className="-mt-28">
+
           <RoomCarouselDemo images={images} />
+          <div className="w-full flex justify-center p-5">
+            <Button>Book now</Button>
+          </div>
+        </div>
         </div>
         <div className="lg:w-1/2 mt-8 lg:mt-0">
           <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl">
             <h3 className="text-neutral-700 dark:text-neutral-200 text-xl font-bold mb-2">{category}</h3>
-            <h4 className="text-neutral-700 dark:text-neutral-200 text-lg mb-4">{title}</h4>
-            
+            <h4 className="text-neutral-700 dark:text-neutral-200 text-lg mb-4">{title}</h4>  
             {/* Individual Amenities with Icons */}
             <div className="flex flex-wrap justify-between mt-10">
               {amenities.map((amenity, index) => (
@@ -163,14 +167,14 @@ export function CardDemo() {
 
       {showPopup && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-opacity-50 backdrop-blur-sm">
-          <div className="bg-white p-8 w-full max-w-4xl relative border-2 border-black rounded-lg md:rounded-2xl">
-          <button
-  onClick={handleClose}
-  className="absolute top-3.5 right-1 text-gray-500 hover:text-gray-700"
-  aria-label="Close"
->
-  <FaTimes className="text-2xl" />
-</button>
+          <div className="bg-white p-8 w-full max-w-4xl relative border-2 border-gray-200 rounded-lg md:rounded-2xl">
+            <button
+              onClick={handleClose}
+              className="absolute top-3.5 right-1 text-gray-500 hover:text-gray-700"
+              aria-label="Close"
+            >
+              <FaTimes className="text-2xl" />
+            </button>
             {popupContent}
           </div>
         </div>
