@@ -4,7 +4,11 @@ import { FaTable, FaBed, FaShieldAlt, FaCar, FaWifi, FaBath, FaFire, FaTimes } f
 import { DirectionAwareHover } from "../ui/direction-aware-hover";
 import { RoomCarouselDemo } from "./RoomCarousel";
 import { Button } from "@/components/ui/button"
+<<<<<<< HEAD
 import { SelectDemo } from "./RoomPackages";
+=======
+import { SelectDemo } from "./RoomPackeges";
+>>>>>>> checkin-checkout
 
 interface CardData {
   category: string;

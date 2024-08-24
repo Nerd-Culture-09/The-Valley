@@ -31,20 +31,22 @@ const NavigationBar = () => {
 
   return (
     <nav
-      className={`w-full fixed top-0 z-50 transition-colors duration-300 ${
+      className={`w-full h-[70px] fixed top-0 z-50 transition-colors duration-300 ${
         scrolled ? "bg-white shadow-lg" : "bg-white shadow-lg"
       }`}
     >
       <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
-        <div className="flex items-center leading justify-between py-3 md:py-5 md:block">
-          <a href="javascript:void(0)">
-            <img
-              src="/vlogo.png"
-              width={120}
-              height={50}
-              alt="The Valley logo"
-            />
-          </a>
+        <div className="flex items-center leading justify-between md:py-5 md:block">
+          <div className="-mt-5">
+            <a href="javascript:voi(0)">
+              <img
+                src="/vlogo.png"
+                width={120}
+                height={50}
+                alt="The Valley logo"
+              />
+            </a>
+          </div>
           <div className="md:hidden">
             <button
               className="text-gray-700 outline-none p-2 rounded-md focus:border-gray-400 focus:border"
