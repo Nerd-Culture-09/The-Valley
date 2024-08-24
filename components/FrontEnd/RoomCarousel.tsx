@@ -33,8 +33,4 @@ export function RoomCarouselDemo({ images }: RoomCarouselDemoProps) {
       <CarouselNext />
     </Carousel>
   );
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> checkin-checkout

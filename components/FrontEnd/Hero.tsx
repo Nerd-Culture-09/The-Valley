@@ -1,52 +1,19 @@
-<<<<<<< HEAD
-"use client";
-
-import React from "react";
-import { Boxes } from "../ui/background-boxes";
-import { cn } from "@/lib/utils";
-=======
 'use client';
 
 import Link from 'next/link';
 import { useState } from 'react';
 
 import SpecialOffer from './Special-Offers';
->>>>>>> checkin-checkout
 import Testimonial from './Testimonials';
 import Team from './Team';
 import { ImagesSliderDemo } from './Image-slider-Carousel';
 import { CardDemo } from './AvailableRooms';
-<<<<<<< HEAD
-=======
 import { BackGroundBoxBar } from './BackGroundBox-bar'; // Import the BackgroundBoxesDemo component
->>>>>>> checkin-checkout
 
 export default function Hero() {
   return (
     <div className="bg-white">
       <div className="relative isolate pt-14 lg:pt-8 w-full overflow-hidden">
-<<<<<<< HEAD
-        {/* Background Boxes Section */}
-        <div className="h-64 relative w-full overflow-hidden bg-slate-900 flex flex-col items-center justify-center rounded-lg">
-          <div className="inset-0 w-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
-          <Boxes />
-          <h1 className={cn("md:text-4xl text-xl text-white relative z-20")}>
-            Tailwind is Awesome
-          </h1>
-          <p className="text-center mt-2 text-neutral-300 relative z-20">
-            Framer motion is the best animation library ngl
-          </p>
-        </div>
-
-        {/* Uncomment these sections as needed */}
-        {/* <CarouselDefault/> */}
-        {/* <Carousel /> */}
-
-        {/* Card Demo Section */}
-        <CardDemo />
-
-        {/* Testimonial Section */}
-=======
         {/* Remove any inset or margin from these divs */}
         <div className="w-full h-full">
           <ImagesSliderDemo />
@@ -82,13 +49,9 @@ export default function Hero() {
 
         <CardDemo />
 
->>>>>>> checkin-checkout
         <Testimonial />
 
-        {/* Team Section */}
         <Team />
-
-        {/* Background Blur Effect */}
         <div
           aria-hidden="true"
           className="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]"
