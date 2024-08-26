@@ -38,7 +38,7 @@ const NavigationBar = () => {
       <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
         <div className="flex items-center leading justify-between md:py-5 md:block">
           <div className="-mt-5">
-            <a href="javascript:voi(0)">
+            <a href="/">
               <img
                 src="/vlogo.png"
                 width={120}

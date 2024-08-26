@@ -69,8 +69,27 @@ function AllRooms()
         },
       ];
     return (
-        <div>
+        <div className='flex flex-col mt-20'>
+
+          <p>South Branch</p>
             <div className="flex flex-wrap md:flex-row flex-col md:justify-between justify-center items-center gap-2">
+        {cardsData.map((card, index) => (
+          <div
+            key={index}
+            //onClick={() => handleClick(card)}
+            className="cursor-pointer"
+          >
+            <DirectionAwareHover imageUrl={card.src}>
+              <p className="font-bold text-xl">
+                {card.category + " " + card.title}
+              </p>
+              <p className="font-normal text-sm">{card.price}</p>
+            </DirectionAwareHover>
+          </div>
+        ))}
+      </div>
+<p>North Branch</p>
+      <div className="flex flex-wrap md:flex-row flex-col md:justify-between justify-center items-center gap-2">
         {cardsData.map((card, index) => (
           <div
             key={index}
