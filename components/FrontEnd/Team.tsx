@@ -58,7 +58,7 @@ export default function Team () {
                         {
                             team.map((item, idx) => (
                                 <li key={idx} className="gap-8 sm:flex">
-                                    <div className="w-full h-60">
+                                    <div className="w-60 h-60">
                                         <img
                                             src={item.avatar}
                                             className="w-full h-full object-cover object-center shadow-md rounded-xl"

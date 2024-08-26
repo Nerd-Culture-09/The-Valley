@@ -3,7 +3,7 @@ import React from "react";
 import { DatePickerWithPresets1 } from "./checkout-calander";
 import { SelectBranch } from "./select-north-south";
 import { DatePickerWithPresets2 } from "./checkin-calander";
-import { InputWithButton } from "./numberOfPeople"; // Import the InputWithButton component
+import { InputWithButton } from "./numberOfPeople";
 
 export function BackGroundBoxBar() {
   return (

@@ -19,7 +19,7 @@ export function SelectBranch() {
       <SelectContent>
         <SelectGroup>
           <SelectLabel>North or South</SelectLabel>
-          <SelectItem value="apple">north</SelectItem>
+          <SelectItem value="apple">North</SelectItem>
           <SelectItem value="banana">South</SelectItem>
         </SelectGroup>
       </SelectContent>
