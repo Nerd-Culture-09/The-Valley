@@ -10,7 +10,7 @@ const NavigationBar = () => {
     { title: "Rooms", path: "javascript:void(0)" },
     { title: "Pricing", path: "javascript:void(0)" },
     { title: "About", path: "javascript:void(0)" },
-    { title: "Contact", path: "javascript:void(0)" },
+    { title: "Contact", path: "/contact" },
   ];
 
   useEffect(() => {

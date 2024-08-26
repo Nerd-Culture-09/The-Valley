@@ -103,7 +103,7 @@ export function CardDemo() {
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">Available Rooms</h2>
         <a
-          href="#"
+          href="/all-rooms"
           className="text-sm font-semibold text-indigo-600 hover:underline"
         >
           View All
