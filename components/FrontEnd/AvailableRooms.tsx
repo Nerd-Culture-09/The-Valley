@@ -1,27 +1,22 @@
 "use client";
 import { useState, ReactNode } from "react";
-import {
-  FaTable,
-  FaBed,
-  FaShieldAlt,
-  FaCar,
-  FaWifi,
-  FaBath,
-  FaFire,
-  FaTimes,
-} from "react-icons/fa";
+import {FaTimes } from "react-icons/fa";
 import { DirectionAwareHover } from "../ui/direction-aware-hover";
 import { RoomCarouselDemo } from "./RoomCarousel";
 import { Button } from "@/components/ui/button";
 import { SelectDemo } from "./RoomPackeges";
+import { useRouter } from "next/router";
+import { Timeline } from "./BookTimeline";
+import { DummyContent } from "./DummyContent";
 
-interface CardData {
+export interface CardData {
   category: string;
   title: string;
   src: string;
   images: string[]; // Array of image URLs
   price: string;
 }
+
 
 // Image arrays for each room
 const room1Imgs = [
@@ -56,89 +51,6 @@ const room4Imgs = [
   "/valley_south_town_view.jpeg",
 ];
 
-// Array of amenities with icons
-const amenities = [
-  {
-    label: "Table",
-    icon: <FaTable className="text-[#ff7665] text-3xl mt-4" />,
-  },
-  { label: "Double", icon: <FaBed className="text-[#ff7665] text-3xl mt-4" /> },
-  {
-    label: "Security",
-    icon: <FaShieldAlt className="text-[#ff7665] text-3xl mt-4" />,
-  },
-  {
-    label: "Parking",
-    icon: <FaCar className="text-[#ff7665] text-3xl mt-4" />,
-  },
-  {
-    label: "Free Wifi",
-    icon: <FaWifi className="text-[#ff7665] text-3xl mt-4" />,
-  },
-  {
-    label: "Bathroom",
-    icon: <FaBath className="text-[#ff7665] text-3xl mt-4" />,
-  },
-  {
-    label: "Heater",
-    icon: <FaFire className="text-[#ff7665] text-3xl mt-4" />,
-  },
-  {
-    label: "Blanket",
-    icon: <FaFire className="text-[#ff7665] text-3xl mt-4" />,
-  },
-];
-
-// DummyContent component to display the popup content
-const DummyContent = ({
-  category,
-  title,
-  images,
-}: {
-  category: string;
-  title: string;
-  images: string[];
-}) => {
-  return (
-    <>
-      <div className="flex flex-col lg:flex-row lg:space-x-8">
-        <div className="lg:w-1/2">
-          <div className="ml-5">
-            <SelectDemo />
-          </div>
-          <div className="-mt-28">
-            <RoomCarouselDemo images={images} />
-            <div className="w-full flex justify-center p-5">
-              <Button>Book now</Button>
-            </div>
-          </div>
-        </div>
-        <div className="lg:w-1/2 mt-8 lg:mt-0">
-          <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl">
-            <h3 className="text-neutral-700 dark:text-neutral-200 text-xl font-bold mb-2">
-              {category}
-            </h3>
-            <h4 className="text-neutral-700 dark:text-neutral-200 text-lg mb-4">
-              {title}
-            </h4>
-            {/* Individual Amenities with Icons */}
-            <div className="flex flex-wrap justify-between mt-10">
-              {amenities.map((amenity, index) => (
-                <div
-                  key={index}
-                  className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4"
-                >
-                  {amenity.icon}
-                  <div className="mt-2 text-xs">{amenity.label}</div>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-    </>
-  );
-};
 
 // Card data array
 const cardsData: CardData[] = [
@@ -176,9 +88,9 @@ export function CardDemo() {
   const [showPopup, setShowPopup] = useState(false);
   const [popupContent, setPopupContent] = useState<ReactNode | null>(null);
 
-  const handleClick = (category: string, title: string, images: string[]) => {
+  const handleClick = (card: CardData) => {
     setPopupContent(
-      <DummyContent category={category} title={title} images={images} />
+      <DummyContent category={card.category} title={card.title} images={card.images} room={card} />
     );
     setShowPopup(true);
   };
@@ -186,7 +98,6 @@ export function CardDemo() {
   const handleClose = () => {
     setShowPopup(false);
   };
-
   return (
     <div className="p-4">
       <div className="flex justify-between items-center mb-4">
@@ -203,7 +114,7 @@ export function CardDemo() {
         {cardsData.map((card, index) => (
           <div
             key={index}
-            onClick={() => handleClick(card.category, card.title, card.images)}
+            onClick={() => handleClick(card)}
             className="cursor-pointer"
           >
             <DirectionAwareHover imageUrl={card.src}>
