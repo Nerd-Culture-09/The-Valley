@@ -1,26 +1,26 @@
-'use client'
+'use client';
 
-import Link from 'next/link'
-import { useState } from 'react'
+import Link from 'next/link';
+import { useState } from 'react';
 
-
-import SpecialOffer from './Special-Offers'
-import Testimonial from './Testimonials'
+import SpecialOffer from './Special-Offers';
+import Testimonial from './Testimonials';
 import Team from './Team';
-import { ImagesSliderDemo } from './Image-slider-Carousel'
-import Services from './Services'
-import { CardDemo } from './AvailableRooms'
-
-
+import { ImagesSliderDemo } from './Image-slider-Carousel';
+import { CardDemo } from './AvailableRooms';
+import { BackGroundBoxBar } from './BackGroundBox-bar'; // Import the BackgroundBoxesDemo component
 
 export default function Hero() {
-
   return (
-    <div className="bg-white"> 
-      <div className="relative isolate pt-14 lg:pt-8 w-full overflow-hidden"> 
-        <div className="inset-0 w-full h-full">
+    <div className="bg-white">
+      <div className="relative isolate pt-14 lg:pt-8 w-full overflow-hidden">
+        {/* Remove any inset or margin from these divs */}
+        <div className="w-full h-full">
           <ImagesSliderDemo />
         </div>
+
+        {/* Add BackgroundBoxesDemo directly after ImagesSliderDemo with no margin */}
+        <BackGroundBoxBar />
 
         {/* You can uncomment these sections as needed */}
         {/*<CarouselDefault/>*/}
@@ -46,10 +46,9 @@ export default function Hero() {
             </div>
           </div>
         </div>*/}
-       
 
-       <CardDemo/>
-        
+        <CardDemo />
+
         <Testimonial />
 
         <Team />
@@ -67,5 +66,5 @@ export default function Hero() {
         </div>
       </div>
     </div>
-  )
+  );
 }
