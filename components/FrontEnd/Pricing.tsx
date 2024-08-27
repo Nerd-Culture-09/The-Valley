@@ -2,10 +2,12 @@ import Link from "next/link";
 import { Button } from "../ui/button";
 
 const Pricing = () => {
+ 
   const plans = [
     {
       name: "Basic 2 Hour Package",
-      price: 100,
+      price: "100", 
+      timespan :"2 hours",
       features: [
         "2 People",
         "Free Wifi",
@@ -20,7 +22,8 @@ const Pricing = () => {
     },
     {
       name: "Standard 2 Hour Package",
-      price: 150,
+      price: "150",
+      timespan :"2 hours",
       features: [
         "2 People",
         "Free Wifi",
@@ -35,7 +38,8 @@ const Pricing = () => {
     },
     {
       name: "Basic  All Night Package",
-      price: 250,
+      price: "250",
+      timespan :"Night",
       features: [
         "2 People",
         "Free Wifi",
@@ -50,7 +54,8 @@ const Pricing = () => {
     },
     {
       name: "Standard All Night Package",
-      price: 350,
+      price: "350",
+      timespan :"Night",
       features: [
         "2 People",
         "Free Wifi",
@@ -86,7 +91,8 @@ const Pricing = () => {
                 <span className="text-indigo-600 font-medium">{item.name}</span>
                 <div className="mt-4 text-gray-800 text-3xl font-semibold">
                   M{item.price}{" "}
-                  <span className="text-xl text-gray-600 font-normal">/mo</span>
+                  <span className="text-xl text-gray-600 font-normal">\{item.timespan}</span>
+               
                 </div>
               </div>
               <ul className="py-8 space-y-3">
