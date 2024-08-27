@@ -23,9 +23,21 @@ import {
 export function DatePickerWithPresets1() {
   const [date, setDate] = React.useState<Date>();
   const [time, setTime] = React.useState<string>("");
+  const [error, setError] = React.useState<string>("");
+  const [popoverOpen, setPopoverOpen] = React.useState(false); // State to control popover open/close
+
+  // Function to handle closing popover with validation
+  const handleConfirmSelection = () => {
+    if (!date || !time) {
+      setError("Please select both a date and a time.");
+    } else {
+      setError(""); // Clear error if everything is selected
+      setPopoverOpen(false); // Close popover
+    }
+  };
 
   return (
-    <Popover>
+    <Popover open={popoverOpen} onOpenChange={setPopoverOpen}>
       <PopoverTrigger asChild>
         <Button
           variant={"outline"}
@@ -33,16 +45,19 @@ export function DatePickerWithPresets1() {
             "w-[280px] justify-start text-left font-normal",
             !date && "text-muted-foreground"
           )}
+          onClick={() => setPopoverOpen(!popoverOpen)} // Toggle popover state
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
-          {date ? format(date, "PPP") : <span>Pick a date</span>} {time && `at ${time}`}
+          {date ? format(date, "PPP") : <span>Pick a date</span>}{" "}
+          {time && `at ${time}`}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="flex w-auto flex-col space-y-2 p-2">
         <Select
-          onValueChange={(value) =>
-            setDate(addDays(new Date(), parseInt(value)))
-          }
+          onValueChange={(value) => {
+            setDate(addDays(new Date(), parseInt(value)));
+            setError(""); // Clear error when date is selected
+          }}
         >
           <SelectTrigger>
             <SelectValue placeholder="Select" />
@@ -55,13 +70,28 @@ export function DatePickerWithPresets1() {
           </SelectContent>
         </Select>
         <div className="rounded-md border">
-          <Calendar mode="single" selected={date} onSelect={setDate} />
+          <Calendar
+            mode="single"
+            selected={date}
+            onSelect={(selectedDate) => {
+              setDate(selectedDate);
+              setError(""); // Clear error when date is selected
+            }}
+          />
         </div>
-        
+
         {/* Time Picker Section */}
         <div className="flex space-x-2 mt-2">
           {/* Hour Picker */}
-          <Select onValueChange={(value) => setTime((prev) => `${value}:${prev.split(":")[1] || "00"}`)}>
+          <Select
+            onValueChange={(value) =>
+              setTime((prev) => {
+                const newTime = `${value}:${prev.split(":")[1] || "00"}`;
+                setError(""); // Clear error when time is selected
+                return newTime;
+              })
+            }
+          >
             <SelectTrigger>
               <SelectValue placeholder="Hour" />
             </SelectTrigger>
@@ -75,7 +105,15 @@ export function DatePickerWithPresets1() {
           </Select>
 
           {/* Minute Picker */}
-          <Select onValueChange={(value) => setTime((prev) => `${prev.split(":")[0] || "00"}:${value}`)}>
+          <Select
+            onValueChange={(value) =>
+              setTime((prev) => {
+                const newTime = `${prev.split(":")[0] || "00"}:${value}`;
+                setError(""); // Clear error when time is selected
+                return newTime;
+              })
+            }
+          >
             <SelectTrigger>
               <SelectValue placeholder="Minute" />
             </SelectTrigger>
@@ -88,6 +126,14 @@ export function DatePickerWithPresets1() {
             </SelectContent>
           </Select>
         </div>
+
+        {/* Error Message */}
+        {error && <p className="text-red-500 mt-2">{error}</p>}
+
+        {/* Confirm Button */}
+        <Button onClick={handleConfirmSelection} className="mt-2">
+          Confirm
+        </Button>
       </PopoverContent>
     </Popover>
   );
