@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default () => {
+const Pricing = () => {
 
     const plans = [
         {
@@ -107,3 +107,4 @@ export default () => {
         </section>
     );
 };
+export default Pricing;

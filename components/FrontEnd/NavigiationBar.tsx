@@ -8,7 +8,7 @@ const NavigationBar = () => {
   const navigation = [
   
     { title: "Rooms", path: "javascript:void(0)" },
-    { title: "Pricing", path: "javascript:void(0)" },
+    { title: "Pricing", path: "/pricing" },
     { title: "About", path: "javascript:void(0)" },
     { title: "Contact", path: "/contact" },
   ];

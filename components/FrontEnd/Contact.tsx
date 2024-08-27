@@ -48,7 +48,7 @@ const Contact = () => {
               <label className="font-medium">Phone number</label>
               <div className="relative mt-2">
                 <input
-                  type="number"
+                  type="text"
                   placeholder=""
                   required
                   className="w-full pr-3 py-2 appearance-none bg-transparent outline-none border focus:border-gray-800 shadow-sm rounded-lg"
