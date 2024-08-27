@@ -8,7 +8,7 @@ const NavigationBar = () => {
    const navigation = [
     { title: "Rooms", path: "/rooms" },
     { title: "Pricing", path: "/pricing" },
-    { title: "About", path: "/about" }, // Ensure path is correct
+    { title: "About", path: "/about" }, 
     { title: "Contact", path: "/contact" },
   ];
 
