@@ -2,6 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { Button } from "../ui/button";
+import WhatsApp from "./WhatsAppWidget";
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -73,6 +74,9 @@ const Contact = () => {
             </Button>
           </form>
         </div>
+      </div>
+      <div>
+      <WhatsApp/>
       </div>
     </main>
   );
