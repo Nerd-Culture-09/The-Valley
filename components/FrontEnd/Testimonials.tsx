@@ -1,5 +1,8 @@
+import * as React from "react";
+import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"; 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { SignupFormDemo } from "./sign-up"; 
 
 export default function Testimonial() {
   const testimonials = [
@@ -11,7 +14,7 @@ export default function Testimonial() {
     },
     {
       avatar: "https://randomuser.me/api/portraits/women/79.jpg",
-      name: "lejone ",
+      name: "lejone",
       title: "guest",
       quote: "tshebeletso tse monate haakaalo.",
     },
@@ -19,7 +22,7 @@ export default function Testimonial() {
       avatar: "https://randomuser.me/api/portraits/men/86.jpg",
       name: "guest",
       title: "DevOp engineer",
-      quote: "who seeks after it and wants to have it, simply because it is the valley .",
+      quote: "who seeks after it and wants to have it, simply because it is the valley.",
     },
   ];
 
@@ -52,21 +55,21 @@ export default function Testimonial() {
             ))}
           </ul>
         </div>
-        {/* Add TextareaWithButton component below testimonials */}
+        {/* Add Popover with Textarea and Button */}
         <div className="mt-8">
-          <TextareaWithButton />
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button className="w-full">Message</Button>
+            </PopoverTrigger>
+            <PopoverContent>
+              <div className="grid w-full gap-2">
+                <Textarea placeholder="Type your message here." />
+                <SignupFormDemo /> {/* Your sign-up form component */}
+              </div>
+            </PopoverContent>
+          </Popover>
         </div>
       </div>
     </section>
-  );
-}
-
-// New TextareaWithButton component
-export function TextareaWithButton() {
-  return (
-    <div className="grid w-full gap-2">
-      <Textarea placeholder="Type your message here." />
-      <Button>Send message</Button>
-    </div>
   );
 }

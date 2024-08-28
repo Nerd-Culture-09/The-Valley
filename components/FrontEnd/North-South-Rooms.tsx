@@ -1,6 +1,7 @@
 import React from 'react';
 import { CardData } from './AvailableRooms';
 import { DirectionAwareHover } from '../ui/direction-aware-hover';
+import { TypewriterEffectSmoothDemo } from './Typewriter';
 
 function AllRooms()
 {
@@ -60,18 +61,17 @@ function AllRooms()
           images: room3Imgs,
           price: "R250/ Night",
         },
-        {
-          category: "The Valley North",
-          title: "Room 2",
-          src: "/bedroom_display2.jpeg",
-          images: room4Imgs,
-          price: "R250/ Night",
-        },
       ];
     return (
-        <div className='flex flex-col mt-20'>
-
-          <p>South Branch</p>
+        <div className='flex flex-col p-6'>
+            <div className="flex justify-center items-center py-10 mt-10">
+            <TypewriterEffectSmoothDemo
+              words={[
+                { text: "North", className:"text-gray-700" },
+                { text: "Branch", className: "text-blue-500 dark:text-red-500" },
+              ]}
+            />
+            </div>
             <div className="flex flex-wrap md:flex-row flex-col md:justify-between justify-center items-center gap-2">
         {cardsData.map((card, index) => (
           <div
@@ -88,7 +88,14 @@ function AllRooms()
           </div>
         ))}
       </div>
-<p>North Branch</p>
+      <div className="flex justify-center items-center py-10 mt-10">
+        <TypewriterEffectSmoothDemo
+          words={[
+            { text: "South", className:"text-gray-700" },
+            { text: "Branch", className: "text-blue-500 dark:text-red-500" },
+          ]}
+        />
+        </div>
       <div className="flex flex-wrap md:flex-row flex-col md:justify-between justify-center items-center gap-2">
         {cardsData.map((card, index) => (
           <div
