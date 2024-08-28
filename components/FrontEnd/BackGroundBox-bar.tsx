@@ -34,7 +34,7 @@ export function BackGroundBoxBar() {
 
         {/* Input and Reserve Button Section */}
         <div className="flex flex-col items-center">
-          <span className="text-white text-sm mb-1">Number of People</span>
+          <span className="text-white text-sm mb-1">Number of Rooms</span>
           <InputWithButton />
         </div>
       </div>
