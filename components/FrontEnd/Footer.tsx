@@ -76,17 +76,17 @@ const Footer = () => {
         </div>
 
         <div className="flex-1">
-          <div className="mt-4 md:mt-0">
+          
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m28!1m12!1m3!1d427.93005782607394!2d27.492784852319357!3d-29.304455527907236!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m13!3e1!4m3!3m2!1d-29.3044156!2d27.4930644!4m3!3m2!1d-29.3100001!2d27.4799995!5e0!3m2!1sen!2s!4v1693156314791!5m2!1sen!2s"
               width="100%"
-              height="100"
+              height="140"
               loading="lazy"
               className="border rounded-md"
               style={{ border: 0 }}
               allowFullScreen={true}
             ></iframe>
-          </div>
+          
         </div>
       </div>
 
