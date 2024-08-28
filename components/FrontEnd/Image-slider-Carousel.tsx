@@ -2,7 +2,6 @@
 import { motion } from "framer-motion";
 import React from "react";
 import { ImagesSlider } from "../ui/Image-slider";
-//import { ImagesSlider } from "../ui/images-slider";
 
 export function ImagesSliderDemo() {
   const images = [
@@ -11,7 +10,7 @@ export function ImagesSliderDemo() {
     "/valley2.jpg",
   ];
   return (
-    <ImagesSlider className="h-[25rem] w-full" images={images}>
+    <ImagesSlider className="h-[27rem] w-full" images={images}>
       <motion.div
         initial={{
           opacity: 0,
