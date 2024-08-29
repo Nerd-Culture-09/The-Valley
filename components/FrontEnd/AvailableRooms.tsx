@@ -9,7 +9,7 @@ export interface CardData {
   category: string;
   title: string;
   src: string;
-  images: string[]; // Array of image URLs
+  images: string[];
   price: string;
 }
 

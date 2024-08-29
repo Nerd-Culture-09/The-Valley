@@ -21,8 +21,8 @@ export function RoomCarouselDemo({ images }: RoomCarouselDemoProps) {
           <CarouselItem key={index}>
             <div className="p-1">
               <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <img src={src} alt={`Image ${index + 1}`} className="object-cover w-full h-full" />
+                <CardContent className="flex aspect-square items-center justify-center p-1">
+                  <img src={src} alt={`Image ${index + 1}`} className="object-cover w-full h-full rounded-lg" />
                 </CardContent>
               </Card>
             </div>
