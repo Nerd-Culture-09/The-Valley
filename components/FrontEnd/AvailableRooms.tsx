@@ -2,18 +2,14 @@
 import { useState, ReactNode } from "react";
 import {FaTimes } from "react-icons/fa";
 import { DirectionAwareHover } from "../ui/direction-aware-hover";
-import { RoomCarouselDemo } from "./RoomCarousel";
-import { Button } from "@/components/ui/button";
-import { SelectDemo } from "./RoomPackeges";
-import { useRouter } from "next/router";
-import { Timeline } from "./BookTimeline";
 import { DummyContent } from "./DummyContent";
+import Link from "next/link";
 
 export interface CardData {
   category: string;
   title: string;
   src: string;
-  images: string[]; // Array of image URLs
+  images: string[];
   price: string;
 }
 
@@ -56,13 +52,6 @@ const room4Imgs = [
 const cardsData: CardData[] = [
   {
     category: "The Valley South",
-    title: "Room 1",
-    src: "/bedroom_front_display3.jpg",
-    images: room1Imgs,
-    price: "R250/ Night",
-  },
-  {
-    category: "The Valley South",
     title: "Room 2",
     src: "/bedroom_front_display.jpg",
     images: room2Imgs,
@@ -99,17 +88,19 @@ export function CardDemo() {
     setShowPopup(false);
   };
   return (
-    <div className="p-4">
-      <div className="flex justify-between items-center mb-4">
-        <h2 className="text-xl font-bold">Available Rooms</h2>
-        <a
-          href="/all-rooms"
-          className="text-sm font-semibold text-indigo-600 hover:underline"
-        >
+    <div className="p-4 py-4">
+      <div className="flex justify-between items-center mb-6">
+      <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
+        Available Rooms
+      </h3>
+        <div className="mt-10">
+        <Link href="/all-rooms">
+        <button className="px-6 text-blue-600 font-semibold transform hover:-translate-y-1 transition duration-400">
           View All
-        </a>
+        </button>
+        </Link>
+        </div>
       </div>
-
       <div className="flex flex-wrap md:flex-row flex-col md:justify-between justify-center items-center gap-2">
         {cardsData.map((card, index) => (
           <div

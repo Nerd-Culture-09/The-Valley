@@ -9,7 +9,7 @@ export function BackGroundBoxBar() {
   return (
     <div
       className="relative w-full overflow-hidden bg-slate-900 flex flex-col md:flex-row justify-center items-center"
-      style={{ height: "auto", minHeight: "2.5cm" }} // Adjusted height for flexibility
+      style={{ height: "auto", minHeight: "2.5cm" }}
     >
       <div className="absolute inset-0 w-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
 
@@ -33,8 +33,8 @@ export function BackGroundBoxBar() {
         </div>
 
         {/* Input and Reserve Button Section */}
-        <div className="flex flex-col items-center">
-          <span className="text-white text-sm mb-1">Number of Rooms</span>
+        <div className="flex flex-col">
+          <span className="text-white text-sm mb-1 ml-10">Number of Rooms</span>
           <InputWithButton />
         </div>
       </div>
