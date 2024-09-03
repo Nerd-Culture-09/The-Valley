@@ -1,4 +1,5 @@
 import { Facebook, Linkedin, Twitter } from "lucide-react"
+import Image from "next/image"
 import Link from "next/link"
 
 export default function Team () {
@@ -59,10 +60,12 @@ export default function Team () {
                             team.map((item, idx) => (
                                 <li key={idx} className="gap-8 sm:flex">
                                     <div className="w-60 h-60">
-                                        <img
+                                        <Image
                                             src={item.avatar}
                                             className="w-full h-full object-cover object-center shadow-md rounded-xl"
                                             alt=""
+                                            width={400}
+                                            height={400}
                                         />
                                     </div>
                                     <div className="mt-4 sm:mt-0">
