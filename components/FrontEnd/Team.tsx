@@ -27,7 +27,7 @@ export default function Team () {
             avatar: "/chef.jpg",
             name: "Molapo",
             title: "chef",
-            desc: "The valley guest house has been the industry's standard ",
+            desc: "Outstanding foods, by me",
             linkedin: "javascript:void(0)",
             twitter: "javascript:void(0)",
             facebook: "javascript:void(0)"
