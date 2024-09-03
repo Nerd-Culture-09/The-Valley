@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import { useState, useEffect } from "react";
 
 const NavigationBar = () => {
@@ -31,15 +32,15 @@ const NavigationBar = () => {
   return (
     <nav
       className={`w-full h-[70px] fixed top-0 z-50 transition-colors duration-300 ${
-        scrolled ? "bg-white shadow-lg" : "bg-white shadow-lg"
+        scrolled ? " shadow-lg" : "shadow-lg"
       }`}
     >
-      <div className="items-center px-4 max-w-screen-xl mx-auto md:flex md:px-8">
+      <div className="items-center bg-white px-4 w-full mx-auto md:flex md:px-8">
         <div className="flex items-center justify-between md:py-5 md:block">
-          <div className="-mt-5">
+          <div className="lg:-mt-4">
             <a href="/">
               <img
-                src="/vlogo.png"
+                src="/logo.png"
                 width={120}
                 height={50}
                 alt="The Valley logo"
@@ -91,7 +92,9 @@ const NavigationBar = () => {
           <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
             {navigation.map((item, idx) => (
               <li key={idx} className="text-gray-600 hover:text-indigo-600">
-                <a href={item.path}>{item.title}</a>
+                <Link href={item.path}>
+                {item.title}
+                </Link>
               </li>
             ))}
           </ul>

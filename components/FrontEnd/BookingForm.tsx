@@ -2,19 +2,9 @@
 import React from "react";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "../ui/checkbox";
-import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectGroup,
-  SelectLabel,
-  SelectItem,
-} from "@radix-ui/react-select";
-
-// Import the date pickers
 import { DatePickerWithPresets1 } from "@/components/FrontEnd/checkout-calander";
 import { DatePickerWithPresets2 } from "@/components/FrontEnd/checkin-calander";
+import { Input } from "../ui/input";
 
 interface FormPageProps {
   onNext: () => void;
@@ -34,10 +24,10 @@ export const FormPage: React.FC<FormPageProps> = ({ onNext }) => {
           <label className="block text-sm font-medium text-gray-700">
             Full Name
           </label>
-          <input
+          <Input
             type="text"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            className=""
           />
         </div>
 
@@ -46,10 +36,10 @@ export const FormPage: React.FC<FormPageProps> = ({ onNext }) => {
           <label className="block text-sm font-medium text-gray-700">
             Email
           </label>
-          <input
+          <Input
             type="email"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            className=""
           />
         </div>
 
@@ -58,10 +48,10 @@ export const FormPage: React.FC<FormPageProps> = ({ onNext }) => {
           <label className="block text-sm font-medium text-gray-700">
             Phone Number
           </label>
-          <input
+          <Input
             type="text"
             required
-            className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm"
+            className=""
           />
         </div>
 

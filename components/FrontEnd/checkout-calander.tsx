@@ -45,7 +45,7 @@ export function DatePickerWithPresets1() {
             "w-[280px] justify-start text-left font-normal",
             !date && "text-muted-foreground"
           )}
-          onClick={() => setPopoverOpen(!popoverOpen)} // Toggle popover state
+          onClick={() => setPopoverOpen(!popoverOpen)}
         >
           <CalendarIcon className="mr-2 h-4 w-4" />
           {date ? format(date, "PPP") : <span>Pick a date</span>}{" "}
@@ -87,7 +87,7 @@ export function DatePickerWithPresets1() {
             onValueChange={(value) =>
               setTime((prev) => {
                 const newTime = `${value}:${prev.split(":")[1] || "00"}`;
-                setError(""); // Clear error when time is selected
+                setError("");
                 return newTime;
               })
             }

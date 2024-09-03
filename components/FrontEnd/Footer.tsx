@@ -1,7 +1,7 @@
-"use client";
+"use client"
+
 import React from "react";
 import Link from "next/link";
-import { link } from "fs";
 
 const Footer = () => {
   const footerNavs = [
@@ -34,7 +34,7 @@ const Footer = () => {
         {/* Footer Navigation */}
         <div className="flex-1">
           <div className="max-w-xs">
-            <img src="/vlogo.png" className="w-24" alt="The Valley Guest House Logo" />
+            <img src="/logo.png" className="w-24" alt="The Valley Guest House Logo" />
           </div>
           <form onSubmit={(e) => e.preventDefault()}>
             <label className="block pt-2 pb-1 text-sm">
@@ -65,9 +65,9 @@ const Footer = () => {
                       {el.name}
                     </Link>
                   ) : (
-                    <a href={el.href} className="hover:underline hover:text-indigo-600">
+                    <Link href={el.href} className="hover:underline hover:text-indigo-600">
                       {el.name}
-                    </a>
+                    </Link>
                   )}
                 </li>
               ))}
@@ -85,14 +85,15 @@ const Footer = () => {
               className="border rounded-md"
               style={{ border: 0 }}
               allowFullScreen={true}
-            ></iframe>
+            >
+            </iframe>
           
         </div>
       </div>
 
       <div className="mt-4 py-4 border-t items-center justify-between sm:flex">
         <div className="mt-2 text-sm sm:mt-0">
-          &copy; 2024 The Valley Guest House All rights reserved.
+          &copy; {new Date().getFullYear()} The Valley Guest House All rights reserved.
         </div>
         <div className="mt-4 sm:mt-0">
           <ul className="flex items-center space-x-2">
