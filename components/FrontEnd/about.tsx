@@ -39,7 +39,7 @@ const About = () => {
               <p className="font-semibold mt-2">Service Area:</p>
               <p>Maseru, Lesotho</p>
               <p className="font-semibold mt-2">Mobile:</p>
-              <p>5603 8339</p>
+              <p>+266 5603 8339</p>
             </div>
           </div>
         </div>

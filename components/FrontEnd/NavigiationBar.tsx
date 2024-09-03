@@ -7,6 +7,7 @@ const NavigationBar = () => {
   const [scrolled, setScrolled] = useState(false);
 
    const navigation = [
+    { title: "Home", path: "/" },
     { title: "Rooms", path: "/all-rooms" },
     { title: "Pricing", path: "/pricing" },
     { title: "About", path: "/about" }, 
