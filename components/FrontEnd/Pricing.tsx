@@ -18,7 +18,7 @@ const Pricing = () => {
         "Bathroom",
         "Kettle",
       ],
-      url: "#",
+      url: "/all-rooms",
     },
     {
       name: "Standard 2 Hour Package",
@@ -34,7 +34,7 @@ const Pricing = () => {
         "Bathroom",
         "Kettle",
       ],
-      url: "#",
+      url: "/all-rooms",
     },
     {
       name: "Basic  All Night Package",
@@ -50,7 +50,7 @@ const Pricing = () => {
         "Bathroom",
         "Kettle",
       ],
-      url: "#",
+      url: "/all-rooms",
     },
     {
       name: "Standard All Night Package",
@@ -66,7 +66,7 @@ const Pricing = () => {
         "Bathroom",
         "Kettle",
       ],
-      url: "#",
+      url: "/all-rooms",
     },
   ];
 
