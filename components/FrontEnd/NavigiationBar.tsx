@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { Button } from "../ui/button";
 
 const NavigationBar = () => {
   const [state, setState] = useState(false);
@@ -98,6 +99,16 @@ const NavigationBar = () => {
                 </Link>
               </li>
             ))}
+            <div className="flex flex-col gap-y-4 gap-x-6 md:flex-row md:space-y-0">
+                <Link href="/login">
+                  <Button className="bg-[#204E51] lg:w-[90px]">
+                      Login
+                  </Button>
+                </Link>
+                <Button className="border border-[#204E51] text-[#204E51]" variant='ghost'>
+                    Sign Up
+                </Button>
+            </div>
           </ul>
         </div>
       </div>
