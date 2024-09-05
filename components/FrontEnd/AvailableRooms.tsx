@@ -71,6 +71,13 @@ const cardsData: CardData[] = [
     images: room4Imgs,
     price: "R250/ Night",
   },
+  {
+    category: "The Valley North",
+    title: "Room 2",
+    src: "/bedroom_display2.jpeg",
+    images: room4Imgs,
+    price: "R250/ Night",
+  },
 ];
 
 export function CardDemo() {
