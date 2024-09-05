@@ -101,13 +101,15 @@ const NavigationBar = () => {
             ))}
             <div className="flex flex-col gap-y-4 gap-x-6 md:flex-row md:space-y-0">
                 <Link href="/login">
-                  <Button className="bg-[#204E51] lg:w-[90px]">
+                  <Button className="bg-blue-500 lg:w-[90px]">
                       Login
                   </Button>
                 </Link>
-                <Button className="border border-[#204E51] text-[#204E51]" variant='ghost'>
-                    Sign Up
-                </Button>
+                <Link href="/register">
+                  <Button className="border border-blue-500 text-gray-600" variant='ghost'>
+                      Sign Up
+                  </Button>
+                </Link>
             </div>
           </ul>
         </div>

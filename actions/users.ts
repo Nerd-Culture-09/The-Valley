@@ -1,7 +1,8 @@
 "use server"
 
 import { prismaClient }  from "@/lib/db";
-import { BusinessRegisterInputProps, RegisterInputProps } from "@/types/types";
+import generateSlug from "@/lib/generateSlug";
+import { RegisterInputProps } from "@/types/types";
 import bcrypt from "bcrypt";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -9,13 +10,8 @@ export async function createUser(formdata: RegisterInputProps) {
   const {
     fullName,
     email,
-    phone,
-    location,
     password,
-    instaProfile,
-    twitterProfile,
-    facebookProfile,
-    linkedProfile,
+    phone,
     role,
   } = formdata;
 
@@ -38,21 +34,26 @@ export async function createUser(formdata: RegisterInputProps) {
     // Encrypt the Password using bcrypt
     const hashedPassword = await bcrypt.hash(password, 10);
 
+    // Generate a verification token
+    const generateToken = () => {
+      const min = 100000; // Minimum 6-figure number
+      const max = 999999; // Maximum 6-figure number
+      return Math.floor(Math.random() * (max - min + 1)) + min;
+  };
+  const userToken = generateToken();
+
     // Create the new user in the database
     const newUser = await prismaClient.user.create({
       data: {
-        name: fullName,
-        email,
-        phone,
-        location,
-        linkedProfile,
-        facebookProfile,
-        twitterProfile,
-        instaProfile,
-        password: hashedPassword,
-        role,
+          name: fullName,
+          slug: generateSlug(fullName),
+          email,
+          phone,
+          password: hashedPassword,
+          role,
+          token: userToken,
       },
-    });
+  });
 
     return {
       data: newUser,
@@ -68,86 +69,3 @@ export async function createUser(formdata: RegisterInputProps) {
     };
   }
 }
-
-
-// Function to fetch a user by ID
-export async function getUserById(id: string) {
-    if (id) {
-        try {
-            const user = await prismaClient.user.findUnique({
-                where: {
-                    id,
-                },
-            });
-            return user;
-        } catch (error) {
-            console.log(error);
-        }
-    }
-}
-
-export async function getSocials() {
-    try {
-        const socials = await prismaClient.user.findMany({
-            select: {
-                linkedProfile: true,
-                facebookProfile: true,
-                twitterProfile: true,
-                instaProfile: true,
-            },
-        });
-        return socials;
-    } catch (error) {
-        console.log(error);
-        return null;
-    }
-}
-
-export async function createBusinessProfile(formData: BusinessRegisterInputProps) {
-    // Destructure form data for easier access
-    const {
-        businessName,
-        businessEmail,
-        businessPhone,
-        businessAddress,
-        role,
-        district,
-        website,
-        code,
-    } = formData;
-
-    try {
-        // Create a new business profile in the database
-        const newProfile = await prismaClient.business.create({
-            data: {
-                businessName,
-                businessEmail,
-                businessPhone,
-                businessAddress,
-                role,
-                district,
-                website,
-                code,
-            },
-        });
-
-        // Log the newly created profile and return success response
-        console.log(newProfile);
-        return {
-            data: newProfile,
-            status: 201,
-            error: null,
-        };
-    } catch (error) {
-        // Handle errors and return error response
-        console.log(error);
-        return {
-            data: null,
-            status: 500,
-            error: "Something went wrong",
-        };
-    }
-}
-
-
-

@@ -1,10 +1,12 @@
+import Footer from '@/components/FrontEnd/Footer'
 import Hero from '@/components/FrontEnd/Hero'
 import React from 'react'
 
 export default function page() {
   return (
-    <div className='space-y-2.5 '>
+    <div className=''>
       <Hero /> 
+      <Footer />
     </div>
   )
 }

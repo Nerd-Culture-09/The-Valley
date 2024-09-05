@@ -8,7 +8,7 @@ export default function Team () {
         {
             avatar: "/manager.jpg",
             name: "Leepile",
-            title: "Maneger",
+            title: "Manager",
             desc: "love this work",
             linkedin: "javascript:void(0)",
             twitter: "javascript:void(0)",
@@ -26,8 +26,8 @@ export default function Team () {
         {
             avatar: "/chef.jpg",
             name: "Molapo",
-            title: "chef",
-            desc: "Outstanding foods, by me",
+            title: "Chef",
+            desc: "Outstanding food, by me",
             linkedin: "javascript:void(0)",
             twitter: "javascript:void(0)",
             facebook: "javascript:void(0)"
@@ -35,7 +35,7 @@ export default function Team () {
         {
             avatar: "/cleaner.jpg",
             name: "Vicky tanson",
-            title: "cleaner",
+            title: "Cleaner",
             desc: "love this work",
             linkedin: "javascript:void(0)",
             twitter: "javascript:void(0)",
@@ -48,7 +48,7 @@ export default function Team () {
             <div className="max-w-screen-xl mx-auto px-4 md:px-8">
                 <div className="max-w-xl">
                     <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
-                        Meet our talent stuff
+                        Meet our talented staff
                     </h3>
                     <p className="text-gray-600 mt-3">
                         The valley has been the industry's standard guest house Lesotho.

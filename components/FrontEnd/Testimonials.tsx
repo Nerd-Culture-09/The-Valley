@@ -9,18 +9,18 @@ export default function Testimonial() {
     {
       avatar: "https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg",
       name: "Mswati",
-      title: "guest",
+      title: "Guest",
       quote: "lijo tse monate hakaaalo.",
     },
     {
       avatar: "https://randomuser.me/api/portraits/women/79.jpg",
-      name: "lejone",
-      title: "guest",
+      name: "Lejone",
+      title: "Guest",
       quote: "tshebeletso tse monate haakaalo.",
     },
     {
       avatar: "https://randomuser.me/api/portraits/men/86.jpg",
-      name: "guest",
+      name: "John",
       title: "DevOp engineer",
       quote: "who seeks after it and wants to have it, simply because it is the valley.",
     },
@@ -59,7 +59,7 @@ export default function Testimonial() {
         <div className="mt-8">
           <Popover>
             <PopoverTrigger asChild>
-              <Button className="w-full">Message</Button>
+              <Button className="w-full">Review</Button>
             </PopoverTrigger>
             <PopoverContent>
               <div className="grid w-full gap-2">

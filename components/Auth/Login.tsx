@@ -13,6 +13,7 @@ import { Alert } from "flowbite-react"; // Importing Alert component from flowbi
 import { HiInformationCircle } from "react-icons/hi"; // Importing HiInformationCircle icon from react-icons/hi
 import { Button } from "../ui/button"; // Importing custom Button component
 import usePasswordToggle from "@/lib/passwordToggle";
+import Image from "next/image";
 
 export default function LoginFormWithBg() {
     const [isLoading, setIsLoading]=useState(false); // State for loading state
@@ -44,7 +45,7 @@ export default function LoginFormWithBg() {
           reset(); // Reset form
           setIsLoading(false); // Stop loading
           toast.success("Login Successful"); // Success toast for successful login
-          router.push("/"); // Redirect to dashboard
+          router.push("/all-rooms"); // Redirect to dashboard
         }
       } catch (error) {
         setIsLoading(false); // Stop loading
@@ -56,10 +57,10 @@ export default function LoginFormWithBg() {
     const [passwordInputType, PasswordToggleIcon] = usePasswordToggle();
 
   return (
-    <div className="w-full flex items-center justify-center h-screen lg:grid-cols-2 xl:min-h-[800px]">
+    <div className="w-full lg:grid lg:min-h-[600px] lg:grid-cols-2 xl:min-h-[800px]">
       <div className="flex items-center justify-center py-12">
         <div className="mx-auto grid w-[350px] gap-6">
-          <div className="grid gap-2 text-center p-6">
+          <div className="grid gap-2 text-center">
             <h1 className="text-3xl font-bold">Login</h1>
             <p className="text-balance text-muted-foreground">
               Enter your email below to login to your account
@@ -114,7 +115,13 @@ export default function LoginFormWithBg() {
         </div>
       </div>
       <div className="hidden bg-muted lg:block">
-        {/* Placeholder for an Image component */}
+        <Image
+          src="/dummy2.jpg"
+          alt="Image"
+          width="1920"
+          height="1080"
+          className="h-full w-full object-cover dark:brightness-[0.2] dark:grayscale"
+        />
       </div>
     </div>
   );

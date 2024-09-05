@@ -18,7 +18,7 @@ export default function SubmitButton({title, buttonType="submit", isLoading=fals
    </Button>
 
    ):(
-    <Button type={buttonType}>
+    <Button type={buttonType} className='bg-blue-500'>
       {title}
     </Button>
    )}
