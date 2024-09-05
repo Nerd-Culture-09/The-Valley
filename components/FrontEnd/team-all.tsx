@@ -1,4 +1,4 @@
-export default () => {
+export default function TeamAll () {
     const team = [
       {
         avatar:
@@ -53,7 +53,7 @@ export default () => {
             </h3>
             <p className="text-gray-600 mt-3">
               Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy.
+              industry. Lorem Ipsum has been the industry&apos;s standard dummy.
             </p>
           </div>
           <div className="mt-12">

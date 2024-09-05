@@ -20,7 +20,7 @@ const RoomInfo = () => {
         </div>
       </div>
       <div className="text-black text-xs font-normal">
-        Golden Sands Resort is a renowned beachfront hotel and resort located on the island of Penang in Malaysia. Situated along Batu Ferringhi Beach, one of Penang's most popular tourist destinations, the resort offers guests a picturesque setting with stunning views of the Andaman Sea.<br /><br />As a luxury beach resort, Golden Sands is known for its world-class amenities and hospitality. The resort features a wide range of accommodation options, from stylish rooms to spacious suites, catering to the diverse needs of travelers. Each room is designed with modern comforts and offers scenic views of either the sea or the lush tropical gardens.
+        Golden Sands Resort is a renowned beachfront hotel and resort located on the island of Penang in Malaysia. Situated along Batu Ferringhi Beach, one of Penang&apos;s most popular tourist destinations, the resort offers guests a picturesque setting with stunning views of the Andaman Sea.<br /><br />As a luxury beach resort, Golden Sands is known for its world-class amenities and hospitality. The resort features a wide range of accommodation options, from stylish rooms to spacious suites, catering to the diverse needs of travelers. Each room is designed with modern comforts and offers scenic views of either the sea or the lush tropical gardens.
       </div>
 
       {/* Room Amenities Section */}

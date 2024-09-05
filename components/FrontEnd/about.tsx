@@ -28,7 +28,7 @@ const About = () => {
               Experience Comfort and Hospitality in the Heart of Maseru
             </p>
             <p className="mt-3 text-gray-600">
-              Located in Thetsane Lekhalong, Maseru, Lesotho, The Valley Guest House offers a unique and memorable stay with warm hospitality and exceptional service. Whether you're here for business or leisure, our guest house provides a comfortable retreat with all the amenities you need for a pleasant stay.
+              Located in Thetsane Lekhalong, Maseru, Lesotho, The Valley Guest House offers a unique and memorable stay with warm hospitality and exceptional service. Whether you&apos;re here for business or leisure, our guest house provides a comfortable retreat with all the amenities you need for a pleasant stay.
             </p>
             <p className="mt-3 text-gray-600">
               Our service area includes the beautiful surroundings of Maseru, ensuring that you have easy access to local attractions and activities. Our friendly staff is dedicated to making your stay as enjoyable and stress-free as possible.

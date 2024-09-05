@@ -51,7 +51,7 @@ export default function Team () {
                         Meet our talented staff
                     </h3>
                     <p className="text-gray-600 mt-3">
-                        The valley has been the industry's standard guest house Lesotho.
+                        The valley has been the industry&apos;s standard guest house Lesotho.
                     </p>
                 </div>
                 <div className="mt-12">
