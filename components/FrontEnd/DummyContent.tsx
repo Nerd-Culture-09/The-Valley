@@ -7,14 +7,15 @@ import { FormPage } from "./BookingForm";
 import { Timeline } from "./BookTimeline";
 import { ConfirmationPage } from "./ConfirmBooking";
 import { SelectDemo } from "./RoomPackeges";
-import { FaTable, FaBed, FaShieldAlt, FaCar, FaWifi, FaBath, FaFire } from "react-icons/fa";
-
+import { Bath, Bed, Table, Wifi } from 'lucide-react';
 
 interface DummyContentProps {
   category: string;
   title: string;
   images: string[];
   room: CardData;
+  price: string;
+  amenities: string[]; // Accept amenities as a prop
 }
 
 export const DummyContent: React.FC<DummyContentProps> = ({
@@ -22,6 +23,8 @@ export const DummyContent: React.FC<DummyContentProps> = ({
   title,
   images,
   room,
+  price,
+  amenities
 }) => {
   const [step, setStep] = useState(1);
   const [userDetails, setUserDetails] = useState<{
@@ -31,43 +34,18 @@ export const DummyContent: React.FC<DummyContentProps> = ({
     fullName: "",
     email: "",
   });
-  const amenities = [
-    {
-      label: "Table",
-      icon: <FaTable className="text-[#ff7665] text-3xl mt-4" />,
-    },
-    { label: "Double", icon: <FaBed className="text-[#ff7665] text-3xl mt-4" /> },
-    {
-      label: "Security",
-      icon: <FaShieldAlt className="text-[#ff7665] text-3xl mt-4" />,
-    },
-    {
-      label: "Parking",
-      icon: <FaCar className="text-[#ff7665] text-3xl mt-4" />,
-    },
-    {
-      label: "Free Wifi",
-      icon: <FaWifi className="text-[#ff7665] text-3xl mt-4" />,
-    },
-    {
-      label: "Bathroom",
-      icon: <FaBath className="text-[#ff7665] text-3xl mt-4" />,
-    },
-    {
-      label: "Heater",
-      icon: <FaFire className="text-[#ff7665] text-3xl mt-4" />,
-    },
-    {
-      label: "Blanket",
-      icon: <FaFire className="text-[#ff7665] text-3xl mt-4" />,
-    },
-  ];
 
   const handleNextStep = () => {
     if (step === 2) {
       setUserDetails({ fullName: "User Name", email: "user@example.com" });
     }
     setStep(step + 1);
+  };
+  const amenityIcons: Record<string, JSX.Element> = {
+    Wifi: <Wifi className="w-5 h-5 text-blue-600" />,
+    Bed: <Bed className="w-5 h-5 text-blue-600" />,
+    Shower: <Bath className="w-5 h-5 text-blue-600" />,
+    Table: <Table className="w-5 h-5 text-blue-600" />,
   };
 
   return (
@@ -97,29 +75,25 @@ export const DummyContent: React.FC<DummyContentProps> = ({
             <ConfirmationPage room={room} userDetails={userDetails} />
           </div>
         )}
-        <div className="lg:w-1/2 mt-8 lg:mt-0">
+        <div className="lg:w-1/2 mt-8 lg:mt-20">
           <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl">
-            <h3 className="text-neutral-700 dark:text-neutral-200 text-xl font-bold mb-2">
+            <h3 className="text-neutral-700 text-2xl font-bold">
               {category}
             </h3>
             <h4 className="text-neutral-700 dark:text-neutral-200 text-lg mb-4">
-              {title}
+            {title}
+            <h1>Price: <span className="text-green-600 font-semibold">M{price}</span></h1>
             </h4>
-            {step === 1 && (
-              <div className="flex flex-wrap justify-between mt-10">
-                {amenities.map((amenity, index) => (
-                  <div
-                    key={index}
-                    className="w-[96px] h-[96px] flex flex-col items-center bg-white rounded-lg border border-[#e8e8e8] p-4"
-                  >
-                    {amenity.icon}
-                    <div className="mt-2 text-xs">
-                      {amenity.label}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            )}
+            <div className="room-amenities">
+            <h4 className="font-bold">Amenities:</h4>
+            <ul className="flex space-x-4">
+            {amenities.map((amenity, index) => (
+              <li key={index} className="grid grid-col pt-4">
+                {amenityIcons[amenity] || <span>{amenity}</span>}
+              </li>
+            ))}
+          </ul>
+          </div>
           </div>
         </div>
       </div>

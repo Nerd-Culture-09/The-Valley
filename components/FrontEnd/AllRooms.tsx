@@ -2,6 +2,9 @@ import React from 'react';
 import { CardData } from './AvailableRooms';
 import { DirectionAwareHover } from '../ui/direction-aware-hover';
 import { TypewriterEffectSmoothDemo } from './Typewriter';
+import RoomCards from './NorthRoomCards';
+import SouthRoomCards from './SouthRoomCards';
+import NorthRoomCards from './NorthRoomCards';
 
 function AllRooms()
 {
@@ -72,47 +75,17 @@ function AllRooms()
               ]}
             />
             </div>
-            <div className="flex flex-wrap md:flex-row flex-col md:justify-between justify-center items-center gap-2">
-        {cardsData.map((card, index) => (
-          <div
-            key={index}
-            //onClick={() => handleClick(card)}
-            className="cursor-pointer"
-          >
-            <DirectionAwareHover imageUrl={card.src}>
-              <p className="font-bold text-xl">
-                {card.category + " " + card.title}
-              </p>
-              <p className="font-normal text-sm">{card.price}</p>
-            </DirectionAwareHover>
-          </div>
-        ))}
-      </div>
-      <div className="flex justify-center items-center py-10 mt-10">
-        <TypewriterEffectSmoothDemo
-          words={[
-            { text: "South", className:"text-gray-700" },
-            { text: "Branch", className: "text-blue-500 dark:text-red-500" },
-          ]}
-        />
-        </div>
-      <div className="flex flex-wrap md:flex-row flex-col md:justify-between justify-center items-center gap-2">
-        {cardsData.map((card, index) => (
-          <div
-            key={index}
-            //onClick={() => handleClick(card)}
-            className="cursor-pointer"
-          >
-            <DirectionAwareHover imageUrl={card.src}>
-              <p className="font-bold text-xl">
-                {card.category + " " + card.title}
-              </p>
-              <p className="font-normal text-sm">{card.price}</p>
-            </DirectionAwareHover>
-          </div>
-        ))}
-      </div>
-        </div>
+            <NorthRoomCards />
+            <div className="flex justify-center items-center py-10 mt-10">
+              <TypewriterEffectSmoothDemo
+                words={[
+                  { text: "South", className:"text-gray-700" },
+                  { text: "Branch", className: "text-blue-500 dark:text-red-500" },
+                ]}
+              />
+              </div>
+              <SouthRoomCards />
+              </div>
     )
 }
 

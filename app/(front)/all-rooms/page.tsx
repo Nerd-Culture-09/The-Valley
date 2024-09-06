@@ -1,10 +1,10 @@
-import AllRooms from '@/components/FrontEnd/North-South-Rooms';
+import AllRooms from '@/components/FrontEnd/AllRooms';
 import React from 'react'
 
 function page() {
   return (
     <div>
-        <AllRooms/>
+        <AllRooms />
     </div>
   )
 }

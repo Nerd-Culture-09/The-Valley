@@ -86,7 +86,7 @@ export function CardDemo() {
 
   const handleClick = (card: CardData) => {
     setPopupContent(
-      <DummyContent category={card.category} title={card.title} images={card.images} room={card} />
+      <DummyContent category={card.category} title={card.title} images={card.images} room={card} price={card.price} amenities={[]}/>
     );
     setShowPopup(true);
   };
