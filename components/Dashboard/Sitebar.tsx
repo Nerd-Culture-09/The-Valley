@@ -22,7 +22,8 @@ export default function Sidebar({session}:{session:Session}) {
     ADMIN: [
       {title:"Home", path:"/", icon: House},
       {title:"Dashboard", path:"/dashboard", icon: Activity},
-      {title:"Rooms", path:"/dashboard", icon: Hotel},
+      {title:"The North", path:"/dashboard/north", icon: Hotel},
+      {title:"The South", path:"/dashboard/south", icon: Hotel},
     ],
   };
 
