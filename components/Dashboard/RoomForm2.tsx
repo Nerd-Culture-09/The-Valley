@@ -99,7 +99,6 @@ export default function RoomForm2({
             errors={errors}
             placeholder="Enter Room Title"
           />
-          {/* Text input for room description */}
           <TextInput
             label="Room Description"
             register={register}
