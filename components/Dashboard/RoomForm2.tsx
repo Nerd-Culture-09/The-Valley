@@ -12,6 +12,7 @@ import { X } from "lucide-react"; // Icon component from Lucide React
 import toast from "react-hot-toast"; // Toast notification library
 import { useRouter } from "next/navigation"; // Router hook from Next.js
 import { Input } from "../ui/input";
+import ImageInput from "../FormInputs/ImageInput";
 // import { Room } from "@prisma/client"; // Room type from Prisma client
 
 // Define the properties for creating a room
@@ -34,7 +35,7 @@ export default function RoomForm2({
   // const edititingId = initialData?.id || ""; // Extracting editing ID from initial data
   const [isLoading, setIsLoading] = useState(false);
   // const initialImageUrl = initialData?.imageUrl || ""; // Initial image URL for image input
-  // const [imageUrl, setImageUrl] = useState(initialImageUrl); // State for image URL
+  const [imageUrl, setImageUrl] = useState(); // State for image URL
 
   const {
     register,
@@ -106,14 +107,12 @@ export default function RoomForm2({
             errors={errors}
             placeholder="Enter Room Description"
           />
-          {/* Image input for room */}
-          {/* <ImageInput
+           <ImageInput
             label="Room Image"
-            imageUrl={imageUrl}
+            imageUrl={""}
             setImageUrl={setImageUrl}
             endpoint="roomImage"
-          /> */}
-          {/* Text input for price */}
+          />
           <TextInput
             label="Price (M)"
             register={register}
