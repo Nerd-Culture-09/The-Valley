@@ -7,20 +7,12 @@ import NavBar from '@/components/Dashboard/Navbar';
 
 // Layout component for the dashboard
 export default async function Layout({ children }: { children: ReactNode }) {
-  const session = await getServerSession(authOptions);
-
-  // Redirect to login if no session is found
-  if (!session) {
-    redirect("/login");
-  }
-
-  const user = session.user;
 
   return (
     <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
-      <Sidebar session={session} />
+      <Sidebar />
       <div className="flex flex-col">
-        <NavBar session={session} />
+        <NavBar />
         <div className="p-8">
           {children}
         </div>

@@ -1,39 +1,25 @@
 "use client"
 
 // Lucide icons for sidebar navigation
-import { Activity, Home, Hotel, House, Power, SettingsIcon, Ship } from "lucide-react";
+import { Activity, Home, Hotel, House, Power, Ship } from "lucide-react";
 import Link from "next/link"; // Next.js link component
 import React from "react"; // React library
 import { Button } from "@/components/ui/button"; // Button component
 import { usePathname, useRouter } from "next/navigation"; // Next.js navigation hooks
 import { cn } from "@/lib/utils"; // Utility function for classNames
-import { Session } from 'next-auth'; // Session type from NextAuth
 import { signOut } from "next-auth/react"; // Sign out function from NextAuth
 
-export default function Sidebar({session}:{session:Session}) {
-  const {user} = session; // Destructure user from session
-  const role = user?.role; // Extract role from user
+export default function Sidebar() {
   const pathname = usePathname(); // Current pathname from router
-  const roles = {
-    USER: [
-      {title:"Dashboard", path:"/dashboard", icon: Home},
-      {title:"Settings", path:"/dashboard", icon: SettingsIcon}
-    ],
-    ADMIN: [
-      {title:"Home", path:"/", icon: House},
-      {title:"Dashboard", path:"/dashboard", icon: Activity},
-      {title:"The North", path:"/dashboard/north", icon: Hotel},
-      {title:"The South", path:"/dashboard/south", icon: Hotel},
-    ],
-  };
-
-  // Console log the user's role for debugging
-  console.log(role);
-
-  // Determine sidebar links based on user's role
-  let sideBarLinks = roles[role] || [];
-  
   const router = useRouter(); // Router instance
+
+  // Sidebar links for ADMIN
+  const sideBarLinks = [
+    {title:"Home", path:"/", icon: House},
+    {title:"Dashboard", path:"/dashboard", icon: Activity},
+    {title:"The North", path:"/dashboard/north", icon: Hotel},
+    {title:"The South", path:"/dashboard/south", icon: Hotel},
+  ];
 
   // Function to handle logout
   async function handlelogOut() {
@@ -56,14 +42,14 @@ export default function Sidebar({session}:{session:Session}) {
         <div className="flex-1">
           <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
             {/* Map through sidebar links and render each */}
-            {sideBarLinks.map((item,i)=>{
+            {sideBarLinks.map((item, i) => {
               const Icon = item.icon; // Icon component
               return (
                 <Link
                   key={i}
                   href={item.path}
                   className={cn("flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary",
-                    pathname === item.path ? "bg-muted text-primary": "" 
+                    pathname === item.path ? "bg-muted text-primary" : "" 
                   )}
                 >
                   <Icon className="h-4 w-4" />
@@ -76,7 +62,7 @@ export default function Sidebar({session}:{session:Session}) {
 
         {/* Logout button section */}
         <div className="mt-auto p-4">
-          <Button onClick={()=> handlelogOut()} size="sm">
+          <Button onClick={handlelogOut} size="sm">
             <Power className="h-4 mr-1" />
             Logout
           </Button>
