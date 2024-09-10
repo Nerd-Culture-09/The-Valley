@@ -8,7 +8,7 @@ import Image from 'next/image';
 import { DummyContent } from './DummyContent';
 import { Button } from '../ui/button';
 import { FaTimes } from 'react-icons/fa';
-import { getRooms } from '@/actions/rooms'; // Importing the getRooms function
+import { getRoomsNorth } from '@/actions/rooms'; // Importing the getRooms function
 
 interface Room {
   id: string;
@@ -28,7 +28,7 @@ export default function NorthRoomCards() {
 
   useEffect(() => {
     const fetchRooms = async () => {
-      const response = await getRooms();
+      const response = await getRoomsNorth();
       if (response.data) {
         setRooms(response.data);
       }

@@ -54,6 +54,7 @@ export async function createBooking(formData: any) {
             data: null,
             status: 500,
             error: "Something went wrong",
+            
         };
     }
 }

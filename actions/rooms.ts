@@ -62,9 +62,12 @@ export async function createRoom(data: RoomProps) {
 
 
 // actions/rooms.ts
-export async function getRooms() {
+export async function getRoomsNorth() {
     try {
         const rooms = await prismaClient.room.findMany({
+            where: {
+                category: 'NORTH', // Filter rooms by the 'SOUTH' category
+            },
             orderBy: {
                 createdAt: 'desc',
             },
@@ -85,3 +88,28 @@ export async function getRooms() {
     }
 }
 
+export async function getRoomsSouth() {
+    try {
+        const rooms = await prismaClient.room.findMany({
+            where: {
+                category: 'SOUTH', // Filter rooms by the 'SOUTH' category
+            },
+            orderBy: {
+                createdAt: 'desc',
+            },
+        });
+
+        return {
+            data: rooms,
+            status: 200,
+            error: null,
+        };
+    } catch (error) {
+        console.error(error);
+        return {
+            data: null,
+            status: 500,
+            error,
+        };
+    }
+}
