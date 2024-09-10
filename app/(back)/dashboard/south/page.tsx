@@ -51,11 +51,11 @@ export default async function page() {
           <div className="flex h-1/2 items-center justify-center py-10">
             <div className='py-4 px-6 text-center border-white shadow-md rounded-md flex flex-col items-center gap-1 text-sm'>
               <LayoutGrid/> {/* Icon representing rooms */}
-              <div className="py-3">
-                {" "}
-                {/* Information about the number of rooms */}
-                <p>You have rooms in the South.</p>
-              </div>
+                <div className="py-3">
+                  {" "}
+                  {/* Information about the number of rooms */}
+                  <p>Create A New Room.</p>
+                </div>
               {/* Button for creating a new room */}
               <NewButton title='New Room' href="/dashboard/south/new"/>
             </div>
