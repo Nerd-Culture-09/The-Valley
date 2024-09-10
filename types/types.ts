@@ -12,3 +12,23 @@ export type LoginInputProps={
     password: string;
     
 };
+
+export type RoomProps = {
+    title: string;
+    description: string;
+    imageUrl: string;
+    category: "NORTH" | "SOUTH";
+    price: string;
+    amenities: string;
+};
+
+export type BookingProps = {
+    fullName: string;
+    emails: string;
+    phoneNumber: string;
+    paymentMethod: string;
+    checkInDate: Date; 
+    checkOutDate: Date;
+    bookingFor: string;
+    roomId: string; // Add roomId here
+};

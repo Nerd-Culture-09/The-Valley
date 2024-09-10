@@ -1,4 +1,5 @@
 "use client";
+
 import { useState, ReactNode } from "react";
 import {FaTimes } from "react-icons/fa";
 import { DirectionAwareHover } from "../ui/direction-aware-hover";
@@ -8,6 +9,7 @@ import Link from "next/link";
 export interface CardData {
   category: string;
   title: string;
+  room: string;
   src: string;
   images: string[];
   price: string;
@@ -53,6 +55,7 @@ const cardsData: CardData[] = [
   {
     category: "The Valley South",
     title: "Room 2",
+    room: "",
     src: "/bedroom_front_display.jpg",
     images: room2Imgs,
     price: "R250/ Night",
@@ -60,6 +63,7 @@ const cardsData: CardData[] = [
   {
     category: "The Valley North",
     title: "Room 1",
+    room: "",
     src: "/bedroom_display1.jpeg",
     images: room3Imgs,
     price: "R250/ Night",
@@ -67,6 +71,7 @@ const cardsData: CardData[] = [
   {
     category: "The Valley North",
     title: "Room 2",
+    room: "",
     src: "/bedroom_display2.jpeg",
     images: room4Imgs,
     price: "R250/ Night",
@@ -74,6 +79,7 @@ const cardsData: CardData[] = [
   {
     category: "The Valley North",
     title: "Room 2",
+    room: "",
     src: "/bedroom_display2.jpeg",
     images: room4Imgs,
     price: "R250/ Night",

@@ -4,82 +4,60 @@ import { useForm } from "react-hook-form"; // Form handling library
 import TextInput from "@/components/FormInputs/TextInput"; // Custom text input component
 import SubmitButton from "@/components/FormInputs/SubmitButton"; // Custom submit button component
 import { useState } from "react"; // State management library
-// import ImageInput from "@/components/FormInputs/ImageInput";
 import { Button } from "../ui/button"; // Button component
 import Link from "next/link"; // Link component from Next.js
 import { X } from "lucide-react"; // Icon component from Lucide React
-// import { createRoom } from "@/actions/rooms"; // API action for creating rooms
 import toast from "react-hot-toast"; // Toast notification library
 import { useRouter } from "next/navigation"; // Router hook from Next.js
 import { Input } from "../ui/input";
-import ImageInput from "../FormInputs/ImageInput";
-// import { Room } from "@prisma/client"; // Room type from Prisma client
+import ImageInput from "../FormInputs/ImageInput"; // Custom image input component
+import { RoomProps } from "@/types/types";
+import { createRoom } from "@/actions/rooms";
 
-// Define the properties for creating a room
-export type RoomProps = {
-  title: string;
-  description: string;
-  imageUrl: string;
-  category: string;
-  price: string;
-  amenities: string[];
-};
-
-export default function RoomForm2({
-  title,
-  // initialData,
-}: {
-  title: string;
-  // initialData?: Room;
-}) {
-  // const edititingId = initialData?.id || ""; // Extracting editing ID from initial data
+export default function RoomForm2({ title }: { title: string }) {
   const [isLoading, setIsLoading] = useState(false);
-  // const initialImageUrl = initialData?.imageUrl || ""; // Initial image URL for image input
-  const [imageUrl, setImageUrl] = useState(); // State for image URL
+  const [imageUrl, setImageUrl] = useState<string>(""); // State for image URL
 
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<RoomProps>({
-    // defaultValues: {
-    //   title: initialData?.title,
-    //   description: initialData?.description,
-    //   price: initialData?.price,
-    //   category: initialData?.category,
-    //   amenities: initialData?.amenities || [],
-    // },
-  });
+  } = useForm<RoomProps>();
 
-  // const router = useRouter(); // Router instance
+  const router = useRouter(); // Router instance
 
-  // // Function to handle form submission
-  // async function onSubmit(data: RoomProps) {
-  //   setIsLoading(true); // Set loading state to true
-  //   data.imageUrl = imageUrl; // Set image URL in form data
+  // Function to handle form submission
+  async function onSubmit(data: RoomProps) {
+    setIsLoading(true); // Set loading state to true
+    data.imageUrl = imageUrl; // Set image URL in form data
 
-  //   console.log(data); // Log form data to console for debugging
+    try {
+      // Call the createRoom API with form data
+      const response = await createRoom(data);
 
-  //   if (edititingId) {
-  //     // Handle update room functionality here
-  //     toast.success("Room Updated Successfully"); // Display success toast
-  //   } else {
-  //     await createRoom(data); // Call create room API
-  //     toast.success("Room Created Successfully"); // Display success toast
-  //   }
-
-  //   reset(); // Reset form fields
-  //   router.push("/dashboard/rooms"); // Redirect to rooms dashboard
-  // }
+      if (response.status === 201) {
+        toast.success("Room Created Successfully");
+        reset(); // Reset form fields
+        router.push("/dashboard/south"); // Redirect to rooms dashboard
+      } else if (response.status === 409) {
+        toast.error("Room with this slug already exists."); // Handle conflict
+      } else {
+        toast.error("Failed to create room."); // Handle general errors
+      }
+    } catch (error) {
+      console.error(error);
+      toast.error("Error creating room. Please try again.");
+    } finally {
+      setIsLoading(false); // Reset loading state
+    }
+  }
 
   return (
     <div className="w-full max-w-xl shadow-sm rounded-md m-3 border border-gray-200 mx-auto">
       <div className="sm:mx-auto sm:w-full sm:max-w-sm py-4 border-gray-200 dark:border-gray-600">
         <div className="flex items-center justify-between px-6">
-          <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight">
-            {title} {/* Display form title */}
-          </h1>
+          <h1 className="scroll-m-20 text-2xl font-extrabold tracking-tight">{title}</h1>
           {/* Button to cancel form submission */}
           <Button type="button" asChild variant={"outline"}>
             <Link href="/dashboard/south">
@@ -88,8 +66,9 @@ export default function RoomForm2({
           </Button>
         </div>
       </div>
+
       {/* Form for submitting room data */}
-      <form  className="py-4 px-4 mx-auto">
+      <form onSubmit={handleSubmit(onSubmit)} className="py-4 px-4 mx-auto">
         <div className="grid gap-4 grid-cols-2">
           {/* Text input for room title */}
           <TextInput
@@ -99,6 +78,7 @@ export default function RoomForm2({
             errors={errors}
             placeholder="Enter Room Title"
           />
+          {/* Text input for room description */}
           <TextInput
             label="Room Description"
             register={register}
@@ -106,12 +86,14 @@ export default function RoomForm2({
             errors={errors}
             placeholder="Enter Room Description"
           />
-           <ImageInput
+          {/* Image input for room image */}
+          <ImageInput
             label="Room Image"
-            imageUrl={""}
+            imageUrl={imageUrl}
             setImageUrl={setImageUrl}
             endpoint="roomImage"
           />
+          {/* Text input for price */}
           <TextInput
             label="Price (M)"
             register={register}
@@ -131,9 +113,7 @@ export default function RoomForm2({
 
         {/* Amenities input */}
         <div className="my-4">
-          <label className="block text-sm font-medium text-gray-700">
-            Amenities
-          </label>
+          <label className="block text-sm font-medium text-gray-700">Amenities</label>
           <Input
             {...register("amenities", { required: "Amenities are required" })}
             className="w-full px-3 py-2 mt-1 border rounded-md"
@@ -152,9 +132,7 @@ export default function RoomForm2({
           <SubmitButton
             title={"Create Room"}
             isLoading={isLoading}
-            LoadingTitle={
-              "Saving please wait..."
-            }
+            LoadingTitle={"Saving please wait..."}
           />
         </div>
       </form>

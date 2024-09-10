@@ -1,52 +1,41 @@
 "use client"
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import AmenityItem from '@/components/FrontEnd/AmenityItem';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Bath, Bed, Table, Wifi } from 'lucide-react';
 import Image from 'next/image';
-import { DummyContent } from './DummyContent'; // Import your popup component
+import { DummyContent } from './DummyContent';
 import { Button } from '../ui/button';
 import { FaTimes } from 'react-icons/fa';
+import { getRooms } from '@/actions/rooms'; // Importing the getRooms function
 
 interface Room {
+  id: string;
   title: string;
   description: string;
   image: string;
   category: string;
-  src: string;
-  images: string[];
   price: string;
   amenities: string[];
 }
 
 export default function NorthRoomCards() {
-  const rooms: Room[] = [
-    {
-      title: 'Room 1',
-      description: 'Luxury Room For 1',
-      image: '/about.png',
-      category: 'North',
-      src: '/about.png',
-      images: ['/about.png'],
-      price: '120',
-      amenities: ['Bed', 'Table', 'Wifi', 'Shower'],
-    },
-    {
-      title: 'Room 2',
-      description: 'Luxury Room For 2',
-      image: '/about.png',
-      category: 'North',
-      src: '/about.png',
-      images: ['/about.png'],
-      price: '160',
-      amenities: ['Bed', 'Table', 'Wifi', 'Shower'],
-    },
-  ];
-
+  const [rooms, setRooms] = useState<Room[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  useEffect(() => {
+    const fetchRooms = async () => {
+      const response = await getRooms();
+      if (response.data) {
+        setRooms(response.data);
+      }
+    };
+    
+    fetchRooms();
+  }, []);
 
   const handleReserveClick = (room: Room) => {
     setSelectedRoom(room);
@@ -60,8 +49,8 @@ export default function NorthRoomCards() {
   return (
     <>
       <div className="pt-6 py-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
-        {rooms.map((room, index) => (
-          <Card key={index} className="w-[310px] mx-auto">
+        {rooms.map((room) => (
+          <Card key={room.id} className="w-[310px] mx-auto">
             <CardHeader>
               <CardTitle className="text-xl font-semibold">{room.title}</CardTitle>
               <CardDescription className="text-gray-500">{room.description}</CardDescription>
@@ -76,21 +65,29 @@ export default function NorthRoomCards() {
                 />
               </div>
               <div className="grid grid-cols-2 gap-4 content-start text-sm">
-                <AmenityItem><Bed className="w-4 h-4 font-bold text-blue-600" /> 1 Bed</AmenityItem>
-                <AmenityItem><Table className="w-4 h-4 text-blue-600" /> Table</AmenityItem>
-                <AmenityItem><Wifi className="w-4 h-4 text-blue-600" /> Wifi</AmenityItem>
-                <AmenityItem><Bath className="w-4 h-4 text-blue-600" /> Shower</AmenityItem>
+                {room.amenities.includes('Bed') && (
+                  <AmenityItem><Bed className="w-4 h-4 font-bold text-blue-600" /> Bed</AmenityItem>
+                )}
+                {room.amenities.includes('Table') && (
+                  <AmenityItem><Table className="w-4 h-4 text-blue-600" /> Table</AmenityItem>
+                )}
+                {room.amenities.includes('Wifi') && (
+                  <AmenityItem><Wifi className="w-4 h-4 text-blue-600" /> Wifi</AmenityItem>
+                )}
+                {room.amenities.includes('Shower') && (
+                  <AmenityItem><Bath className="w-4 h-4 text-blue-600" /> Shower</AmenityItem>
+                )}
               </div>
               <div className="pt-10 flex justify-between">
-              <Button
-                onClick={() => handleReserveClick(room)}
-                className={`py-2 px-4 rounded-lg ${
-                  isLoading ? 'bg-gray-500' : 'bg-blue-600'
-                } text-white`}
-                disabled={isLoading}
-              >
-                {isLoading ? 'please wait...' : 'Reserve'}
-              </Button>
+                <Button
+                  onClick={() => handleReserveClick(room)}
+                  className={`py-2 px-4 rounded-lg ${
+                    isLoading ? 'bg-gray-500' : 'bg-blue-600'
+                  } text-white`}
+                  disabled={isLoading}
+                >
+                  {isLoading ? 'please wait...' : 'Reserve'}
+                </Button>
                 <p className='border border-green-500 rounded-lg w-16'>
                   <span className='flex justify-center pt-2 font-extrabold'>M{room.price}</span>
                 </p>
@@ -109,7 +106,7 @@ export default function NorthRoomCards() {
             <DummyContent
               category={selectedRoom.category}
               title={selectedRoom.title}
-              images={selectedRoom.images}
+              images={[selectedRoom.image]}
               room={selectedRoom}
               price={selectedRoom.price}
               amenities={selectedRoom.amenities}

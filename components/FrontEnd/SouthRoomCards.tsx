@@ -24,7 +24,7 @@ export default function SouthRoomCards() {
   
   const rooms: Room[] = [
     {
-      title: 'South 1',
+      title: 'Room 1',
       description: 'Luxury Room For 1',
       image: '/about.png',
       category: 'North',
@@ -34,7 +34,7 @@ export default function SouthRoomCards() {
       amenities: ['Bed', 'Table', 'Wifi', 'Shower'],
     },
     {
-      title: 'South 2',
+      title: 'Room 2',
       description: 'Luxury Room For 2',
       image: '/about.png',
       category: 'South',
@@ -43,8 +43,7 @@ export default function SouthRoomCards() {
       price: '150',
       amenities: ['Bed', 'Table', 'Wifi', 'Bath'], // Add amenities here
     },
-  ];
-  
+  ]; 
 
   const [isLoading, setIsLoading] = useState(false);
   const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
@@ -104,19 +103,19 @@ export default function SouthRoomCards() {
 
       {isModalOpen && selectedRoom && (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="bg-white p-4 rounded-lg w-full max-w-xl">
-      <Button className="absolute top-4 right-4 text-sm" onClick={closeModal}>
-        <FaTimes className="text-xl" />
-      </Button>
-      <DummyContent
-        category={selectedRoom.category}
-        title={selectedRoom.title}
-        images={selectedRoom.images}
-        room={selectedRoom}
-        price={selectedRoom.price}
-        amenities={selectedRoom.amenities} // Pass amenities here
-      />
-    </div>
+      <div className="bg-white p-4 rounded-lg w-full max-w-xl">
+        <Button className="absolute top-4 right-4 text-sm" onClick={closeModal}>
+          <FaTimes className="text-xl" />
+        </Button>
+        <DummyContent
+          category={selectedRoom.category}
+          title={selectedRoom.title}
+          images={selectedRoom.images}
+          room={selectedRoom}
+          price={selectedRoom.price}
+          amenities={selectedRoom.amenities} // Pass amenities here
+        />
+      </div>
   </div>
 )}
 

@@ -23,6 +23,8 @@ import { usePathname, useRouter } from 'next/navigation'
 import { cn } from '@/lib/utils'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { signOut } from 'next-auth/react'
+import { Activity, Hotel, House, Power, Ship } from "lucide-react";
+
 
 export default function NavBar() {
   const router = useRouter()
@@ -34,11 +36,11 @@ export default function NavBar() {
 
   // Sidebar links
   const sideBarLinks = [
-    {title: "Dashboard", path: "/dashboard", icon: Home},
-    {title: "My Appointments", path: "/dashboard/user/appointments", icon: AlarmClock},
-    {title: "Settings", path: "/dashboard/user/settings", icon: SettingsIcon}
+    {title:"Home", path:"/", icon: House},
+    {title:"Dashboard", path:"/dashboard", icon: Activity},
+    {title:"The North", path:"/dashboard/north", icon: Hotel},
+    {title:"The South", path:"/dashboard/south", icon: Hotel},
   ];
-
   return (
     <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
       <Sheet>

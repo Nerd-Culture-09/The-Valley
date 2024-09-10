@@ -32,3 +32,39 @@ model User {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 }
+
+model Booking {
+  id              String   @id @default(cuid()) @map("_id")
+  roomId          String   @db.ObjectId
+  checkInDate     DateTime
+  checkOutDate    DateTime
+  fullName        String
+  email           String
+  phoneNumber     String
+  bookingFor      String
+  paymentMethod   String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  // Relation to the Room model
+  room            Room     @relation(fields: [roomId], references: [id])
+}
+
+model Room {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  description String
+  image       String
+  category    Category
+  price       String
+  amenities   String[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  bookings    Booking[]
+}
+
+enum Category {
+  NORTH
+  SOUTH
+}
+

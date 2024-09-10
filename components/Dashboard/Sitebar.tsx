@@ -1,17 +1,16 @@
 "use client"
 
-// Lucide icons for sidebar navigation
 import { Activity, Home, Hotel, House, Power, Ship } from "lucide-react";
-import Link from "next/link"; // Next.js link component
-import React from "react"; // React library
-import { Button } from "@/components/ui/button"; // Button component
-import { usePathname, useRouter } from "next/navigation"; // Next.js navigation hooks
-import { cn } from "@/lib/utils"; // Utility function for classNames
-import { signOut } from "next-auth/react"; // Sign out function from NextAuth
+import Link from "next/link";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { signOut } from "next-auth/react";
 
 export default function Sidebar() {
-  const pathname = usePathname(); // Current pathname from router
-  const router = useRouter(); // Router instance
+  const pathname = usePathname();
+  const router = useRouter();
 
   // Sidebar links for ADMIN
   const sideBarLinks = [

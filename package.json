@@ -26,6 +26,8 @@
     "@radix-ui/react-scroll-area": "^1.1.0",
     "@radix-ui/react-select": "^2.1.1",
     "@radix-ui/react-slot": "^1.1.0",
+    "@radix-ui/react-tabs": "^1.1.0",
+    "@radix-ui/react-tooltip": "^1.1.2",
     "@react-spring/web": "^9.7.4",
     "@tabler/icons-react": "^3.14.0",
     "@uploadthing/react": "^6.8.0",
@@ -51,6 +53,7 @@
     "react-router-dom": "^6.26.1",
     "react-spring": "^9.7.4",
     "react-whatsapp-widget": "^2.2.0",
+    "resend": "^4.0.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "uploadthing": "^6.13.3"
