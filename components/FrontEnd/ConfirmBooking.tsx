@@ -29,10 +29,10 @@ export const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
       </div>
       <div className="mb-4">
         <h4 className="text-lg font-semibold">Your Details</h4>
-        <p>Full Name: {userDetails.fullName}</p>
-        <p>Email: {userDetails.email}</p>
-        <p>Phone Number: {userDetails.phone}</p>
-        <p>Payment Method: {userDetails.payment}</p>
+        <p><span className="text-green-600 font-bold">Full Name:</span> {userDetails.fullName}</p>
+        <p><span className="text-green-600 font-bold">Email:</span> {userDetails.email}</p>
+        <p><span className="text-green-600 font-bold">Phone Number:</span> {userDetails.phone}</p>
+        <p><span className="text-green-600 font-bold">Payment Method:</span> {userDetails.payment}</p>
       </div>
       <Button onClick={() => setIsVisible(true)}>Confirm Booking</Button>
       {isVisible && (

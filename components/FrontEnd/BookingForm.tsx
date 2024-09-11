@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
@@ -10,7 +11,17 @@ import { SelectInput } from "../FormInputs/SelectInput";
 import { BookingProps } from "@/types/types";
 import { createBooking } from "@/actions/booking";
 
-export const BookingForm: React.FC = () => {
+interface BookingFormProps {
+  roomId: string;
+  onNextStep: (details: {
+    fullName: string;
+    email: string;
+    phone: string;
+    payment: string;
+  }) => void;
+}
+
+export default function BookingForm({ roomId,  onNextStep  }: BookingFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
   const {
@@ -24,7 +35,7 @@ export const BookingForm: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState<string | undefined>();
   const [checkInDate, setCheckInDate] = useState<Date | undefined>();
   const [checkOutDate, setCheckOutDate] = useState<Date | undefined>();
-  
+
   const [selectedHour, setSelectedHour] = useState<string | undefined>();
   const [selectedMinute, setSelectedMinute] = useState<string | undefined>();
 
@@ -41,9 +52,7 @@ export const BookingForm: React.FC = () => {
     { label: "Ecocash", value: "ecocash" },
   ];
 
-  const onSubmit = async (data: BookingProps) => {
-    console.log("Form Data:", data); // Debugging line
-
+  async function onSubmit(data: BookingProps) {
     if (!checkInDate || !checkOutDate) {
       toast.error("Please select both check-in and check-out dates.");
       return;
@@ -51,32 +60,40 @@ export const BookingForm: React.FC = () => {
 
     const bookingData: BookingProps = {
       ...data,
-      checkInDate,
-      checkOutDate,
+      roomId: roomId,  // Include the roomId in booking data
+      checkInDate: new Date(checkInDate!),  // Convert to Date object
+      checkOutDate: new Date(checkOutDate!),
       paymentMethod: paymentMethod || "",
       bookingFor: bookingFor || "",
     };
 
-    console.log("Booking Data:", bookingData); // Debugging line
+    console.log("Booking Data being sent to API:", bookingData); // Debugging line
 
     setIsLoading(true);
-    
+
     try {
       const response = await createBooking(bookingData);
-      
+      console.log("API Response:", response); // Debugging line
+
       if (response.status === 201) {
         toast.success("Booking created successfully!");
-        reset();
+        reset(); // Reset form after successful submission
+         // Pass user details to the next step
+         onNextStep({
+          fullName: data.fullName,
+          email: data.emails,
+          phone: data.phoneNumber,
+          payment: paymentMethod || "",
+        });
       } else {
-        toast.error("Failed to create booking.");
+        toast.error(response.error || "Failed to create booking.");
       }
     } catch (error) {
-      console.error("Error creating booking:", error);
       toast.error("An error occurred while creating the booking.");
     } finally {
       setIsLoading(false);
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="p-4">
@@ -146,4 +163,4 @@ export const BookingForm: React.FC = () => {
       </div>
     </form>
   );
-};
+}

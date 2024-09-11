@@ -7,7 +7,7 @@ import { CardData } from "./AvailableRooms";
 import { Timeline } from "./BookTimeline";
 import { ConfirmationPage } from "./ConfirmBooking";
 import { Bath, Bed, Table, Wifi } from 'lucide-react';
-import { BookingForm } from "./BookingForm";
+import BookingForm from "./BookingForm";
 
 interface DummyContentProps {
   category: string;
@@ -15,7 +15,8 @@ interface DummyContentProps {
   images: string[];
   room: CardData;
   price: string;
-  amenities: string[]; // Accept amenities as a prop
+  amenities: string[];
+  roomId: string;
 }
 
 export const DummyContent: React.FC<DummyContentProps> = ({
@@ -24,7 +25,8 @@ export const DummyContent: React.FC<DummyContentProps> = ({
   images,
   room,
   price,
-  amenities
+  amenities,
+  roomId
 }) => {
   const [step, setStep] = useState(1);
   const [userDetails, setUserDetails] = useState<{
@@ -40,10 +42,18 @@ export const DummyContent: React.FC<DummyContentProps> = ({
   });
 
   const handleNextStep = () => {
-    if (step === 2) {
-      setUserDetails({ fullName: "", email: "", payment: "", phone:""});
-    }
     setStep(step + 1);
+  };
+
+  // Function to update user details from the booking form
+  const updateUserDetails = (details: {
+    fullName: string;
+    email: string;
+    phone: string;
+    payment: string;
+  }) => {
+    setUserDetails(details);
+    handleNextStep();  // Move to the confirmation page
   };
 
   const amenityIcons: Record<string, JSX.Element> = {
@@ -52,6 +62,8 @@ export const DummyContent: React.FC<DummyContentProps> = ({
     Shower: <Bath className="w-5 h-5 text-blue-600" />,
     Table: <Table className="w-5 h-5 text-blue-600" />,
   };
+
+  console.log('Room ID passed to DummyContent:', roomId);
 
   return (
     <>
@@ -70,13 +82,13 @@ export const DummyContent: React.FC<DummyContentProps> = ({
 
         {step === 2 && (
           <div className="lg:w-3/4"> {/* Increased width */}
-            <BookingForm />
+            <BookingForm roomId={roomId} onNextStep={updateUserDetails}/> 
           </div>
         )}
 
         {step === 3 && (
           <div className="lg:w-3/4 mt-8 lg:mt-0">
-            <ConfirmationPage room={room} userDetails={userDetails} />
+            <ConfirmationPage room={room} userDetails={userDetails} /> {/* Pass roomId to ConfirmationPage */}
           </div>
         )}
 
