@@ -92,7 +92,7 @@ export async function getRoomsSouth() {
     try {
         const rooms = await prismaClient.room.findMany({
             where: {
-                category: 'SOUTH', // Filter rooms by the 'SOUTH' category
+                category: 'SOUTH',
             },
             orderBy: {
                 createdAt: 'desc',

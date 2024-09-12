@@ -1,14 +1,20 @@
-"use client"
+"use client";
 
-import React, { useEffect, useState } from 'react';
-import AmenityItem from '@/components/FrontEnd/AmenityItem';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Bath, Bed, Table, Wifi } from 'lucide-react';
-import Image from 'next/image';
-import { DummyContent } from './DummyContent';
-import { Button } from '../ui/button';
-import { FaTimes } from 'react-icons/fa';
-import { getRoomsSouth } from '@/actions/rooms'; // Importing the getRooms function
+import React, { useEffect, useState } from "react";
+import AmenityItem from "@/components/FrontEnd/AmenityItem";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Bath, Bed, Table, Wifi } from "lucide-react";
+import Image from "next/image";
+import { DummyContent } from "./DummyContent";
+import { Button } from "../ui/button";
+import { FaTimes } from "react-icons/fa";
+import { getRoomsSouth } from "@/actions/rooms"; // Importing the getRooms function
 
 interface Room {
   id: string;
@@ -33,17 +39,17 @@ export default function SouthRoomCards() {
         setRooms(response.data);
       }
     };
-    
+
     fetchRooms();
   }, []);
 
   const handleReserveClick = (room: Room) => {
-    setSelectedRoom(room);
-    setIsModalOpen(true);
+    setSelectedRoom(room); // Select the room with its `id`
+    setIsModalOpen(true); // Open the modal for booking
   };
 
   const closeModal = () => {
-    setIsModalOpen(false);
+    setIsModalOpen(false); // Close the modal when clicked
   };
 
   return (
@@ -65,31 +71,41 @@ export default function SouthRoomCards() {
                 />
               </div>
               <div className="grid grid-cols-2 gap-4 content-start text-sm">
-                {room.amenities.includes('Bed') && (
-                  <AmenityItem><Bed className="w-4 h-4 font-bold text-blue-600" /> Bed</AmenityItem>
+                {room.amenities.includes("Bed") && (
+                  <AmenityItem>
+                    <Bed className="w-4 h-4 font-bold text-blue-600" /> Bed
+                  </AmenityItem>
                 )}
-                {room.amenities.includes('Table') && (
-                  <AmenityItem><Table className="w-4 h-4 text-blue-600" /> Table</AmenityItem>
+                {room.amenities.includes("Table") && (
+                  <AmenityItem>
+                    <Table className="w-4 h-4 text-blue-600" /> Table
+                  </AmenityItem>
                 )}
-                {room.amenities.includes('Wifi') && (
-                  <AmenityItem><Wifi className="w-4 h-4 text-blue-600" /> Wifi</AmenityItem>
+                {room.amenities.includes("Wifi") && (
+                  <AmenityItem>
+                    <Wifi className="w-4 h-4 text-blue-600" /> Wifi
+                  </AmenityItem>
                 )}
-                {room.amenities.includes('Shower') && (
-                  <AmenityItem><Bath className="w-4 h-4 text-blue-600" /> Shower</AmenityItem>
+                {room.amenities.includes("Shower") && (
+                  <AmenityItem>
+                    <Bath className="w-4 h-4 text-blue-600" /> Shower
+                  </AmenityItem>
                 )}
               </div>
               <div className="pt-10 flex justify-between">
                 <Button
                   onClick={() => handleReserveClick(room)}
                   className={`py-2 px-4 rounded-lg ${
-                    isLoading ? 'bg-gray-500' : 'bg-blue-600'
+                    isLoading ? "bg-gray-500" : "bg-blue-600"
                   } text-white`}
                   disabled={isLoading}
                 >
-                  {isLoading ? 'please wait...' : 'Reserve'}
+                  {isLoading ? "please wait..." : "Reserve"}
                 </Button>
-                <p className='border border-green-500 rounded-lg w-16'>
-                  <span className='flex justify-center pt-2 font-extrabold'>M{room.price}</span>
+                <p className="border border-green-500 rounded-lg w-16">
+                  <span className="flex justify-center pt-2 font-extrabold">
+                    M{room.price}
+                  </span>
                 </p>
               </div>
             </CardContent>
@@ -107,9 +123,10 @@ export default function SouthRoomCards() {
               category={selectedRoom.category}
               title={selectedRoom.title}
               images={[selectedRoom.image]}
-              room={selectedRoom}
               price={selectedRoom.price}
               amenities={selectedRoom.amenities}
+              roomId={selectedRoom.id} // Add roomId here for booking
+              room={selectedRoom}
             />
           </div>
         </div>
