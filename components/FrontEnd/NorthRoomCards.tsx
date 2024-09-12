@@ -121,11 +121,10 @@ export default function NorthRoomCards() {
               category={selectedRoom.category}
               title={selectedRoom.title}
               images={[selectedRoom.image]}
-              room={selectedRoom}
               price={selectedRoom.price}
               amenities={selectedRoom.amenities}
               roomId={selectedRoom.id} // Add roomId here for booking
-            />
+              room={selectedRoom}            />
           </div>
         </div>
       )}

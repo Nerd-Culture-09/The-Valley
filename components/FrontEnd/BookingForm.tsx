@@ -10,9 +10,11 @@ import { DatePickerInput } from "../FormInputs/DatePickerInput";
 import { SelectInput } from "../FormInputs/SelectInput";
 import { BookingProps } from "@/types/types";
 import { createBooking } from "@/actions/booking";
+import { title } from "process";
 
 interface BookingFormProps {
   roomId: string;
+  roomTitle: string;  // Add roomTitle prop
   onNextStep: (details: {
     fullName: string;
     email: string;
@@ -20,7 +22,6 @@ interface BookingFormProps {
     payment: string;
   }) => void;
 }
-
 export default function BookingForm({ roomId,  onNextStep  }: BookingFormProps) {
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -57,29 +58,29 @@ export default function BookingForm({ roomId,  onNextStep  }: BookingFormProps) 
       toast.error("Please select both check-in and check-out dates.");
       return;
     }
-
+  
     const bookingData: BookingProps = {
       ...data,
-      roomId: roomId,  // Include the roomId in booking data
-      checkInDate: new Date(checkInDate!),  // Convert to Date object
+      roomId: roomId,
+      roomTitle: title,
+      checkInDate: new Date(checkInDate!),
       checkOutDate: new Date(checkOutDate!),
       paymentMethod: paymentMethod || "",
       bookingFor: bookingFor || "",
     };
-
-    console.log("Booking Data being sent to API:", bookingData); // Debugging line
-
+  
+    console.log("Booking Data being sent to API:", bookingData);
+  
     setIsLoading(true);
-
+  
     try {
       const response = await createBooking(bookingData);
-      console.log("API Response:", response); // Debugging line
-
+      console.log("API Response:", response);
+  
       if (response.status === 201) {
         toast.success("Booking created successfully!");
-        reset(); // Reset form after successful submission
-         // Pass user details to the next step
-         onNextStep({
+        reset(); 
+        onNextStep({
           fullName: data.fullName,
           email: data.emails,
           phone: data.phoneNumber,
@@ -94,6 +95,7 @@ export default function BookingForm({ roomId,  onNextStep  }: BookingFormProps) 
       setIsLoading(false);
     }
   }
+  
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="p-4">

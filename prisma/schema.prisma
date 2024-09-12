@@ -36,6 +36,7 @@ model User {
 model Booking {
   id              String   @id @default(cuid()) @map("_id")
   roomId          String   @db.ObjectId
+  roomTitle       String?
   checkInDate     DateTime
   checkOutDate    DateTime
   fullName        String
@@ -46,9 +47,9 @@ model Booking {
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  // Relation to the Room model
   room            Room     @relation(fields: [roomId], references: [id])
 }
+
 
 model Room {
   id          String   @id @default(auto()) @map("_id") @db.ObjectId

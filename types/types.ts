@@ -30,5 +30,6 @@ export type BookingProps = {
     checkInDate: Date; 
     checkOutDate: Date;
     bookingFor: string;
-    roomId: string; // Add roomId here
+    roomId: string;
+    roomTitle: string;
 };

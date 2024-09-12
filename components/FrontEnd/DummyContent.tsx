@@ -81,8 +81,12 @@ export const DummyContent: React.FC<DummyContentProps> = ({
         )}
 
         {step === 2 && (
-          <div className="lg:w-3/4"> {/* Increased width */}
-            <BookingForm roomId={roomId} onNextStep={updateUserDetails}/> 
+          <div className="lg:w-3/4">
+            <BookingForm 
+              roomId={roomId} 
+              roomTitle={title}  // Pass the room title
+              onNextStep={updateUserDetails} 
+            />
           </div>
         )}
 
