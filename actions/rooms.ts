@@ -61,7 +61,6 @@ export async function createRoom(data: RoomProps) {
       };
     }
   }
-  
 
 // actions/rooms.ts
 export async function getRoomsNorth() {
@@ -139,3 +138,27 @@ export async function updateRoomAvailability(id: string, isAvailable: boolean) {
     };
   }
 }
+
+export async function getAllRooms() {
+  try {
+    const rooms = await prismaClient.room.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return {
+      data: rooms,
+      status: 200,
+      error: null,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      data: null,
+      status: 500,
+      error,
+    };
+  }
+}
+

@@ -8,7 +8,7 @@ import {
     CardHeader,
     CardTitle,
   } from "@/components/ui/card";
-import { getRoomsNorth } from '@/actions/rooms';
+import { getAllRooms} from '@/actions/rooms';
 
   interface Room {
     id: string;
@@ -26,7 +26,7 @@ export default function RoomUpdate() {
   
   useEffect(() => {
     const fetchRooms = async () => {
-      const response = await getRoomsNorth();
+      const response = await getAllRooms();
       if (response.data) {
         setRooms(response.data);
       }
@@ -47,13 +47,6 @@ export default function RoomUpdate() {
                       {room.isAvailable ? 'Available' : 'Not Available'}
                     </p>
                   </CardHeader>
-                  <CardContent className="flex flex-col gap-4">
-                    <div className="pt-10 flex justify-between">
-                      <p className="border border-green-500 rounded-lg w-16">
-                        <span className="flex justify-center pt-2 font-extrabold">M{room.price}</span>
-                      </p>
-                    </div>
-                  </CardContent>
                 </Card>
               ))}
             </div>
