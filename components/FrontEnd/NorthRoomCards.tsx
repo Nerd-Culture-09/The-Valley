@@ -24,7 +24,9 @@ interface Room {
   category: string;
   price: string;
   amenities: string[];
+  isAvailable: boolean; // Add the isAvailable field here
 }
+
 
 export default function NorthRoomCards() {
   const [rooms, setRooms] = useState<Room[]>([]);
@@ -60,6 +62,9 @@ export default function NorthRoomCards() {
             <CardHeader>
               <CardTitle className="text-xl font-semibold">{room.title}</CardTitle>
               <CardDescription className="text-gray-500">{room.description}</CardDescription>
+              <p className={`text-sm font-semibold ${room.isAvailable ? 'text-green-500' : 'text-red-500'}`}>
+                {room.isAvailable ? 'Available' : 'Not Available'}
+              </p>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
               <div className="aspect-square overflow-hidden relative h-[200px] rounded-lg">

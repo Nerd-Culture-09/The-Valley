@@ -1,11 +1,18 @@
 "use client";
-import React from "react";
-import { DatePickerWithPresets1 } from "./checkout-calander";
+import React, { useState } from "react";
 import { SelectBranch } from "./select-north-south";
-import { DatePickerWithPresets2 } from "./checkin-calander";
 import { InputWithButton } from "./numberOfPeople";
+import { DatePickerInput } from "../FormInputs/DatePickerInput";
 
 export function BackGroundBoxBar() {
+  const [checkIn, setCheckIn] = useState<Date | undefined>();
+  const [checkOut, setCheckOut] = useState<Date | undefined>();
+
+  const [selectedHour, setSelectedHour] = useState<string | undefined>();
+  const [selectedMinute, setSelectedMinute] = useState<string | undefined>();
+
+  const [selectHour, setSelectHour] = useState<string | undefined>();
+  const [selectMinute, setSelectMinute] = useState<string | undefined>();
   return (
     <div
       className="relative w-full overflow-hidden bg-slate-900 flex flex-col md:flex-row justify-center items-center"
@@ -18,12 +25,28 @@ export function BackGroundBoxBar() {
         {/* Date Picker and Time Picker Section */}
         <div className="flex flex-col items-center">
           <span className="text-white text-sm mb-1">Check In</span>
-          <DatePickerWithPresets2 />
+            <DatePickerInput
+            date={checkIn}
+            setDate={setCheckIn}
+            selectedHour={selectHour}
+            setSelectedHour={setSelectHour}
+            selectedMinute={selectMinute}
+            setSelectedMinute={setSelectMinute}
+            title=""
+          />
         </div>
 
         <div className="flex flex-col items-center">
           <span className="text-white text-sm mb-1">Check Out</span>
-          <DatePickerWithPresets1 />
+            <DatePickerInput
+              date={checkOut}
+              setDate={setCheckOut}
+              selectedHour={selectedHour}
+              setSelectedHour={setSelectedHour}
+              selectedMinute={selectedMinute}
+              setSelectedMinute={setSelectedMinute}
+              title=""
+            />
         </div>
 
         {/* Select Branch Dropdown */}

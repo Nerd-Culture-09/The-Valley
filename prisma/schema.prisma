@@ -59,13 +59,14 @@ model Room {
   category    Category
   price       String
   amenities   String[]
+  isAvailable Boolean  @default(true) // New field for availability
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
   bookings    Booking[]
 }
 
+
 enum Category {
   NORTH
   SOUTH
 }
-

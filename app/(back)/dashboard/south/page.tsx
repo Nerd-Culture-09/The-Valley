@@ -1,14 +1,11 @@
-// import { getRooms } from '@/actions/rooms';
 import PannelHeader from '@/components/Dashboard/PanelHeader';
-// import RoomCard from '@/components/Dashboard/RoomCard'; // Importing the RoomCard component to display individual rooms
+import RoomUpdate from '@/components/Dashboard/RoomUpdate';
 import NewButton from '@/components/FormInputs/NewButton';
 import { ScrollArea } from '@/components/ui/scroll-area';
-import { LayoutGrid } from 'lucide-react'; // Importing LayoutGrid icon from lucide-react for panel header icon
-import React from 'react'; // Importing React for JSX rendering
+import { LayoutGrid } from 'lucide-react';
+import React from 'react';
 
 export default async function page() {
-  // Fetching rooms data from the server
-//   const rooms = (await getRooms()).data || [];
 
   return (
     <div>
@@ -30,11 +27,9 @@ export default async function page() {
           </div>
           {/* Scrollable area for displaying rooms */}
           <div className="px-3">
-            {/* <ScrollArea className="h-96 w-full">
-              {rooms.map((room) => (
-                <RoomCard key={room.title} room={room} />
-              ))}
-            </ScrollArea> */}
+            <ScrollArea className="h-96 w-full">
+             <RoomUpdate />
+            </ScrollArea>
           </div>
         </div>
         

@@ -28,30 +28,35 @@ export default function RoomForm2({ title }: { title: string }) {
   const router = useRouter(); // Router instance
 
   // Function to handle form submission
-  async function onSubmit(data: RoomProps) {
-    setIsLoading(true); // Set loading state to true
-    data.imageUrl = imageUrl; // Set image URL in form data
+async function onSubmit(data: RoomProps) {
+  setIsLoading(true); // Set loading state to true
+  data.imageUrl = imageUrl; // Set image URL in form data
 
-    try {
-      // Call the createRoom API with form data
-      const response = await createRoom(data);
+  console.log("Form data submitted:", data); // Debugging: log form data
 
-      if (response.status === 201) {
-        toast.success("Room Created Successfully");
-        reset(); // Reset form fields
-        router.push("/dashboard/south"); // Redirect to rooms dashboard
-      } else if (response.status === 409) {
-        toast.error("Room with this slug already exists."); // Handle conflict
-      } else {
-        toast.error("Failed to create room."); // Handle general errors
-      }
-    } catch (error) {
-      console.error(error);
-      toast.error("Error creating room. Please try again.");
-    } finally {
-      setIsLoading(false); // Reset loading state
+  try {
+    // Call the createRoom API with form data
+    const response = await createRoom(data);
+
+    console.log("API Response:", response); // Debugging: log API response
+
+    if (response.status === 201) {
+      toast.success("Room Created Successfully");
+      reset(); // Reset form fields
+      router.push("/dashboard/south"); // Redirect to rooms dashboard
+    } else if (response.status === 409) {
+      toast.error("Room with this slug already exists."); // Handle conflict
+    } else {
+      toast.error("Failed to create room."); // Handle general errors
     }
+  } catch (error) {
+    console.error("Error in onSubmit:", error); // Debugging: log any errors caught in try/catch
+    toast.error("Error creating room. Please try again.");
+  } finally {
+    setIsLoading(false); // Reset loading state
   }
+}
+
 
   return (
     <div className="w-full max-w-xl shadow-sm rounded-md m-3 border border-gray-200 mx-auto">
