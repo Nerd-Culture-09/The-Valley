@@ -16,7 +16,7 @@ export default function Sidebar() {
   const sideBarLinks = [
     {title:"Home", path:"/", icon: House},
     {title:"Dashboard", path:"/dashboard", icon: Activity},
-    {title:"", path:"/dashboard/south", icon: Hotel},
+    {title:"Rooms", path:"/dashboard/south", icon: Hotel},
   ];
 
   // Function to handle logout

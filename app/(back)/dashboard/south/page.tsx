@@ -16,8 +16,7 @@ export default async function page() {
           <div className="flex items-center justify-between">
             {/* Panel header for Rooms */}
             <PannelHeader 
-              title='Rooms' 
-              count={"0"} 
+              title='Rooms'  
               icon={LayoutGrid}
             />
             {/* New button for creating a new room (visible on small screens) */}
@@ -49,7 +48,7 @@ export default async function page() {
                 <div className="py-3">
                   {" "}
                   {/* Information about the number of rooms */}
-                  <p>Create A New Room.</p>
+                  <p>Create A New Room By Category.</p>
                 </div>
               {/* Button for creating a new room */}
               <NewButton title='New Room' href="/dashboard/south/new"/>
