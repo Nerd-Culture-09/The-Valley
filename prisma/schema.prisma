@@ -70,3 +70,12 @@ enum Category {
   NORTH
   SOUTH
 }
+
+model Review {
+  id         String   @id @default(uuid()) @map("_id")
+  fullName   String
+  email      String   @unique
+  occupation String
+  message    String
+  createdAt  DateTime @default(now())
+}

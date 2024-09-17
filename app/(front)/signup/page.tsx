@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { SignupFormDemo } from "@/components/FrontEnd/sign-up"; 
+import { SignupFormDemo } from "@/components/FrontEnd/ReviewForm"; 
 
 const SignUpPage = () => {
   return (

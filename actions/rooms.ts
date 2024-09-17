@@ -24,7 +24,6 @@ export async function createRoom(data: RoomProps) {
           error: "Room already exists with this title"
         };
       }
-  
       // Convert amenities if necessary
       const amenities = typeof data.amenities === 'string' 
         ? data.amenities.split(',').map(amenity => amenity.trim()) // Convert comma-separated string to array
@@ -44,7 +43,7 @@ export async function createRoom(data: RoomProps) {
         },
       });
   
-      console.log('New room created:', newRoom); // Log successful room creation
+      console.log('New room created:', newRoom);
   
       return {
         data: newRoom,
@@ -52,7 +51,7 @@ export async function createRoom(data: RoomProps) {
         error: null,
       };
     } catch (error) {
-      console.error('Error creating room:', error); // Log any errors in the process
+      console.error('Error creating room:', error);
   
       return {
         data: null,

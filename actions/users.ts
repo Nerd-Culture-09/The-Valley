@@ -2,7 +2,7 @@
 
 import { prismaClient }  from "@/lib/db";
 import generateSlug from "@/lib/generateSlug";
-import { RegisterInputProps } from "@/types/types";
+import { RegisterInputProps, ReviewProps } from "@/types/types";
 import bcrypt from "bcrypt";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -66,6 +66,78 @@ export async function createUser(formdata: RegisterInputProps) {
       data: null,
       error: "Something went wrong",
       status: 500,
+    };
+  }
+}
+
+export async function createReview(formdata: ReviewProps) {
+  const { fullName, email, occupation, message } = formdata;
+
+  try {
+    // Check if a review with the same email exists (optional step, depending on your use case)
+    const existingReview = await prismaClient.review.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (existingReview) {
+      return {
+        data: null,
+        error: `Review from this email (${email}) already exists in the Database`,
+        status: 409,
+      };
+    }
+
+    // Create the new review in the database
+    const newReview = await prismaClient.review.create({
+      data: {
+        fullName,
+        email,
+        occupation,
+        message,
+      },
+    });
+
+    return {
+      data: newReview,
+      error: null,
+      status: 200,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      data: null,
+      error: "Something went wrong",
+      status: 500,
+    };
+  }
+}
+
+export async function getAllReviews() {
+  try {
+    const reviews = await prismaClient.review.findMany({
+      select: {
+        fullName: true,
+        occupation: true,
+        message: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return {
+      data: reviews,
+      status: 200,
+      error: null,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      data: null,
+      status: 500,
+      error: "Something went wrong",
     };
   }
 }

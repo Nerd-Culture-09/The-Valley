@@ -13,6 +13,13 @@ export type LoginInputProps={
     
 };
 
+export type ReviewProps={
+    fullName: string;
+    occupation: string;
+    message: string;
+    email: string;
+};
+
 export type RoomProps = {
     title: string;
     description: string;

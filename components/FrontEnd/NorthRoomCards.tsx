@@ -27,7 +27,6 @@ interface Room {
   isAvailable: boolean; // Add the isAvailable field here
 }
 
-
 export default function NorthRoomCards() {
   const [rooms, setRooms] = useState<Room[]>([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -129,7 +128,8 @@ export default function NorthRoomCards() {
               price={selectedRoom.price}
               amenities={selectedRoom.amenities}
               roomId={selectedRoom.id} // Add roomId here for booking
-              room={selectedRoom}            />
+              room={selectedRoom}
+              />
           </div>
         </div>
       )}
