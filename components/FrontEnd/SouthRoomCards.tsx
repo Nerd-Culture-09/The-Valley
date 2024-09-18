@@ -62,7 +62,7 @@ export default function SouthRoomCards() {
               <CardTitle className="text-xl font-semibold">{room.title}</CardTitle>
               <CardDescription className="text-gray-500">{room.description}</CardDescription>
               <p className={`text-sm font-semibold ${room.isAvailable ? 'text-green-500' : 'text-red-500'}`}>
-                {room.isAvailable ? 'Available' : 'Not Available'}
+                {room.isAvailable ? 'Available' : 'Booked'}
               </p>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">

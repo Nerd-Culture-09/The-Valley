@@ -7,8 +7,8 @@ import SpecialOffer from './Special-Offers';
 import Testimonial from './Testimonials';
 import Team from './Team';
 import { ImagesSliderDemo } from './Image-slider-Carousel';
-import { CardDemo } from './AvailableRooms';
 import { BackGroundBoxBar } from './BackGroundBox-bar'; // Import the BackgroundBoxesDemo component
+import AvailableRoomCards from './AvailableRooms';
 
 export default function Hero() {
   return (
@@ -47,7 +47,7 @@ export default function Hero() {
           </div>
         </div>*/}
 
-        <CardDemo />
+        <AvailableRoomCards />
 
         <Testimonial />
 

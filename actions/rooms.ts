@@ -161,3 +161,28 @@ export async function getAllRooms() {
   }
 }
 
+export async function getAvailRooms() {
+  try {
+    const rooms = await prismaClient.room.findMany({
+      where: {
+        isAvailable: true,  // Only fetch rooms where isAvailable is true
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    });
+
+    return {
+      data: rooms,
+      status: 200,
+      error: null,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      data: null,
+      status: 500,
+      error,
+    };
+  }
+}

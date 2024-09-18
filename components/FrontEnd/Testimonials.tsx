@@ -39,7 +39,7 @@ export default function Testimonial() {
                 <figure>
                   <div className="flex items-center gap-x-4">
                     <img
-                      src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg" // Placeholder avatar
+                      src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg"
                       className="w-16 h-16 rounded-full"
                     />
                     <div>
