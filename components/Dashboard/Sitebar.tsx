@@ -1,6 +1,6 @@
 "use client"
 
-import { Activity, Home, Hotel, House, Power, Ship } from "lucide-react";
+import { Activity, BookOpenCheck, Home, Hotel, House, Power, Ship } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 import { Button } from "@/components/ui/button";
@@ -15,7 +15,8 @@ export default function Sidebar() {
   // Sidebar links for ADMIN
   const sideBarLinks = [
     {title:"Home", path:"/", icon: House},
-    {title:"Dashboard", path:"/dashboard", icon: Activity},
+    {title:"Bookings", path:"/dashboard", icon: BookOpenCheck},
+    {title:"Reservations", path:"/dashboard/reserve", icon: Activity},
     {title:"Rooms", path:"/dashboard/south", icon: Hotel},
   ];
 

@@ -6,7 +6,7 @@ import { useState } from "react"; // Importing useState hook from React
 import { useForm } from "react-hook-form"; // Importing useForm hook from react-hook-form
 import SubmitButton from "../FormInputs/SubmitButton"; // Importing custom SubmitButton component
 import { LoginInputProps } from "@/types/types"; // Importing LoginInputProps type
-import toast from "react-hot-toast"; // Importing toast notifications from react-hot-toast
+import toast, { Toaster } from 'react-hot-toast'; // Importing toast notifications from react-hot-toast
 import { signIn } from "next-auth/react"; // Importing signIn function from next-auth/react
 import { useRouter } from "next/navigation"; // Importing useRouter hook from next/navigation
 import { Alert } from "flowbite-react"; // Importing Alert component from flowbite-react
@@ -105,6 +105,7 @@ export default function LoginFormWithBg() {
             <Button variant="outline" className="w-full">
               Login with Google
             </Button>
+            <Toaster />
           </form>
           <div className="mt-4 text-center text-sm">
             Don&apos;t have an account?{" "}

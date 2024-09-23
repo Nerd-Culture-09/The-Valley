@@ -110,3 +110,33 @@ export async function getFilteredBookings() {
     };
   }
 }
+
+export async function getFilteredReservations() {
+  try {
+    const reservation = await prismaClient.reservation.findMany({
+      select: {
+        fullName: true,
+        checkIn: true,
+        checkOut: true,
+        numberOfRooms: true,
+        branch: true,
+      },
+      orderBy: {
+        createdAt: "desc",
+      },
+    });
+
+    return {
+      data: reservation,
+      status: 200,
+      error: null,
+    };
+  } catch (error) {
+    console.error(error);
+    return {
+      data: null,
+      status: 500,
+      error,
+    };
+  }
+}

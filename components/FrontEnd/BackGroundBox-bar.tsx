@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DatePickerInput } from "../FormInputs/DatePickerInput";
@@ -12,35 +13,24 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import TextInput from "../FormInputs/TextInput";
-import { useForm } from "react-hook-form";
-import { RegisterInputProps } from "@/types/types";
-import { format } from "date-fns"; // Use date-fns for formatting or comparing dates
-
-interface RoomReservation {
-  checkIn: {
-    date: Date | undefined;
-    hour: string | undefined;
-    minute: string | undefined;
-  };
-  checkOut: {
-    date: Date | undefined;
-    hour: string | undefined;
-    minute: string | undefined;
-  };
-  branch: "North" | "South" | undefined;
-  fullName: string;
-  numberOfRooms: number | undefined;
-}
+import toast, { Toaster } from 'react-hot-toast';
+import { useRouter } from "next/navigation"; // Import useRouter for redirection
+import { ReservationProps } from "@/types/types";
+import { createReservation } from "@/actions/rooms";
+import SubmitButton from "../FormInputs/SubmitButton";
+import { useToaster } from "@/hooks/use-toast"
 
 export function BackGroundBoxBar() {
+  const { toaster } = useToaster()
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<RegisterInputProps>();
+  } = useForm<ReservationProps>();
+  const router = useRouter(); // Use the Next.js router for redirection
 
+  // State for date and branch selection
   const [checkIn, setCheckIn] = useState<Date | undefined>();
   const [checkOut, setCheckOut] = useState<Date | undefined>();
   const [selectHour, setSelectHour] = useState<string | undefined>();
@@ -49,65 +39,45 @@ export function BackGroundBoxBar() {
   const [selectedMinute, setSelectedMinute] = useState<string | undefined>();
   const [branch, setBranch] = useState<"North" | "South" | undefined>();
   const [numberOfRooms, setNumberOfRooms] = useState<number | undefined>();
+  const [isLoading, setIsLoading] = useState(false);
 
-  const [errorMessage, setErrorMessage] = useState<string>("");
-
-  const validateAndSubmit = (data: RegisterInputProps) => {
-    // Validate if required fields are filled
-    if (!checkIn || !checkOut || !branch || !numberOfRooms || !data.fullName) {
-      setErrorMessage("Please fill out all required fields.");
+  // Submit function
+  const onSubmit = async (data: ReservationProps) => {
+    if (!branch) {
+      toast.error("Please select a branch");
       return;
     }
-
-    // Ensure number of rooms is positive
-    if (numberOfRooms <= 0) {
-      setErrorMessage("Number of rooms must be greater than zero.");
+    if (!checkIn || !checkOut) {
+      toast.error("Please select both check-in and check-out dates");
       return;
     }
-
-    // Compare check-in and check-out times
-    const checkInTime = new Date(checkIn);
-    if (selectHour && selectMinute) {
-      checkInTime.setHours(Number(selectHour));
-      checkInTime.setMinutes(Number(selectMinute));
+  
+    setIsLoading(true);
+    try {
+      const reservationData = {
+        ...data,
+        checkIn,
+        checkOut,
+        branch, // Now guaranteed to be either "North" or "South"
+        numberOfRooms: Number(numberOfRooms),
+      };
+  
+      const result = await createReservation(reservationData);
+  
+      if (result.status === 201) {
+        toast.success("Reservation created successfully");
+        reset(); // Reset form after successful submission
+        router.push("/reservations");
+      } else {
+        toast.error(result.error || "Failed to create reservation");
+      }
+    } catch (error) {
+      toast.error("Something went wrong!");
+    } finally {
+      setIsLoading(false);
     }
-
-    const checkOutTime = new Date(checkOut);
-    if (selectedHour && selectedMinute) {
-      checkOutTime.setHours(Number(selectedHour));
-      checkOutTime.setMinutes(Number(selectedMinute));
-    }
-
-    if (checkOutTime <= checkInTime) {
-      setErrorMessage("Check-out time must be later than check-in time.");
-      return;
-    }
-
-    // Reset error message after validations
-    setErrorMessage("");
-
-    // Create reservation object
-    const reservation: RoomReservation = {
-      checkIn: {
-        date: checkIn,
-        hour: selectHour,
-        minute: selectMinute,
-      },
-      checkOut: {
-        date: checkOut,
-        hour: selectedHour,
-        minute: selectedMinute,
-      },
-      branch: branch,
-      fullName: data.fullName,
-      numberOfRooms: numberOfRooms,
-    };
-
-    console.log("Reservation:", reservation);
-    
-    // For now, we'll log it. You can replace this with an API call:
-    // e.g., await submitReservation(reservation)
   };
+  
 
   return (
     <div
@@ -116,7 +86,10 @@ export function BackGroundBoxBar() {
     >
       <div className="absolute inset-0 w-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
 
-      <div className="relative z-30 flex flex-col md:flex-row justify-start items-center gap-y-4 md:gap-y-0 gap-x-4 px-4 py-2 md:py-0">
+      <form
+        className="relative z-30 flex flex-col md:flex-row justify-start items-center gap-y-4 md:gap-y-0 gap-x-4 px-4 py-2 md:py-0"
+        onSubmit={handleSubmit(onSubmit)} // Use handleSubmit to handle form submission
+      >
         <div className="flex flex-col items-center">
           <span className="text-white text-sm mb-1">Check In</span>
           <DatePickerInput
@@ -160,35 +133,33 @@ export function BackGroundBoxBar() {
         </div>
 
         <div className="flex flex-col">
-          <span className="text-white text-sm ml-10">Full Names</span>
-          <div className="flex w-full max-w-sm items-center">
-            <Input
-                type="name"
-                placeholder="Enter full Names"
-                onChange={(e) => setNumberOfRooms(Number(e.target.value))}
-              />
-          </div>
+          <span className="text-white text-sm mb-1">Full Name</span>
+          <Input
+            type="text"
+            placeholder="Enter full name"
+            {...register("fullName", { required: true })}
+            className={`${errors.fullName ? 'border-red-500' : ''}`} // Highlight on error
+          />
+          {errors.fullName && <p className="text-red-500">Full name is required</p>}
         </div>
 
         <div className="flex flex-col">
-          <span className="text-white text-sm mb-1 ml-10">Number of Rooms</span>
-          <div className="flex w-full max-w-sm items-center space-x-2">
-            <Input
-              type="number"
-              placeholder="Enter number"
-              onChange={(e) => setNumberOfRooms(Number(e.target.value))}
-            />
-            <Button
-              className="bg-white text-gray-900 hover:text-white border boder-gray-950"
-              onClick={handleSubmit(validateAndSubmit)}
-            >
-              Reserve
-            </Button>
-          </div>
+          <span className="text-white text-sm mb-1">Number of Rooms</span>
+          <Input
+            type="number"
+            placeholder="Enter number"
+            onChange={(e) => setNumberOfRooms(Number(e.target.value))}
+          />
         </div>
-      </div>
-
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+          <div className="mt-6">
+          <SubmitButton
+            title="Reserve"
+            isLoading={isLoading}
+            LoadingTitle="Making A Reservation, please wait...."
+          />
+          <Toaster />
+          </div>
+      </form>
     </div>
   );
 }

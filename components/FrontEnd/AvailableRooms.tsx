@@ -55,9 +55,16 @@ export default function AvailableRoomCards() {
 
   return (
     <>
-        <h3 className="mt-8 scroll-m-20 text-2xl ml-5 font-semibold tracking-tight">
+      <div className="flex justify-between items-center">
+        <h1 className="mt-8 scroll-m-20 text-3xl ml-5 font-semibold tracking-tight">
           Available Rooms
-        </h3>
+        </h1>
+        <div className="mt-9 mr-5">
+          <button className="px-6 py-2 text-blue-500 rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+            Figma
+          </button>
+        </div>
+      </div>
       <div className="pt-6 py-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
         {rooms.map((room) => (
           <Card key={room.id} className="w-[310px] mx-auto">

@@ -57,6 +57,13 @@ export function DatePickerInput({
     }
   };
 
+  // Function to disable past dates
+  const isPastDate = (date: Date) => {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Set time to start of day for comparison
+    return date < today;
+  };
+
   return (
     <div className={cn("grid", className)}>
       <h2 className="text-normal font-normal">{title}</h2>
@@ -84,6 +91,7 @@ export function DatePickerInput({
               handleDateChange(day || undefined);
             }}
             initialFocus
+            disabled={isPastDate} // Pass the function to disable past dates
           />
           <div className="flex space-x-2 mt-2 p-2">
             <Select

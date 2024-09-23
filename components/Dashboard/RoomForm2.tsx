@@ -7,7 +7,7 @@ import { useState } from "react"; // State management library
 import { Button } from "../ui/button"; // Button component
 import Link from "next/link"; // Link component from Next.js
 import { X } from "lucide-react"; // Icon component from Lucide React
-import toast from "react-hot-toast"; // Toast notification library
+import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from "next/navigation"; // Router hook from Next.js
 import { Input } from "../ui/input";
 import ImageInput from "../FormInputs/ImageInput"; // Custom image input component
@@ -139,6 +139,7 @@ async function onSubmit(data: RoomProps) {
             isLoading={isLoading}
             LoadingTitle={"Saving please wait..."}
           />
+          <Toaster />
         </div>
       </form>
     </div>

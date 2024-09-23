@@ -1,7 +1,7 @@
 "use server"
 
 import { prismaClient } from "@/lib/db";
-import { RoomProps } from "@/types/types";
+import { ReservationProps, RoomProps } from "@/types/types";
 
 export async function createRoom(data: RoomProps) {
     try {
@@ -186,3 +186,58 @@ export async function getAvailRooms() {
     };
   }
 }
+
+export async function createReservation(data: ReservationProps) {
+    try {
+        console.log('Data received by createReservation:', data); // Log incoming data
+
+        // Check if reservation with the same fullName and checkIn date already exists
+        const existingReservation = await prismaClient.reservation.findFirst({
+            where: {
+                fullName: data.fullName,
+                checkIn: data.checkIn,
+            },
+        });
+
+        console.log('Existing reservation found:', existingReservation); // Log if a reservation is found
+
+        // If reservation exists, return conflict response
+        if (existingReservation) {
+            console.log('Reservation already exists for this guest and date:', data.fullName, data.checkIn);
+            return {
+                data: null,
+                status: 409,
+                error: "Reservation already exists for this guest and date",
+            };
+        }
+
+        // Create new reservation if not found
+        const newReservation = await prismaClient.reservation.create({
+            data: {
+                fullName: data.fullName,
+                checkIn: data.checkIn,
+                checkOut: data.checkOut,
+                branch: data.branch,
+                numberOfRooms: parseInt(data.numberOfRooms, 10), // Convert numberOfRooms to integer
+            },
+        });
+
+        console.log('New reservation created:', newReservation);
+
+        return {
+            data: newReservation,
+            status: 201,
+            error: null,
+        };
+    } catch (error) {
+        console.error('Error creating reservation:', error);
+
+        return {
+            data: null,
+            status: 501,
+            error: "Reservation not created",
+        };
+    }
+}
+
+

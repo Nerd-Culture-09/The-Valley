@@ -40,3 +40,12 @@ export type BookingProps = {
     roomId: string;
     roomTitle: string;
 };
+
+export type ReservationProps = {
+    fullName: string;
+    emails: string;
+    branch: string;
+    checkIn: Date; 
+    checkOut: Date;
+    numberOfRooms: any;
+};
