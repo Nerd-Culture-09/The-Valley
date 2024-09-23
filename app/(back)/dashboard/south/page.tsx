@@ -22,7 +22,7 @@ export default function page() {
           </div>
           {/* Scrollable area for displaying rooms */}
           <div className="px-3">
-            <ScrollArea className="h-96 w-full">
+            <ScrollArea className="h-[600px] w-full">
               <RoomUpdate />
             </ScrollArea>
           </div>

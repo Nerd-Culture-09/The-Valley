@@ -14,9 +14,9 @@ export default function PannelHeader({
     <div className="py-2 px-6 border-gray-200 flex items-center justify-between">
       <div className="flex items-center  gap-1 text-sm mb-4">
         <Icon className='w-4 h-4 flex-shrink-0'/>
-        <span>
-         {title}
-        </span>
+          <span>
+          {title}
+          </span>
       </div>
     </div>
   );
