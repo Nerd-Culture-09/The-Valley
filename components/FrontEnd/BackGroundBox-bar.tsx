@@ -21,6 +21,7 @@ import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, 
 import { Button } from "@/components/ui/button";
 import { useToaster } from "@/hooks/use-toast";
 import { CheckIcon } from "lucide-react";
+import SubmitButton from "../FormInputs/SubmitButton";
 
 export function BackGroundBoxBar() {
   const { toaster } = useToaster();
@@ -45,6 +46,10 @@ export function BackGroundBoxBar() {
   const [isLoading, setIsLoading] = useState(false);
   const [availableRooms, setAvailableRooms] = useState<any[]>([]); // Updated to handle available rooms
 
+  // State for controlling the AlertDialog and loader inside it
+  const [isDialogLoading, setIsDialogLoading] = useState(false);
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+
   // Fetch available rooms on component mount
   useEffect(() => {
     const fetchAvailableRooms = async () => {
@@ -60,7 +65,7 @@ export function BackGroundBoxBar() {
   // Submit function inside the AlertDialog action
   const onSubmit = async (data: ReservationProps) => {
     if (!branch) {
-      toast.error("Please select a branch");
+      toast.error("Please select a room");
       return;
     }
     if (!checkIn || !checkOut) {
@@ -92,6 +97,7 @@ export function BackGroundBoxBar() {
       toast.error("Something went wrong!");
     } finally {
       setIsLoading(false);
+      setIsDialogOpen(false);
     }
   };
 
@@ -176,8 +182,8 @@ export function BackGroundBoxBar() {
         </div>
 
         {/* AlertDialog for reservation */}
-        <AlertDialog>
-          <AlertDialogTrigger asChild>
+        <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <AlertDialogTrigger asChild>
             <Button variant="outline" className="mt-6">
               Reserve
             </Button>
@@ -200,11 +206,9 @@ export function BackGroundBoxBar() {
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
-              <AlertDialogCancel ref={cancelRef}>Cancel</AlertDialogCancel>
-              <AlertDialogAction
-                onClick={handleSubmit(onSubmit)} // Trigger form submission on action button
-              >
-                Confirm
+            <AlertDialogCancel ref={cancelRef}>Cancel</AlertDialogCancel>
+              <AlertDialogAction onClick={handleSubmit(onSubmit)}>
+                {isDialogLoading ? "Processing..." : "Confirm"}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
