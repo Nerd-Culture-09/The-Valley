@@ -128,7 +128,6 @@ export default function NorthRoomCards() {
               price={selectedRoom.price}
               amenities={selectedRoom.amenities}
               roomId={selectedRoom.id} // Add roomId here for booking
-              room={selectedRoom}
               />
           </div>
         </div>

@@ -1,10 +1,8 @@
 "use client";
 import React, { useState } from "react";
-import { CardData } from "./AvailableRooms";
 import { Button } from "../ui/button";
 
 interface ConfirmationPageProps {
-  room: CardData;
   userDetails: {
     fullName: string;
     email: string;
@@ -14,7 +12,6 @@ interface ConfirmationPageProps {
 }
 
 export const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
-  room,
   userDetails,
 }) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -22,11 +19,6 @@ export const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
   return (
     <div className="p-4">
       <h3 className="text-xl font-bold mb-4">Booking Confirmation</h3>
-      <div className="mb-4">
-        <h4 className="text-lg font-semibold">Room Details</h4>
-        <p>{room.category + " " + room.title}</p>
-        <p>M{room.price}</p>
-      </div>
       <div className="mb-4">
         <h4 className="text-lg font-semibold">Your Details</h4>
         <p><span className="text-green-600 font-bold">Full Name:</span> {userDetails.fullName}</p>
