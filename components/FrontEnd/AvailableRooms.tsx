@@ -139,7 +139,6 @@ export default function AvailableRoomCards() {
         price={selectedRoom.price}
         amenities={selectedRoom.amenities}
         roomId={selectedRoom.id} // Pass roomId for booking
-        room={selectedRoom}
       />
     </div>
   </div>

@@ -3,7 +3,6 @@
 import React, { useState } from "react";
 import { RoomCarouselDemo } from "./RoomCarousel";
 import { Button } from "@/components/ui/button";
-import { CardData } from "./AvailableRooms";
 import { Timeline } from "./BookTimeline";
 import { ConfirmationPage } from "./ConfirmBooking";
 import { Bath, Bed, Table, Wifi } from 'lucide-react';
@@ -13,7 +12,6 @@ interface DummyContentProps {
   category: string;
   title: string;
   images: string[];
-  room: CardData;
   price: string;
   amenities: string[];
   roomId: string;
@@ -23,7 +21,6 @@ export const DummyContent: React.FC<DummyContentProps> = ({
   category,
   title,
   images,
-  room,
   price,
   amenities,
   roomId
@@ -92,7 +89,7 @@ export const DummyContent: React.FC<DummyContentProps> = ({
 
         {step === 3 && (
           <div className="lg:w-3/4 mt-8 lg:mt-0">
-            <ConfirmationPage room={room} userDetails={userDetails} /> {/* Pass roomId to ConfirmationPage */}
+            <ConfirmationPage  userDetails={userDetails} /> {/* Pass roomId to ConfirmationPage */}
           </div>
         )}
 

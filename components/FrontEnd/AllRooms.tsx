@@ -1,6 +1,4 @@
 import React from 'react';
-import { CardData } from './AvailableRooms';
-import { DirectionAwareHover } from '../ui/direction-aware-hover';
 import { TypewriterEffectSmoothDemo } from './Typewriter';
 import SouthRoomCards from './SouthRoomCards';
 import NorthRoomCards from './NorthRoomCards';
@@ -41,32 +39,6 @@ function AllRooms()
       
       
       // Card data array
-      const cardsData: CardData[] = [
-        {
-          category: "The Valley South",
-          title: "Room 1",
-          src: "/bedroom_front_display3.jpg",
-          images: room1Imgs,
-          price: "250/ Night",
-          room: ""
-        },
-        {
-          category: "The Valley South",
-          title: "Room 2",
-          src: "/bedroom_front_display.jpg",
-          images: room2Imgs,
-          price: "250/ Night",
-          room: ""
-        },
-        {
-          category: "The Valley North",
-          title: "Room 1",
-          src: "/bedroom_display1.jpeg",
-          images: room3Imgs,
-          price: "250/ Night",
-          room: ""
-        },
-      ];
     return (
         <div className='flex flex-col p-6'>
             <div className="flex justify-center items-center py-10 mt-10">
