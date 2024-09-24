@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
 import { DatePickerInput } from "../FormInputs/DatePickerInput";
@@ -17,8 +17,10 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from "next/navigation"; // Import useRouter for redirection
 import { ReservationProps } from "@/types/types";
 import { createReservation, getAvailRooms } from "@/actions/rooms";
-import SubmitButton from "../FormInputs/SubmitButton";
+import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { Button } from "@/components/ui/button";
 import { useToaster } from "@/hooks/use-toast";
+import { CheckIcon } from "lucide-react";
 
 export function BackGroundBoxBar() {
   const { toaster } = useToaster();
@@ -29,6 +31,7 @@ export function BackGroundBoxBar() {
     formState: { errors },
   } = useForm<ReservationProps>();
   const router = useRouter(); // Use the Next.js router for redirection
+  const cancelRef = useRef(null); // Reference for the cancel button in AlertDialog
 
   // State for date, branch selection, and available rooms
   const [checkIn, setCheckIn] = useState<Date | undefined>();
@@ -54,7 +57,7 @@ export function BackGroundBoxBar() {
     fetchAvailableRooms();
   }, []);
 
-  // Submit function
+  // Submit function inside the AlertDialog action
   const onSubmit = async (data: ReservationProps) => {
     if (!branch) {
       toast.error("Please select a branch");
@@ -171,15 +174,53 @@ export function BackGroundBoxBar() {
             onChange={(e) => setNumberOfRooms(Number(e.target.value))}
           />
         </div>
-        <div className="mt-6">
-          <SubmitButton
-            title="Reserve"
-            isLoading={isLoading}
-            LoadingTitle="Making A Reservation, please wait...."
-          />
-          <Toaster />
-        </div>
+
+        {/* AlertDialog for reservation */}
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="outline" className="mt-6">
+              Reserve
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Confirm Reservation</AlertDialogTitle>
+              <AlertDialogDescription>
+              <div className="text-neutral-900 mt-1 relative z-20">
+              Follow these steps to pay for your room:
+              <ul className="list-none mt-2">
+                <Step title="Are you paying with Mpesa or Ecocash?" />
+                <Step title="Mpesa Merchant(12345) / Ecocash Merchant(12345)" />
+                <Step title="Make Payment To Any Convinient Merchant" />
+                <Step title="Take a screenshot" />
+                <Step title="Send it here (56120463) via WhatsApp" />
+                <Step title="All Done!" />
+              </ul>
+            </div>
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel ref={cancelRef}>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                onClick={handleSubmit(onSubmit)} // Trigger form submission on action button
+              >
+                Confirm
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+        
+        <Toaster />
       </form>
     </div>
   );
 }
+
+const Step = ({ title }: { title: string }) => {
+  return (
+    <li className="flex gap-2 items-start">
+      <CheckIcon />
+      <p className="text-black">{title}</p>
+    </li>
+  );
+};
