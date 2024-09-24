@@ -15,6 +15,7 @@ import { DummyContent } from "./DummyContent";
 import { Button } from "../ui/button";
 import { FaTimes } from "react-icons/fa";
 import { getAvailRooms } from "@/actions/rooms";
+import Link from "next/link";
 
 interface Room {
   id: string;
@@ -60,9 +61,11 @@ export default function AvailableRoomCards() {
           Available Rooms
         </h1>
         <div className="mt-9 mr-5">
-          <button className="px-6 py-2 text-blue-500 rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
-            view
-          </button>
+          <Link href="all-rooms">
+            <button className="px-6 py-2 text-blue-500 rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+              View All
+            </button>
+          </Link>
         </div>
       </div>
       <div className="pt-6 py-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
