@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Card,
   CardContent,
@@ -19,7 +19,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { getAllRooms, updateRoomAvailability } from "@/actions/rooms";
+import { updateRoomAvailability, deleteRoom } from "@/actions/rooms"; // Make sure these are client-side safe
 import { Button } from "../ui/button";
 
 interface Room {
@@ -33,44 +33,46 @@ interface Room {
   isAvailable: boolean;
 }
 
-export default function RoomUpdate() {
-  const [rooms, setRooms] = useState<Room[]>([]);
+interface RoomUpdateProps {
+  rooms: Room[]; // Expect rooms to be passed from the server
+}
+
+export default function RoomUpdate({ rooms }: RoomUpdateProps) {
+  const [roomList, setRoomList] = useState<Room[]>(rooms); // Use initial rooms passed from the server
+  if (!rooms || rooms.length === 0) {
+    return <p>No rooms available.</p>;
+  }
   const [updatingRoomId, setUpdatingRoomId] = useState<string | null>(null);
-
-  useEffect(() => {
-    const fetchRooms = async () => {
-      const response = await getAllRooms();
-      if (response.data) {
-        setRooms(response.data);
-      }
-    };
-
-    fetchRooms();
-  }, []);
+  const [deletingRoomId, setDeletingRoomId] = useState<string | null>(null);
 
   const handleUpdateAvailability = async (
     roomId: string,
     isAvailable: boolean
   ) => {
-    setUpdatingRoomId(roomId); // Optional: Can be used to show loading state for this room
+    setUpdatingRoomId(roomId);
     const response = await updateRoomAvailability(roomId, isAvailable);
     if (response.status === 200) {
-      // Update the local room state after successful update
-      setRooms((prevRooms) =>
+      setRoomList((prevRooms) =>
         prevRooms.map((room) =>
           room.id === roomId ? { ...room, isAvailable } : room
         )
       );
-    } else {
-      console.error(response.error);
     }
-    setUpdatingRoomId(null); // Reset the loading state
+    setUpdatingRoomId(null);
+  };
+
+  const handleDeleteRoom = async (roomId: string) => {
+    setDeletingRoomId(roomId);
+    const response = await deleteRoom(roomId);
+    if (response.status === 200) {
+      setRoomList((prevRooms) => prevRooms.filter((room) => room.id !== roomId));
+    }
+    setDeletingRoomId(null);
   };
 
   return (
     <div className="flex flex-col gap-6">
-      {/* Remove the grid and use a flex column layout to stack the cards */}
-      {rooms.map((room) => (
+      {roomList.map((room) => (
         <Card key={room.id} className="w-full">
           <CardHeader>
             <CardTitle className="text-xl font-semibold">{room.title}</CardTitle>
@@ -79,7 +81,7 @@ export default function RoomUpdate() {
               {room.isAvailable ? "Available" : "Booked"}
             </p>
           </CardHeader>
-          <CardContent>
+          <CardContent className="flex gap-4">
             <AlertDialog>
               <AlertDialogTrigger>
                 <Button>
@@ -108,6 +110,33 @@ export default function RoomUpdate() {
                     disabled={updatingRoomId === room.id}
                   >
                     Available
+                  </AlertDialogAction>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialog>
+
+            {/* Delete Room Button */}
+            <AlertDialog>
+              <AlertDialogTrigger>
+                <Button variant="destructive">
+                  Delete Room
+                </Button>
+              </AlertDialogTrigger>
+              <AlertDialogContent>
+                <AlertDialogHeader>
+                  <AlertDialogTitle>Are you sure you want to delete this room?</AlertDialogTitle>
+                  <AlertDialogDescription>
+                    This action cannot be undone.
+                  </AlertDialogDescription>
+                </AlertDialogHeader>
+                <AlertDialogFooter>
+                  <AlertDialogCancel>Cancel</AlertDialogCancel>
+                  <AlertDialogAction
+                    className="bg-red-600"
+                    onClick={() => handleDeleteRoom(room.id)}
+                    disabled={deletingRoomId === room.id}
+                  >
+                    {deletingRoomId === room.id ? "Deleting..." : "Delete"}
                   </AlertDialogAction>
                 </AlertDialogFooter>
               </AlertDialogContent>

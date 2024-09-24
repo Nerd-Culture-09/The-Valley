@@ -61,7 +61,7 @@ export default function AvailableRoomCards() {
         </h1>
         <div className="mt-9 mr-5">
           <button className="px-6 py-2 text-blue-500 rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
-            Figma
+            view
           </button>
         </div>
       </div>

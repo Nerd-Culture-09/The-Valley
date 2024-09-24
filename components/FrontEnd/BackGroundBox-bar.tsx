@@ -1,8 +1,8 @@
 "use client";
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
 import { DatePickerInput } from "../FormInputs/DatePickerInput";
 import {
   Select,
@@ -16,12 +16,12 @@ import {
 import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from "next/navigation"; // Import useRouter for redirection
 import { ReservationProps } from "@/types/types";
-import { createReservation } from "@/actions/rooms";
+import { createReservation, getAvailRooms } from "@/actions/rooms";
 import SubmitButton from "../FormInputs/SubmitButton";
-import { useToaster } from "@/hooks/use-toast"
+import { useToaster } from "@/hooks/use-toast";
 
 export function BackGroundBoxBar() {
-  const { toaster } = useToaster()
+  const { toaster } = useToaster();
   const {
     register,
     handleSubmit,
@@ -30,7 +30,7 @@ export function BackGroundBoxBar() {
   } = useForm<ReservationProps>();
   const router = useRouter(); // Use the Next.js router for redirection
 
-  // State for date and branch selection
+  // State for date, branch selection, and available rooms
   const [checkIn, setCheckIn] = useState<Date | undefined>();
   const [checkOut, setCheckOut] = useState<Date | undefined>();
   const [selectHour, setSelectHour] = useState<string | undefined>();
@@ -40,6 +40,19 @@ export function BackGroundBoxBar() {
   const [branch, setBranch] = useState<"North" | "South" | undefined>();
   const [numberOfRooms, setNumberOfRooms] = useState<number | undefined>();
   const [isLoading, setIsLoading] = useState(false);
+  const [availableRooms, setAvailableRooms] = useState<any[]>([]); // Updated to handle available rooms
+
+  // Fetch available rooms on component mount
+  useEffect(() => {
+    const fetchAvailableRooms = async () => {
+      const result = await getAvailRooms();
+      if (result.status === 200) {
+        setAvailableRooms(result.data ?? []); // Fallback to an empty array if result.data is null
+      }
+    };
+
+    fetchAvailableRooms();
+  }, []);
 
   // Submit function
   const onSubmit = async (data: ReservationProps) => {
@@ -51,7 +64,7 @@ export function BackGroundBoxBar() {
       toast.error("Please select both check-in and check-out dates");
       return;
     }
-  
+
     setIsLoading(true);
     try {
       const reservationData = {
@@ -61,13 +74,14 @@ export function BackGroundBoxBar() {
         branch, // Now guaranteed to be either "North" or "South"
         numberOfRooms: Number(numberOfRooms),
       };
-  
+
       const result = await createReservation(reservationData);
-  
+
       if (result.status === 201) {
         toast.success("Reservation created successfully");
+        <Toaster />
         reset(); // Reset form after successful submission
-        router.push("/reservations");
+        router.push("/");
       } else {
         toast.error(result.error || "Failed to create reservation");
       }
@@ -77,7 +91,6 @@ export function BackGroundBoxBar() {
       setIsLoading(false);
     }
   };
-  
 
   return (
     <div
@@ -117,16 +130,23 @@ export function BackGroundBoxBar() {
         </div>
 
         <div className="flex flex-col items-center">
-          <span className="text-white text-sm mb-1">Select Branch</span>
+          <span className="text-white text-sm mb-1">Select Room</span>
           <Select onValueChange={(value) => setBranch(value as "North" | "South")}>
             <SelectTrigger className="w-[180px]">
-              <SelectValue placeholder="Select a Branch" />
+              <SelectValue placeholder="Select a Room" />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
-                <SelectLabel>North or South</SelectLabel>
-                <SelectItem value="North">North</SelectItem>
-                <SelectItem value="South">South</SelectItem>
+                <SelectLabel>Available Rooms</SelectLabel>
+                {availableRooms.length > 0 ? (
+                  availableRooms.map((room) => (
+                    <SelectItem key={room.id} value={room.title}>
+                      {room.title} - {room.category}
+                    </SelectItem>
+                  ))
+                ) : (
+                  <SelectItem disabled value="no_rooms">No rooms available</SelectItem>
+                )}
               </SelectGroup>
             </SelectContent>
           </Select>
@@ -144,21 +164,21 @@ export function BackGroundBoxBar() {
         </div>
 
         <div className="flex flex-col">
-          <span className="text-white text-sm mb-1">Number of Rooms</span>
+          <span className="text-white text-sm mb-1">Number of People</span>
           <Input
             type="number"
             placeholder="Enter number"
             onChange={(e) => setNumberOfRooms(Number(e.target.value))}
           />
         </div>
-          <div className="mt-6">
+        <div className="mt-6">
           <SubmitButton
             title="Reserve"
             isLoading={isLoading}
             LoadingTitle="Making A Reservation, please wait...."
           />
           <Toaster />
-          </div>
+        </div>
       </form>
     </div>
   );

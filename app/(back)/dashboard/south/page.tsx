@@ -1,3 +1,4 @@
+import { getAllRooms } from "@/actions/rooms";
 import PannelHeader from "@/components/Dashboard/PanelHeader";
 import RoomUpdate from "@/components/Dashboard/RoomUpdate";
 import NewButton from "@/components/FormInputs/NewButton";
@@ -5,7 +6,12 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { LayoutGrid } from "lucide-react";
 import React from "react";
 
-export default function page() {
+export default async function page() {
+  const rooms = await getAllRooms(); // Fetch data on the server side
+
+  // Handle the case where rooms.data might be null
+  const roomData = rooms?.data ?? []; // Default to an empty array if rooms.data is null
+
   return (
     <div>
       {/* Main grid layout for the page */}
@@ -23,7 +29,7 @@ export default function page() {
           {/* Scrollable area for displaying rooms */}
           <div className="px-3">
             <ScrollArea className="h-[600px] w-full">
-              <RoomUpdate />
+              <RoomUpdate rooms={roomData} />
             </ScrollArea>
           </div>
         </div>

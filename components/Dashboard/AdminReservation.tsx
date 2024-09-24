@@ -83,9 +83,9 @@ export function AdminReservation() {
                     <TableHeader>
                       <TableRow>
                         <TableHead>Full Names</TableHead>
-                        <TableHead>Number Of Rooms</TableHead>
+                        <TableHead>Number Of People</TableHead>
                         <TableHead className="hidden md:table-cell">
-                          Room Category/Branch
+                          Room
                         </TableHead>
                         <TableHead className="hidden md:table-cell">
                           Check-In Date & Time

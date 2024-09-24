@@ -2,6 +2,7 @@
 
 import { prismaClient } from "@/lib/db";
 import { ReservationProps, RoomProps } from "@/types/types";
+import { revalidatePath } from "next/cache";
 
 export async function createRoom(data: RoomProps) {
     try {
@@ -240,4 +241,31 @@ export async function createReservation(data: ReservationProps) {
     }
 }
 
+export async function deleteRoom(id: string) {
+  try {
+      // Delete service with the specified ID from the database
+      await prismaClient.room.delete({
+         where:{
+              id,
+         },
+      });
 
+      // Invalidate cache for the services dashboard page
+      revalidatePath("/dashboard/south")
+
+      // Return success response
+      return {
+          ok: true,
+          status: 200,
+          error:null,
+      };
+  } catch (error) {
+      // Handle errors and return error response
+      console.log(error);
+      return {
+          data: null,
+          status: 500,
+          error,
+      };
+  }
+}
