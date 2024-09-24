@@ -13,7 +13,7 @@ const SpecialOffer = () => {
         />
         <h3 className="text-black text-2xl font-bold mb-2">Couple Package Night Rest</h3>
         <div className="flex items-baseline mb-2">
-          <span className="text-black text-3xl font-bold">M250</span>
+          <span className="text-black text-3xl font-bold">250</span>
           <span className="text-gray-700 text-lg font-normal ml-2">/night</span>
         </div>
         <p className="text-gray-700 text-sm">Indulge in a Memorable One-Time Romantic Night for Two</p>

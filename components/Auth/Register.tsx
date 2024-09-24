@@ -7,7 +7,7 @@ import TextInputs from "../FormInputs/TextInput"; // Importing custom TextInput 
 import SubmitButton from "../FormInputs/SubmitButton"; // Importing custom SubmitButton component
 import { useState } from "react"; // Importing useState hook from React
 import { createUser } from "@/actions/users"; // Importing createUser function from actions/users
-import toast from "react-hot-toast"; // Importing toast notifications from react-hot-toast
+import toast, { Toaster } from 'react-hot-toast'; // Importing toast notifications from react-hot-toast
 import { Button } from "../ui/button"; // Importing custom Button component
 import { useRouter } from "next/navigation"; // Importing useRouter hook from next/navigation
 import TextInput from "../FormInputs/TextInput";
@@ -105,6 +105,7 @@ export default function RegisterFormWitBg({
               isLoading={isLoading}
               LoadingTitle="Creating Account, please wait...."
             />
+            <Toaster />
             <Button variant="outline" className="w-full">
               SignUp with Google
             </Button>

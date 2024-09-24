@@ -1,24 +1,23 @@
 "use client"
 
-// Lucide icons for sidebar navigation
-import { Activity, Home, Hotel, House, Power, Ship } from "lucide-react";
-import Link from "next/link"; // Next.js link component
-import React from "react"; // React library
-import { Button } from "@/components/ui/button"; // Button component
-import { usePathname, useRouter } from "next/navigation"; // Next.js navigation hooks
-import { cn } from "@/lib/utils"; // Utility function for classNames
-import { signOut } from "next-auth/react"; // Sign out function from NextAuth
+import { Activity, BookOpenCheck, Home, Hotel, House, Power, Ship } from "lucide-react";
+import Link from "next/link";
+import React from "react";
+import { Button } from "@/components/ui/button";
+import { usePathname, useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
+import { signOut } from "next-auth/react";
 
 export default function Sidebar() {
-  const pathname = usePathname(); // Current pathname from router
-  const router = useRouter(); // Router instance
+  const pathname = usePathname();
+  const router = useRouter();
 
   // Sidebar links for ADMIN
   const sideBarLinks = [
     {title:"Home", path:"/", icon: House},
-    {title:"Dashboard", path:"/dashboard", icon: Activity},
-    {title:"The North", path:"/dashboard/north", icon: Hotel},
-    {title:"The South", path:"/dashboard/south", icon: Hotel},
+    {title:"Bookings", path:"/dashboard", icon: BookOpenCheck},
+    {title:"Reservations", path:"/dashboard/reserve", icon: Activity},
+    {title:"Rooms", path:"/dashboard/south", icon: Hotel},
   ];
 
   // Function to handle logout

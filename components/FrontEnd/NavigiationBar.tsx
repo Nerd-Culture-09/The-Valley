@@ -2,18 +2,20 @@
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Button } from "../ui/button";
+import { useSession } from "next-auth/react"; // Import useSession for authentication
 
 const NavigationBar = () => {
   const [state, setState] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  
+  const { data: session, status } = useSession(); // Retrieve session data
 
-   const navigation = [
+  const navigation = [
     { title: "Home", path: "/" },
     { title: "Rooms", path: "/all-rooms" },
     { title: "Pricing", path: "/pricing" },
-    { title: "About", path: "/about" }, 
+    { title: "About", path: "/about" },
     { title: "Contact", path: "/contact" },
-    { title: "Dashboard", path: "/dashboard" },
   ];
 
   useEffect(() => {
@@ -35,7 +37,7 @@ const NavigationBar = () => {
   return (
     <nav
       className={`w-full h-[70px] fixed top-0 z-50 transition-colors duration-300 ${
-        scrolled ? " shadow-lg" : "shadow-lg"
+        scrolled ? "shadow-lg" : "shadow-lg"
       }`}
     >
       <div className="items-center bg-white px-4 w-full mx-auto md:flex md:px-8">
@@ -95,22 +97,34 @@ const NavigationBar = () => {
           <ul className="justify-center items-center space-y-8 md:flex md:space-x-6 md:space-y-0">
             {navigation.map((item, idx) => (
               <li key={idx} className="text-gray-600 hover:text-indigo-600">
-                <Link href={item.path}>
-                {item.title}
-                </Link>
+                <Link href={item.path}>{item.title}</Link>
               </li>
             ))}
+
+            {/* Show Dashboard link only if user is logged in and is admin */}
+            {session?.user?.role === "ADMIN" && (
+              <li className="text-gray-600 hover:text-indigo-600">
+                <Link href="/dashboard">Dashboard</Link>
+              </li>
+            )}
+
             <div className="flex flex-col gap-y-4 gap-x-6 md:flex-row md:space-y-0">
-                <Link href="/login">
-                  <Button className="bg-blue-500 lg:w-[90px]">
-                      Login
-                  </Button>
-                </Link>
-                <Link href="/register">
-                  <Button className="border border-blue-500 text-gray-600" variant='ghost'>
+              {/* Show login and register links only if the user is not logged in */}
+              {status === "unauthenticated" && (
+                <>
+                  <Link href="/login">
+                    <Button className="bg-blue-500 lg:w-[90px]">Login</Button>
+                  </Link>
+                  <Link href="/register">
+                    <Button
+                      className="border border-blue-500 text-gray-600"
+                      variant="ghost"
+                    >
                       Sign Up
-                  </Button>
-                </Link>
+                    </Button>
+                  </Link>
+                </>
+              )}
             </div>
           </ul>
         </div>

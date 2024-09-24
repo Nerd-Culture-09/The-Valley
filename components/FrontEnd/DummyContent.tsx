@@ -1,13 +1,13 @@
 "use client";
+
 import React, { useState } from "react";
 import { RoomCarouselDemo } from "./RoomCarousel";
 import { Button } from "@/components/ui/button";
 import { CardData } from "./AvailableRooms";
-import { FormPage } from "./BookingForm";
 import { Timeline } from "./BookTimeline";
 import { ConfirmationPage } from "./ConfirmBooking";
-import { SelectDemo } from "./RoomPackeges";
 import { Bath, Bed, Table, Wifi } from 'lucide-react';
+import BookingForm from "./BookingForm";
 
 interface DummyContentProps {
   category: string;
@@ -15,7 +15,8 @@ interface DummyContentProps {
   images: string[];
   room: CardData;
   price: string;
-  amenities: string[]; // Accept amenities as a prop
+  amenities: string[];
+  roomId: string;
 }
 
 export const DummyContent: React.FC<DummyContentProps> = ({
@@ -24,23 +25,37 @@ export const DummyContent: React.FC<DummyContentProps> = ({
   images,
   room,
   price,
-  amenities
+  amenities,
+  roomId
 }) => {
   const [step, setStep] = useState(1);
   const [userDetails, setUserDetails] = useState<{
     fullName: string;
     email: string;
+    payment: string;
+    phone: string;
   }>({
     fullName: "",
     email: "",
+    payment: "",
+    phone: "",
   });
 
   const handleNextStep = () => {
-    if (step === 2) {
-      setUserDetails({ fullName: "User Name", email: "user@example.com" });
-    }
     setStep(step + 1);
   };
+
+  // Function to update user details from the booking form
+  const updateUserDetails = (details: {
+    fullName: string;
+    email: string;
+    phone: string;
+    payment: string;
+  }) => {
+    setUserDetails(details);
+    handleNextStep();  // Move to the confirmation page
+  };
+
   const amenityIcons: Record<string, JSX.Element> = {
     Wifi: <Wifi className="w-5 h-5 text-blue-600" />,
     Bed: <Bed className="w-5 h-5 text-blue-600" />,
@@ -48,15 +63,14 @@ export const DummyContent: React.FC<DummyContentProps> = ({
     Table: <Table className="w-5 h-5 text-blue-600" />,
   };
 
+  console.log('Room ID passed to DummyContent:', roomId);
+
   return (
     <>
       <Timeline currentStep={step} />
       <div className="flex flex-col lg:flex-row lg:space-x-6">
         {step === 1 && (
-          <div className="lg:w-1/2">
-            <div className="ml-5">
-              <SelectDemo />
-            </div>
+          <div className="lg:w-3/4">
             <div className="-mt-28">
               <RoomCarouselDemo images={images} />
               <div className="w-full flex justify-center p-5">
@@ -65,37 +79,48 @@ export const DummyContent: React.FC<DummyContentProps> = ({
             </div>
           </div>
         )}
+
         {step === 2 && (
-          <div className="lg:w-1/2">
-            <FormPage onNext={handleNextStep} />
+          <div className="lg:w-3/4">
+            <BookingForm 
+              roomId={roomId} 
+              roomTitle={title}  // Pass the room title
+              onNextStep={updateUserDetails} 
+            />
           </div>
         )}
+
         {step === 3 && (
-          <div className="lg:w-1/2 mt-8 lg:mt-0">
-            <ConfirmationPage room={room} userDetails={userDetails} />
+          <div className="lg:w-3/4 mt-8 lg:mt-0">
+            <ConfirmationPage room={room} userDetails={userDetails} /> {/* Pass roomId to ConfirmationPage */}
           </div>
         )}
-        <div className="lg:w-1/2 mt-8 lg:mt-20">
-          <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl">
-            <h3 className="text-neutral-700 text-2xl font-bold">
-              {category}
-            </h3>
-            <h4 className="text-neutral-700 dark:text-neutral-200 text-lg mb-4">
-            {title}
-            <h1>Price: <span className="text-green-600 font-semibold">M{price}</span></h1>
-            </h4>
-            <div className="room-amenities">
-            <h4 className="font-bold">Amenities:</h4>
-            <ul className="flex space-x-4">
-            {amenities.map((amenity, index) => (
-              <li key={index} className="grid grid-col pt-4">
-                {amenityIcons[amenity] || <span>{amenity}</span>}
-              </li>
-            ))}
-          </ul>
+
+        {step === 1 && (
+          <div className="lg:w-1/2 mt-8 lg:mt-10">
+            <div className="bg-[#F5F5F7] dark:bg-neutral-800 p-8 md:p-14 rounded-3xl">
+              <h3 className="text-neutral-700 text-2xl font-bold">
+                {category}
+              </h3>
+              <h4 className="text-neutral-700 dark:text-neutral-200 text-lg mb-4">
+                {title}
+                <h1>
+                  Price: <span className="text-green-600 font-semibold">M{price}</span>
+                </h1>
+              </h4>
+              <div className="room-amenities">
+                <h4 className="font-bold">Amenities:</h4>
+                <ul className="flex space-x-4">
+                  {amenities.map((amenity, index) => (
+                    <li key={index} className="grid grid-col pt-4">
+                      {amenityIcons[amenity] || <span>{amenity}</span>}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </div>
-          </div>
-        </div>
+        )}
       </div>
     </>
   );

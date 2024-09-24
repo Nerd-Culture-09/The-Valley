@@ -1,144 +1,150 @@
 "use client";
-import { useState, ReactNode } from "react";
-import {FaTimes } from "react-icons/fa";
-import { DirectionAwareHover } from "../ui/direction-aware-hover";
-import { DummyContent } from "./DummyContent";
-import Link from "next/link";
 
-export interface CardData {
-  category: string;
+import React, { useEffect, useState } from "react";
+import AmenityItem from "@/components/FrontEnd/AmenityItem";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Bath, Bed, Table, Wifi } from "lucide-react";
+import Image from "next/image";
+import { DummyContent } from "./DummyContent";
+import { Button } from "../ui/button";
+import { FaTimes } from "react-icons/fa";
+import { getAvailRooms } from "@/actions/rooms";
+
+interface Room {
+  id: string;
   title: string;
-  src: string;
-  images: string[];
+  description: string;
+  image: string;
+  category: string;
   price: string;
+  amenities: string[];
+  isAvailable: boolean;
 }
 
+export default function AvailableRoomCards() {
+  const [rooms, setRooms] = useState<Room[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [selectedRoom, setSelectedRoom] = useState<Room | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-// Image arrays for each room
-const room1Imgs = [
-  "/valley_south_room1_bedroom.jpeg",
-  "/bedroom_front_display.jpg",
-  "/valley_south_room1_bathroom.jpeg",
-  "/valley_south_outside_night.jpeg",
-  "/valley_south_town_view.jpeg",
-];
+  useEffect(() => {
+    const fetchRooms = async () => {
+      const response = await getAvailRooms(); // Fetch all available rooms
+      if (response.data) {
+        setRooms(response.data);
+      }
+    };
 
-const room2Imgs = [
-  "/valley_south_room2_bedroom.jpeg",
-  "/valley_south_room2_shower.jpeg",
-  "/bedroom_front_display3.jpg",
-  "/valley_south_outside_night.jpeg",
-  "/valley_south_town_view.jpeg",
-];
+    fetchRooms();
+  }, []);
 
-const room3Imgs = [
-  "/valley_south_room3_bedroom.jpeg",
-  "/valley_south_room3_bathroom.jpeg",
-  "/bedroom_front_display3.jpg",
-  "/valley_south_outside_night.jpeg",
-  "/valley_south_town_view.jpeg",
-];
-
-const room4Imgs = [
-  "/bedroom_display2.jpeg",
-  "/valley_south_room2_restroom.jpeg",
-  "/valley_south_room2_shower.jpeg",
-  "/valley_south_outside_night.jpeg",
-  "/valley_south_town_view.jpeg",
-];
-
-
-// Card data array
-const cardsData: CardData[] = [
-  {
-    category: "The Valley South",
-    title: "Room 2",
-    src: "/bedroom_front_display.jpg",
-    images: room2Imgs,
-    price: "R250/ Night",
-  },
-  {
-    category: "The Valley North",
-    title: "Room 1",
-    src: "/bedroom_display1.jpeg",
-    images: room3Imgs,
-    price: "R250/ Night",
-  },
-  {
-    category: "The Valley North",
-    title: "Room 2",
-    src: "/bedroom_display2.jpeg",
-    images: room4Imgs,
-    price: "R250/ Night",
-  },
-  {
-    category: "The Valley North",
-    title: "Room 2",
-    src: "/bedroom_display2.jpeg",
-    images: room4Imgs,
-    price: "R250/ Night",
-  },
-];
-
-export function CardDemo() {
-  const [showPopup, setShowPopup] = useState(false);
-  const [popupContent, setPopupContent] = useState<ReactNode | null>(null);
-
-  const handleClick = (card: CardData) => {
-    setPopupContent(
-      <DummyContent category={card.category} title={card.title} images={card.images} room={card} price={card.price} amenities={[]}/>
-    );
-    setShowPopup(true);
+  const handleReserveClick = (room: Room) => {
+    setSelectedRoom(room); // Select the room with its `id`
+    setIsModalOpen(true); // Open the modal for booking
   };
 
-  const handleClose = () => {
-    setShowPopup(false);
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
+
   return (
-    <div className="p-4 py-4">
-      <div className="flex justify-between items-center mb-6">
-      <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
-        Available Rooms
-      </h3>
-        <div className="mt-10">
-        <Link href="/all-rooms">
-        <button className="px-6 text-blue-600 font-semibold transform hover:-translate-y-1 transition duration-400">
-          View All
-        </button>
-        </Link>
+    <>
+      <div className="flex justify-between items-center">
+        <h1 className="mt-8 scroll-m-20 text-3xl ml-5 font-semibold tracking-tight">
+          Available Rooms
+        </h1>
+        <div className="mt-9 mr-5">
+          <button className="px-6 py-2 text-blue-500 rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+            view
+          </button>
         </div>
       </div>
-      <div className="flex flex-wrap md:flex-row flex-col md:justify-between justify-center items-center gap-2">
-        {cardsData.map((card, index) => (
-          <div
-            key={index}
-            onClick={() => handleClick(card)}
-            className="cursor-pointer"
-          >
-            <DirectionAwareHover imageUrl={card.src}>
-              <p className="font-bold text-xl">
-                {card.category + " " + card.title}
+      <div className="pt-6 py-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+        {rooms.map((room) => (
+          <Card key={room.id} className="w-[310px] mx-auto">
+            <CardHeader>
+              <CardTitle className="text-xl font-semibold">{room.title}</CardTitle>
+              <CardDescription className="text-gray-500">{room.description}</CardDescription>
+              <p className={`text-sm font-semibold ${room.isAvailable ? 'text-green-500' : 'text-red-500'}`}>
+                {room.isAvailable ? 'Available' : 'Booked'}
               </p>
-              <p className="font-normal text-sm">{card.price}</p>
-            </DirectionAwareHover>
-          </div>
+            </CardHeader>
+            <CardContent className="flex flex-col gap-4">
+              <div className="aspect-square overflow-hidden relative h-[200px] rounded-lg">
+                <Image
+                  src={room.image}
+                  alt="Room Image"
+                  fill
+                  className="object-cover w-full h-full"
+                />
+              </div>
+              <div className="grid grid-cols-2 gap-4 content-start text-sm">
+                {room.amenities.includes("Bed") && (
+                  <AmenityItem>
+                    <Bed className="w-4 h-4 font-bold text-blue-600" /> Bed
+                  </AmenityItem>
+                )}
+                {room.amenities.includes("Table") && (
+                  <AmenityItem>
+                    <Table className="w-4 h-4 text-blue-600" /> Table
+                  </AmenityItem>
+                )}
+                {room.amenities.includes("Wifi") && (
+                  <AmenityItem>
+                    <Wifi className="w-4 h-4 text-blue-600" /> Wifi
+                  </AmenityItem>
+                )}
+                {room.amenities.includes("Shower") && (
+                  <AmenityItem>
+                    <Bath className="w-4 h-4 text-blue-600" /> Shower
+                  </AmenityItem>
+                )}
+              </div>
+              <div className="pt-10 flex justify-between">
+                <Button
+                  onClick={() => handleReserveClick(room)}
+                  className={`py-2 px-4 rounded-lg ${isLoading ? "bg-gray-500" : "bg-blue-600"} text-white`}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "please wait..." : "Reserve"}
+                </Button>
+                <p className="border border-green-500 rounded-lg w-16">
+                  <span className="flex justify-center pt-2 font-extrabold">M{room.price}</span>
+                </p>
+              </div>
+            </CardContent>
+          </Card>
         ))}
       </div>
 
-      {showPopup && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm">
-          <div className="bg-white p-4 md:p-8 w-full max-w-full md:max-w-4xl relative border-2 border-gray-200 rounded-lg md:rounded-2xl m-2 md:m-0">
-            <button
-              onClick={handleClose}
-              className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
-              aria-label="Close"
-            >
-              <FaTimes className="text-2xl" />
-            </button>
-            {popupContent}
-          </div>
-        </div>
-      )}
+      {isModalOpen && selectedRoom && (
+  <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+    <div className="relative bg-white p-6 rounded-lg w-full max-w-xl"> {/* Added relative here */}
+      <Button 
+        className="absolute top-4 right-4 text-sm bg-transparent" 
+        onClick={closeModal}
+      >
+        <FaTimes className="text-xl text-black" /> {/* Ensure the close icon is visible */}
+      </Button>
+      <DummyContent
+        category={selectedRoom.category}
+        title={selectedRoom.title}
+        images={[selectedRoom.image]}
+        price={selectedRoom.price}
+        amenities={selectedRoom.amenities}
+        roomId={selectedRoom.id} // Pass roomId for booking
+        room={selectedRoom}
+      />
     </div>
+  </div>
+      )}
+
+    </>
   );
 }

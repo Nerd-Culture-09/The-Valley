@@ -2,7 +2,6 @@ import React from 'react';
 import { CardData } from './AvailableRooms';
 import { DirectionAwareHover } from '../ui/direction-aware-hover';
 import { TypewriterEffectSmoothDemo } from './Typewriter';
-import RoomCards from './NorthRoomCards';
 import SouthRoomCards from './SouthRoomCards';
 import NorthRoomCards from './NorthRoomCards';
 
@@ -48,21 +47,24 @@ function AllRooms()
           title: "Room 1",
           src: "/bedroom_front_display3.jpg",
           images: room1Imgs,
-          price: "R250/ Night",
+          price: "250/ Night",
+          room: ""
         },
         {
           category: "The Valley South",
           title: "Room 2",
           src: "/bedroom_front_display.jpg",
           images: room2Imgs,
-          price: "R250/ Night",
+          price: "250/ Night",
+          room: ""
         },
         {
           category: "The Valley North",
           title: "Room 1",
           src: "/bedroom_display1.jpeg",
           images: room3Imgs,
-          price: "R250/ Night",
+          price: "250/ Night",
+          room: ""
         },
       ];
     return (

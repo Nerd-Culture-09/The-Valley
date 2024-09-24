@@ -11,31 +11,31 @@ export const ourFileRouter = {
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("file url", file.url);
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      return { uploadedBy: "ClinicEase" };
+      return { uploadedBy: "The Valley" };
     }),
     roomImage: f({ image: { maxFileSize: "1MB" } })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("file url", file.url);
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      return { uploadedBy: "ClinicEase" };
+      return { uploadedBy: "The Valley" };
     }),
     doctorProfessionDocs: f({ pdf: { maxFileSize: "4MB", maxFileCount:4 }, })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("file url", file.url);
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      return { uploadedBy: "ClinicEase" };
+      return { uploadedBy: "The Valley" };
     }),
     additionalDocs: f({ pdf: { maxFileSize: "4MB", maxFileCount:4 }, })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("file url", file.url);
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      return { uploadedBy: "ClinicEase" };
+      return { uploadedBy: "The Valley" };
     }),
     patientMedicalFiles: f({ pdf: { maxFileSize: "4MB",maxFileCount: 4 }, })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("file url", file.url);
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
-      return { uploadedBy: "ClinicEase" };
+      return { uploadedBy: "The Valley" };
     }),
     patientProfilePicture: f({ image: { maxFileSize: "1MB" } })
     .onUploadComplete(async ({ metadata, file }) => {
