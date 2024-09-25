@@ -128,12 +128,12 @@ export default function AvailableRoomCards() {
 
       {isModalOpen && selectedRoom && (
   <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div className="relative bg-white p-6 rounded-lg w-full max-w-xl"> {/* Added relative here */}
+    <div className="relative bg-white p-6 rounded-lg w-full max-w-xl">
       <Button 
-        className="absolute top-4 right-4 text-sm bg-transparent" 
+        className="absolute top-7 right-1 text-sm bg-transparent" 
         onClick={closeModal}
       >
-        <FaTimes className="text-xl text-black" /> {/* Ensure the close icon is visible */}
+        <FaTimes className="text-xl text-black" />
       </Button>
       <DummyContent
         category={selectedRoom.category}
@@ -141,7 +141,7 @@ export default function AvailableRoomCards() {
         images={[selectedRoom.image]}
         price={selectedRoom.price}
         amenities={selectedRoom.amenities}
-        roomId={selectedRoom.id} // Pass roomId for booking
+        roomId={selectedRoom.id}
       />
     </div>
   </div>

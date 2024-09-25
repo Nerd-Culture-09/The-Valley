@@ -81,15 +81,15 @@ export const DummyContent: React.FC<DummyContentProps> = ({
           <div className="lg:w-3/4">
             <BookingForm 
               roomId={roomId} 
-              roomTitle={title}  // Pass the room title
+              roomTitle={title}
               onNextStep={updateUserDetails} 
             />
           </div>
         )}
 
         {step === 3 && (
-          <div className="lg:w-3/4 mt-8 lg:mt-0">
-            <ConfirmationPage  userDetails={userDetails} /> {/* Pass roomId to ConfirmationPage */}
+          <div className="lg:w-3/4 mt-8 lg:mt-0 lg:block"  >
+            <ConfirmationPage userDetails={userDetails} /> 
           </div>
         )}
 

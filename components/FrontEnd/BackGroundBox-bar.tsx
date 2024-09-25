@@ -17,11 +17,22 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useRouter } from "next/navigation"; // Import useRouter for redirection
 import { ReservationProps } from "@/types/types";
 import { createReservation, getAvailRooms } from "@/actions/rooms";
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import { 
+  AlertDialog,
+  AlertDialogAction, 
+  AlertDialogCancel, 
+  AlertDialogContent, 
+  AlertDialogDescription, 
+  AlertDialogFooter, 
+  AlertDialogHeader,
+  AlertDialogTitle, 
+  AlertDialogTrigger 
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import { useToaster } from "@/hooks/use-toast";
 import { CheckIcon } from "lucide-react";
 import SubmitButton from "../FormInputs/SubmitButton";
+import { BookDrawer } from "./fallBackDrawer";
 
 export function BackGroundBoxBar() {
   const { toaster } = useToaster();
@@ -102,12 +113,12 @@ export function BackGroundBoxBar() {
   };
 
   return (
+    <>
     <div
-      className="relative w-full overflow-hidden bg-slate-900 flex flex-col md:flex-row justify-center items-center"
+      className="relative w-full overflow-hidden bg-slate-900 lg:flex hidden flex-col md:flex-row justify-center items-center "
       style={{ height: "auto", minHeight: "2.5cm" }}
     >
       <div className="absolute inset-0 w-full bg-slate-900 z-20 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
-
       <form
         className="relative z-30 flex flex-col md:flex-row justify-start items-center gap-y-4 md:gap-y-0 gap-x-4 px-4 py-2 md:py-0"
         onSubmit={handleSubmit(onSubmit)} // Use handleSubmit to handle form submission
@@ -217,6 +228,10 @@ export function BackGroundBoxBar() {
         <Toaster />
       </form>
     </div>
+    <div className="lg:hidden flex w-full justify-center mt-5">
+      <BookDrawer />
+    </div>
+  </>
   );
 }
 

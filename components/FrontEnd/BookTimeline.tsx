@@ -8,7 +8,7 @@ interface TimelineProps {
 export const Timeline: React.FC<TimelineProps> = ({ currentStep }) => {
   const steps = ["Your Selection", "Your Details", "Final Step"];
   return (
-    <div className="flex justify-between items-center my-4">
+    <div className="lg:flex hidden justify-between items-center my-4">
       {steps.map((step, index) => (
         <div
           key={index}
