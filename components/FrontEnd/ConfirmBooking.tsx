@@ -1,6 +1,7 @@
 "use client";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
+
 interface ConfirmationPageProps {
   userDetails: {
     fullName: string;
@@ -34,25 +35,3 @@ export const ConfirmationPage: React.FC<ConfirmationPageProps> = ({
     </div>
   );
 };
-
-
-// const Step = ({ title }: { title: string }) => {
-//   return (
-//     <li className="flex gap-2 items-start">
-//       <CheckIcon />
-//       <p className="text-black">{title}</p>
-//     </li>
-//   );
-// };
-
-// <div className="text-neutral-900 mt-1 relative z-20">
-//               Follow these steps to pay for your room:
-//               <ul className="list-none mt-2">
-//                 <Step title="Are you paying with Mpesa or Ecocash?" />
-//                 <Step title="Mpesa Merchant(12345) / Ecocash Merchant(12345)" />
-//                 <Step title="Make Payment To Any Convinient Merchant" />
-//                 <Step title="Take a screenshot" />
-//                 <Step title="Send it here (56120463) via WhatsApp" />
-//                 <Step title="All Done!" />
-//               </ul>
-//             </div>
