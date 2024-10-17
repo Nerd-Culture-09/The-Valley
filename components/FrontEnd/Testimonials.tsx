@@ -1,13 +1,19 @@
 import * as React from "react";
-import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover"; 
+import {
+  Popover,
+  PopoverTrigger,
+  PopoverContent,
+} from "@/components/ui/popover";
 import { Button } from "@/components/ui/button";
 import Review from "./ReviewForm";
 import { getAllReviews } from "@/actions/users";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 interface Review {
   fullName: string;
   occupation: string;
   message: string;
+  imageUrl?: string; // New field to store the reviewer's image URL
 }
 
 export default function Testimonial() {
@@ -23,6 +29,16 @@ export default function Testimonial() {
     fetchReviews();
   }, []);
 
+  // Helper function to get initials from a name
+  const getInitials = (name: string) => {
+    const nameArray = name.split(" ");
+    if (nameArray.length > 1) {
+      return `${nameArray[0][0]}${nameArray[1][0]}`.toUpperCase();
+    } else {
+      return `${nameArray[0][0]}`.toUpperCase();
+    }
+  };
+
   return (
     <section className="py-14">
       <div className="max-w-screen-xl mx-auto px-4 md:px-8">
@@ -30,18 +46,23 @@ export default function Testimonial() {
           <h3 className="text-gray-800 text-3xl font-semibold sm:text-4xl">
             See what others are saying about us
           </h3>
-          <p className="mt-3 text-gray-600">The Valley guest house</p>
+          <p className="mt-3 text-gray-600">The Valley Guest House</p>
         </div>
         <div className="mt-12">
           <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {testimonials.map((item, idx) => (
+            {testimonials.slice(0, 3).map((item, idx) => (
               <li key={idx} className="bg-gray-100 p-4 rounded-xl">
                 <figure>
                   <div className="flex items-center gap-x-4">
-                    <img
-                      src="https://api.uifaces.co/our-content/donated/xZ4wg2Xj.jpg"
-                      className="w-16 h-16 rounded-full"
-                    />
+                    <Avatar>
+                      <AvatarImage
+                        src={item.imageUrl || undefined}
+                        alt={`${item.fullName}'s profile`}
+                      />
+                      <AvatarFallback>
+                        {getInitials(item.fullName)}
+                      </AvatarFallback>
+                    </Avatar>
                     <div>
                       <span className="block text-gray-800 font-semibold">
                         {item.fullName}
@@ -67,7 +88,7 @@ export default function Testimonial() {
             </PopoverTrigger>
             <PopoverContent>
               <div className="grid w-full gap-2">
-                <Review /> {/* Your sign-up form component */}
+                <Review />
               </div>
             </PopoverContent>
           </Popover>

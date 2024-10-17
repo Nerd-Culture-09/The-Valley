@@ -19,7 +19,7 @@ export default function ImageInput({
 }) {
   return (
     <div className={className}>
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between items-center">
         <label
               htmlFor="image"
               className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-400 mb-2 "
@@ -60,13 +60,6 @@ export default function ImageInput({
                 }}
                 />
             )}
-            {/* <button
-                type="submit"
-                className="inline-flex items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-purple-700 rounded-lg focus:ring-4 focus:ring-purple-200 dark:focus:ring-purple-900 hover:bg-purple-800"
-                >
-                <Plus className="w-5 h-5 mr-2" />
-                <span>Choose</span>
-            </button> */}
         </div>
   );
 }

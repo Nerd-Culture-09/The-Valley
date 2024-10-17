@@ -37,7 +37,7 @@ export const ourFileRouter = {
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
       return { uploadedBy: "The Valley" };
     }),
-    patientProfilePicture: f({ image: { maxFileSize: "1MB" } })
+    reviewPicture: f({ image: { maxFileSize: "1MB" } })
     .onUploadComplete(async ({ metadata, file }) => {
       console.log("file url", file.url);
       // !!! Whatever is returned here is sent to the clientside `onClientUploadComplete` callback
