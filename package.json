@@ -55,12 +55,17 @@
     "react-router-dom": "^6.26.1",
     "react-spring": "^9.7.4",
     "react-whatsapp-widget": "^2.2.0",
+    "recharts": "^2.12.7",
     "resend": "^4.0.0",
     "tailwind-merge": "^2.5.2",
     "tailwindcss-animate": "^1.0.7",
     "three": "^0.168.0",
     "uploadthing": "^6.13.3",
+<<<<<<< HEAD
     "vaul": "^1.1.0"
+=======
+    "vaul": "^0.9.6"
+>>>>>>> 36b13e22d0a5539499862a694d706fd84161dd17
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",

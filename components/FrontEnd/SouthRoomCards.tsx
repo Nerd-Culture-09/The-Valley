@@ -120,7 +120,7 @@ export default function SouthRoomCards() {
       {isModalOpen && selectedRoom && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
           <div className="bg-white p-6 rounded-lg w-full max-w-xl">
-            <Button className="absolute top-4 right-4 text-sm" onClick={closeModal}>
+            <Button className="absolute top-16 right-1 text-sm bg-transparent text-black" onClick={closeModal}>
               <FaTimes className="text-xl" />
             </Button>
             <DummyContent
