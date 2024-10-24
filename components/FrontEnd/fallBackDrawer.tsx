@@ -212,7 +212,7 @@ export function BookDrawer() {
           <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
                 <AlertDialogTrigger asChild>
                     <Button variant="outline" className="mt-6">
-                    Reserve
+                        Reserve
                     </Button>
                 </AlertDialogTrigger>
                 <AlertDialogContent>

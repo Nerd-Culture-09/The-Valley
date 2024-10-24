@@ -1,5 +1,4 @@
 "use server";
-
 import { prismaClient } from "@/lib/db";
 
 // Function to create a new booking
