@@ -39,7 +39,7 @@ interface RoomUpdateProps {
 
 export default function RoomUpdate({ rooms }: RoomUpdateProps) {
   // Hooks should always be called, even if the array is empty
-  const [roomList, setRoomList] = useState<Room[]>(rooms); // Use initial rooms passed from the server
+  const [roomList, setRoomList] = useState<Room[]>(rooms);
   const [updatingRoomId, setUpdatingRoomId] = useState<string | null>(null);
   const [deletingRoomId, setDeletingRoomId] = useState<string | null>(null);
 

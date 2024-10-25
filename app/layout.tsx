@@ -4,6 +4,7 @@ import { cn } from "@/lib/utils"
 import { Metadata } from "next";
 import AuthProvider from "./AuthProvider";
 import { Toaster } from "@/components/ui/toaster"
+import { ToastProvider } from "./Toaster-provider";
  
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -29,6 +30,7 @@ export default function RootLayout({
           fontSans.variable
         )}
       >
+        <ToastProvider />
         {children}
         <Toaster />
       </body>
