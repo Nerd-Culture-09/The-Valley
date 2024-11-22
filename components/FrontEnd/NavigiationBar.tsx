@@ -113,16 +113,11 @@ const NavigationBar = () => {
               {status === "unauthenticated" && (
                 <>
                   <Link href="/login">
-                    <Button className="bg-blue-500 lg:w-[90px]">Login</Button>
+                  <Button className="bg-blue-500 text-white lg:w-[120px] px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300">
+                              Login/SignUp
+                            </Button>
                   </Link>
-                  <Link href="/register">
-                    <Button
-                      className="border border-blue-500 text-gray-600"
-                      variant="ghost"
-                    >
-                      Sign Up
-                    </Button>
-                  </Link>
+               
                 </>
               )}
             </div>
