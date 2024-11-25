@@ -129,3 +129,4 @@ const NavigationBar = () => {
 };
 
 export default NavigationBar;
+//commented just to also push .env file
